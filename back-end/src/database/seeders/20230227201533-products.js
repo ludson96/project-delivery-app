@@ -26,10 +26,7 @@ const products2 = {
 
 module.exports = {
   async up (queryInterface, Sequelize) {
-    await queryInterface.bulkInsert('products', [{
-      name: 'John Doe',
-      isBetaMember: false
-    }], {});
+    await queryInterface.bulkInsert('products', [products1, products2], {});
   },
 
   async down (queryInterface, Sequelize) {
