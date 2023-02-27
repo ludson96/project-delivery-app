@@ -10,10 +10,10 @@ function Login({ history }) {
   const [errorText, setErrorText] = useState('');
 
   useEffect(() => {
-    const passwordMinLength = 6;
-    const emailIsValid = email.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{3})$/i);
+    const minPasswordLenght = 6;
+    const emailValidateRegex = email.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{3})$/i);
 
-    if (password.length > passwordMinLength && emailIsValid) {
+    if (password.length > minPasswordLenght && emailValidateRegex) {
       setDisabled(false);
     } else {
       setDisabled(true);
