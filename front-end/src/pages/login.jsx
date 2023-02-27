@@ -32,7 +32,6 @@ function Login({ history }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // fazer o post pra api
     axios.get(`${backendUrl}login`, { email, password })
       .then((res) => {
         const { token } = res.json().token;
@@ -42,8 +41,6 @@ function Login({ history }) {
           push('/customer/products');
         }
       });
-    // if deu bom {
-    // }
   };
 
   const semConta = (e) => {
