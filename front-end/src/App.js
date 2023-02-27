@@ -1,6 +1,8 @@
 import React from 'react';
 import './App.css';
 import { Route, Switch } from 'react-router-dom';
+import Login from './pages/login';
+import NotFound from './pages/notFound';
 
 function App() {
   return (
@@ -12,10 +14,9 @@ function App() {
       />
       <Route
         exact
-        path="/search"
-        component={ Search }
+        path="/login"
+        component={ Login }
       />
-
       <Route
         exact
         path="*"
