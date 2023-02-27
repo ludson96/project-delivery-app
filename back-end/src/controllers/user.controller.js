@@ -1,15 +1,19 @@
-import { Request, Response } from 'express';
-
+const UserService = require('../services/user.service');
 
   const createUser = async (req, res) => {
-    const token = await this._userService.login(req.body);
-    if (!token) {
-      return res.status(401)
-        .json({ message: 'Incorrect email or password' });
+    try {
+      const newUser = req.body;
+      const { user, token } = await UserService.createUser(newUser);
+      if (!user) return res.status(409).json({ message: 'User already registered' });
+      return res.status(201).json({ token });
+    } catch (erro) {
+      return res.status(500).json({
+        message: 'Erro ao criar usuário no banco',
+        error: erro.message,
+      });
     }
-    return res.status(201).json({ token });
   };
 
   module.exports = {
-    login,
+    createUser,
   }
