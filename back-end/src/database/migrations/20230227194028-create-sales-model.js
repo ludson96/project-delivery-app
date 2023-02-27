@@ -1,27 +1,40 @@
 'use strict';
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Sales.models', {
+    await queryInterface.createTable('sales', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      total_price: {
-        type: Sequelize.STRING
-      },
-      createdAt: {
+      totalPrice: {
+        type: Sequelize.FLOAT(9, 2),
         allowNull: false,
-        type: Sequelize.DATE
+        field: 'total_price'
       },
-      updatedAt: {
+      deliveryAddress: {
+        type: Sequelize.STRING,
         allowNull: false,
-        type: Sequelize.DATE
+        field: 'delivery_address'
+      },
+      deliveryNumber: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        field: 'delivery_number',
+      },
+      saleDate: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        field: 'sale_date',
+      },
+      status: {
+        type: Sequelize.STRING,
+        allowNull: false,
       }
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Sales.models');
+    await queryInterface.dropTable('sales');
   }
 };
