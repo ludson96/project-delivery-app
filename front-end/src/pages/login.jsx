@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import axios from 'axios';
+import backendUrl from '../helpers';
 
 function Login({ history }) {
   const [email, setEmail] = useState('');
@@ -31,9 +33,16 @@ function Login({ history }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     // fazer o post pra api
+    axios.get(`${backendUrl}login`, { email, password })
+      .then((res) => {
+        const { token } = res.json().token;
+        if (token) {
+          localStorage.setItem('token', token);
+          const { push } = history;
+          push('/customer/products');
+        }
+      });
     // if deu bom {
-    const { push } = history;
-    push('/customer/products');
     // }
   };
 
