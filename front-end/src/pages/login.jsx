@@ -7,7 +7,7 @@ function Login({ history }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [disabled, setDisabled] = useState(true);
-  const [errorText] = useState('');
+  const [errorText, setErrorText] = useState('');
 
   useEffect(() => {
     const passwordMinLength = 6;
@@ -30,17 +30,22 @@ function Login({ history }) {
     setPassword(value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    axios.get(`${backendUrl}login`, { email, password })
-      .then((res) => {
-        const { token } = res.json().token;
-        if (token) {
-          localStorage.setItem('token', token);
-          const { push } = history;
-          push('/customer/products');
-        }
-      });
+    try {
+      await axios.get(`${backendUrl}login`, { email, password })
+        .then((res) => {
+          const { token } = res.json().token;
+          if (token) {
+            localStorage.setItem('token', token);
+            const { push } = history;
+            push('/customer/products');
+          } else setErrorText('usuario invalido');
+        });
+    } catch (err) {
+      console.log(err);
+      setErrorText('erro de validação');
+    }
   };
 
   const semConta = (e) => {
