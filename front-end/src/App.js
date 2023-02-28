@@ -3,6 +3,7 @@ import './App.css';
 import { Route, Switch } from 'react-router-dom';
 import Login from './pages/login';
 import NotFound from './pages/notFound';
+import Register from './pages/register';
 
 function App() {
   return (
@@ -22,6 +23,8 @@ function App() {
         path="*"
         component={ NotFound }
       />
+      <Route exact path="register" component={ Register } />
+      <Route exact path="*" component={ NotFound } />
     </Switch>
   );
 }
