@@ -33,15 +33,19 @@ function Login({ history }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.get(`${backendUrl}login`, { email, password })
-        .then(async (res) => {
-          const { token } = await res.json();
-          if (token) {
-            localStorage.setItem('token', token);
-            const { push } = history;
-            push('/customer/products');
-          } else setErrorText('usuario invalido');
-        });
+      await axios({
+        method: 'post',
+        url: `${backendUrl}login`,
+        timeout: 500, // Let's say you want to wait at least 8 seconds
+        data: { email, password },
+      }).then(async (res) => {
+        const { token } = await res.json();
+        if (token) {
+          localStorage.setItem('token', token);
+          const { push } = history;
+          push('/customer/products');
+        } else setErrorText('usuario invalido');
+      });
     } catch (err) {
       console.log(err);
       setErrorText('erro de validação');
