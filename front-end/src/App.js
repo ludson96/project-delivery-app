@@ -19,12 +19,7 @@ function App() {
         path="/login"
         component={ Login }
       />
-      <Route
-        exact
-        path="*"
-        component={ NotFound }
-      />
-      <Route exact path="register" component={ Register } />
+      <Route exact path="/register" component={ Register } />
       <Route exact path="*" component={ NotFound } />
     </Switch>
   );
