@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import { Route, Switch } from 'react-router-dom';
+import { Redirect, Route, Switch } from 'react-router-dom';
 import Login from './pages/login';
 import NotFound from './pages/notFound';
 import Register from './pages/register';
@@ -11,19 +11,15 @@ function App() {
       <Route
         exact
         path="/"
-        component={ Login }
-      />
+      >
+        <Redirect to="/login" />
+      </Route>
       <Route
         exact
         path="/login"
         component={ Login }
       />
-      <Route
-        exact
-        path="*"
-        component={ NotFound }
-      />
-      <Route exact path="register" component={ Register } />
+      <Route exact path="/register" component={ Register } />
       <Route exact path="*" component={ NotFound } />
     </Switch>
   );

@@ -5,14 +5,6 @@ const path = require('path');
 const keyPath = path.join(__dirname, '..', '../jwt.evaluation.key');
 const secret = fs.readFileSync(keyPath, 'utf8');
 
-// const secretPath = path.resolve(__dirname, '../jwt.evaluation.key');
-
-// const getTalker = async () => {
-  // const contentJSON = fs.readFile(secretPath);
-  // const secret = JSON.parse(contentJSON);
-  // return secret;
-// }
-
 const jwtConfig = {
   algorithm: 'HS256',
   expiresIn: '7d',

@@ -13,7 +13,7 @@ function Login({ history }) {
     const minPasswordLenght = 6;
     const emailValidateRegex = email.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{3})$/i);
 
-    if (password.length > minPasswordLenght && emailValidateRegex) {
+    if (password.length >= minPasswordLenght && emailValidateRegex) {
       setDisabled(false);
     } else {
       setDisabled(true);
@@ -33,15 +33,19 @@ function Login({ history }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.get(`${backendUrl}login`, { email, password })
-        .then((res) => {
-          const { token } = res.json().token;
-          if (token) {
-            localStorage.setItem('token', token);
-            const { push } = history;
-            push('/customer/products');
-          } else setErrorText('usuario invalido');
-        });
+      await axios({
+        method: 'post',
+        url: `${backendUrl}register`,
+        timeout: 500, // Let's say you want to wait at least 8 seconds
+        data: { email, password },
+      }).then(async (res) => {
+        const { token } = await res.json();
+        if (token) {
+          localStorage.setItem('token', token);
+          const { push } = history;
+          push('/customer/products');
+        } else setErrorText('usuario invalido');
+      });
     } catch (err) {
       console.log(err);
       setErrorText('erro de validação');
