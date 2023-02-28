@@ -1,9 +1,5 @@
 const validateInputUser = (req, res, next) => {
-  const { displayName, email, password } = req.body;
-  if (displayName.length < 8) {
-    return res.status(400)
-      .json({ message: '"displayName" length must be at least 8 characters long' }); 
-  }
+  const { email, password } = req.body;
 
   const isFormatEmail = /\S+@\S+\.\S+/;
   if (!isFormatEmail.test(email)) { 
