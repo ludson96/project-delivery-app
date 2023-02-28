@@ -2,8 +2,9 @@ const sinon=  require('sinon');
 const chai = require('chai');
 const chaiHttp = require('chai-http');
 
-const app = '../api/app';
-import { User } from '../database/models';
+const app = require('../api/app');
+const { User } = require('../database/models');
+const { token, validInput } = require('./mock/register.mock');
 
 chai.use(chaiHttp);
 
@@ -19,10 +20,16 @@ describe('Testando endpoint "/register"', () => {
       
       const response = await chai
       .request(app).post('/register')
-      .send(validInput);
+      .send({
+        name: "ludson pereira",
+        email: "ludson@teste.com",
+        password: "dasdsada",
+        role: "customer",
+      });
       
-      expect(response.status).to.be.equal(200);
+      expect(response.status).to.be.equal(201);
       expect(response.body).to.have.property('token')
+      expect(response.body.token).to.deep.equal(token);
     });
   }) 
 })

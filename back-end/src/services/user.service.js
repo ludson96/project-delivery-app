@@ -4,6 +4,7 @@ const { createToken } = require('../auth/jwtFunctions');
  
 const createUser = async ({ name, email, password, role }) => {
   const result = await User.findOne({ where: { email } });
+  console.log('Eu sou result: ', result);
   if (result) return { user: null, token: null };
   const validPwd = md5(password);
   const newUser = await User.create({ name, email, password: validPwd, role });
