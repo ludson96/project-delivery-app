@@ -34,8 +34,8 @@ function Login({ history }) {
     e.preventDefault();
     try {
       await axios.get(`${backendUrl}login`, { email, password })
-        .then((res) => {
-          const { token } = res.json().token;
+        .then(async (res) => {
+          const { token } = await res.json();
           if (token) {
             localStorage.setItem('token', token);
             const { push } = history;
