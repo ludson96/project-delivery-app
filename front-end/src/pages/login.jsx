@@ -34,7 +34,7 @@ function Login({ history }) {
     e.preventDefault();
     try {
       await axios({
-        method: 'post',
+        method: 'get',
         url: `${backendUrl}login`,
         timeout: 500, // Let's say you want to wait at least 8 seconds
         data: { email, password },
