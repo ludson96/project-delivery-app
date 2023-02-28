@@ -6,7 +6,7 @@ function Register({ history }) {
   const [password, setPassword] = useState('');
   const [isButtondisabled, setButtondisabled] = useState(true);
   const [name, setName] = useState('');
-  const [errorText] = useState('');
+  const [errorText, setErrorText] = useState('');
 
   useEffect(() => {
     const passwordMinLength = 6;
@@ -32,9 +32,24 @@ function Register({ history }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    const { push } = history;
-    push('/customer/products');
+    try {
+      await axios({
+        method: 'post',
+        url: `${backendUrl}resgister`,
+        timeout: 500,
+        data: { email, password },
+      }).then(async (res) => {
+        const { token } = await res.json();
+        if (token) {
+          localStorage.setItem('token', token);
+          const { push } = history;
+          push('/customer/products');
+        } else setErrorText('usuario ja registrado');
+      });
+    } catch (err) {
+      console.log(err);
+      setErrorText('erro de validação');
+    }
   };
 
   const handleName = async ({ target }) => {
