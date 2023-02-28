@@ -1,15 +1,17 @@
-// const { User } = require('../database/models/user.model');
-// const { createToken } = require('../auth/jwtFunctions');
+const md5 = require('md5');
+const { User } = require('../database/models');
+const { createToken } = require('../auth/jwtFunctions');
+ 
+const createUser = async ({ name, email, password, role }) => {
+  const result = await User.findOne({ where: { email } });
+  if (result) return { user: null, token: null };
+  const validPwd = md5(password);
+  const newUser = await User.create({ name, email, password: validPwd, role });
+  const { password: _password, ...userWithoutPassword } = newUser.dataValues;
+  const token = createToken(userWithoutPassword);
+  return { user: userWithoutPassword, token };
+};
 
-// const createUser = async ({ email, password }) => {
-//   const result = await User.findOne({ where: { email } });
-//   if (result) return { user: null, token: null };
-//   const newUser = await User.create({ email, password });
-//   const { password: _password, ...userWithoutPassword } = newUser.dataValues;
-//   const token = createToken(userWithoutPassword);
-//   return { user: userWithoutPassword, token };
-// };
-
-// module.exports = {
-//   createUser,
-// };
+module.exports = {
+  createUser,
+};
