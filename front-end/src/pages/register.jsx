@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 function Register({ history }) {
   const [email, setEmail] = useState('');
@@ -113,5 +113,10 @@ function Register({ history }) {
 
   );
 }
+Register.propTypes = {
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired,
+  }).isRequired,
+};
 
 export default Register;
