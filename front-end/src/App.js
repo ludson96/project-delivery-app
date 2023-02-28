@@ -8,8 +8,21 @@ import Register from './pages/register';
 function App() {
   return (
     <Switch>
-      <Route exact path="/" component={ Login } />
-      <Route exact path="/search" component={ Search } />
+      <Route
+        exact
+        path="/"
+        component={ Login }
+      />
+      <Route
+        exact
+        path="/login"
+        component={ Login }
+      />
+      <Route
+        exact
+        path="*"
+        component={ NotFound }
+      />
       <Route exact path="register" component={ Register } />
       <Route exact path="*" component={ NotFound } />
     </Switch>
