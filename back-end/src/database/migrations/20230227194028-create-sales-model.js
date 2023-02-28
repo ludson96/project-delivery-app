@@ -8,6 +8,28 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      userId: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
+        field: 'user_id',
+        references: {
+          model: 'users' ,
+          key: 'id',
+        }
+      },
+      sellerId: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
+        field: 'seller_id',
+        references: {
+          model: 'users' ,
+          key: 'id',
+        }
+      },
       totalPrice: {
         type: Sequelize.FLOAT(9, 2),
         allowNull: false,
