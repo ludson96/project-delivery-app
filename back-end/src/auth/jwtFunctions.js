@@ -1,7 +1,8 @@
 const jwt = require('jsonwebtoken');
 const fs = require('fs');
 
-const secret = fs.readFile('jwt.evaluation.key', 'utf8');
+const secret = fs.readFile('jwt.evaluation.key', 'utf-8', (err, data) => {
+  if (err) throw err});
 
 const jwtConfig = {
   algorithm: 'HS256',
