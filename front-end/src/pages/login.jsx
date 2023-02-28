@@ -13,7 +13,7 @@ function Login({ history }) {
     const minPasswordLenght = 6;
     const emailValidateRegex = email.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{3})$/i);
 
-    if (password.length > minPasswordLenght && emailValidateRegex) {
+    if (password.length >= minPasswordLenght && emailValidateRegex) {
       setDisabled(false);
     } else {
       setDisabled(true);
