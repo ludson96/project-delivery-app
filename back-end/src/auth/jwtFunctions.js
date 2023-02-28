@@ -1,14 +1,17 @@
 const jwt = require('jsonwebtoken');
-const fs = require('fs').promises;
+const fs = require('fs');
 const path = require('path');
 
-const secretPath = path.resolve(__dirname, '../talker.json');
+const keyPath = path.join(__dirname, '..', '../jwt.evaluation.key');
+const secret = fs.readFileSync(keyPath, 'utf8');
 
-const getTalker = async () => {
-  const contentJSON = await fs.readFile(secretPath);
-  const secret = JSON.parse(contentJSON);
-  return secret;
-}
+// const secretPath = path.resolve(__dirname, '../jwt.evaluation.key');
+
+// const getTalker = async () => {
+  // const contentJSON = fs.readFile(secretPath);
+  // const secret = JSON.parse(contentJSON);
+  // return secret;
+// }
 
 const jwtConfig = {
   algorithm: 'HS256',
@@ -16,13 +19,13 @@ const jwtConfig = {
 };
 
 const createToken = (userWithoutPassword) => {
-  const token = jwt.sign({ data: userWithoutPassword }, getTalker(), jwtConfig);
+  const token = jwt.sign({ data: userWithoutPassword }, secret, jwtConfig);
   return token;
 };
 
 const verifyToken = (authorization) => {
   try {
-    const payload = jwt.verify(authorization, getTalker());
+    const payload = jwt.verify(authorization, secret);
     return payload;
   } catch (erro) {
     return { isError: true, erro };
