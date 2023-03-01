@@ -1,7 +1,13 @@
 import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
-import backendUrl from '../helpers';
+import helpers from '../helpers';
+
+const { backendUrl } = helpers;
+
+const httpClient = axios.create();
+
+httpClient.defaults.timeout = 500;
 
 function Login({ history }) {
   const [email, setEmail] = useState('');
@@ -32,24 +38,17 @@ function Login({ history }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      await axios({
-        method: 'get',
-        url: `${backendUrl}login`,
-        timeout: 500, // Let's say you want to wait at least 8 seconds
-        data: { email, password },
-      }).then(async (res) => {
-        const { token } = await res.json();
-        if (token) {
-          localStorage.setItem('token', token);
-          const { push } = history;
-          push('/customer/products');
-        } else setErrorText('usuario invalido');
+    httpClient.post(`${backendUrl}login`, { email, password })
+      .then((res) => {
+        console.log(res);
+        localStorage.setItem('token', res.data.token);
+        const { push } = history;
+        push('/customer/products');
+      })
+      .catch((err) => {
+        console.log(err);
+        setErrorText('usuario invalido');
       });
-    } catch (err) {
-      console.log(err);
-      setErrorText('erro de validação');
-    }
   };
 
   const semConta = (e) => {

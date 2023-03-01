@@ -4,7 +4,7 @@ const LoginService = require('../services/login.service');
     try {
       const { email, password } = req.body;
       const result = await LoginService.login({ email, password });
-      if (!result.token) return res.status(401).json({ message: 'Email ou senha inválido' });
+      if (!result.token) return res.status(404).json({ hasToken: false });
       const { token } = result;
       return res.status(200).json({ token });
     } catch (erro) {
