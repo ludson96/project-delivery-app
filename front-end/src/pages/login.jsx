@@ -34,13 +34,17 @@ function Login({ history }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await axios.get(`${backendUrl}login`, { email, password })
+    axios.post(`${backendUrl}login`, { email, password })
       .then((res) => {
+        console.log(res);
         localStorage.setItem('token', res.data.token);
         const { push } = history;
         push('/customer/products');
       })
-      .catch(() => setErrorText('usuario invalido'));
+      .catch((err) => {
+        console.log(err);
+        setErrorText('usuario invalido');
+      });
   };
 
   const semConta = (e) => {

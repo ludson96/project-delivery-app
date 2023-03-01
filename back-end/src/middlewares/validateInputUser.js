@@ -3,6 +3,7 @@ const validateInputUser = (req, res, next) => {
 
   const isFormatEmail = /\S+@\S+\.\S+/;
   if (!isFormatEmail.test(email)) { 
+  console.log("🚀 ~ file: validateInputUser.js:6 ~ validateInputUser ~ email:", email)
   return res.status(400).json({ message: '"email" must be a valid email' });
   }
 
