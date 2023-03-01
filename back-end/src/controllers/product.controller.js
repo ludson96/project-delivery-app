@@ -4,7 +4,7 @@ const getProducts = async (req, res) => {
   try {
     const newUser = req.body;
     const result = await ProductService.getProducts(newUser);
-    if (!result) return res.status(404).json({ message: 'Product not found' });
+    if (!result[0]) return res.status(404).json({ message: 'Product not found' });
     return res.status(200).json(result);
   } catch (erro) {
     return res.status(500).json({
