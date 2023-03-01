@@ -1,5 +1,5 @@
 const express = require('express');
-const { userRouter, LoginRouter, ProductRouter } = require('../routers');
+const { userRouter, LoginRouter, ProductRouter, SaleRouter } = require('../routers');
 
 const accessControl = (_req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
@@ -21,5 +21,7 @@ app.use('/register', userRouter);
 app.use('/login', LoginRouter);
 
 app.use('/products', ProductRouter);
+
+app.use('/sales', SaleRouter);
 
 module.exports = app;
