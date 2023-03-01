@@ -1,5 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import axios from 'axios';
+import helpers from '../helpers';
+
+const { backendUrl } = helpers;
+
+const httpClient = axios.create();
+
+httpClient.defaults.timeout = 500;
 
 function Register({ history }) {
   const [email, setEmail] = useState('');
@@ -32,24 +40,22 @@ function Register({ history }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      await axios({
-        method: 'post',
-        url: `${backendUrl}resgister`,
-        timeout: 500,
-        data: { email, password },
-      }).then(async (res) => {
-        const { token } = await res.json();
-        if (token) {
-          localStorage.setItem('token', token);
-          const { push } = history;
-          push('/customer/products');
-        } else setErrorText('usuario ja registrado');
+    httpClient.post(
+      `${backendUrl}register`,
+      {
+        name, email, password,
+      },
+    )
+      .then((res) => {
+        console.log(res);
+        localStorage.setItem('token', res.data.token);
+        const { push } = history;
+        push('/customer/products');
+      })
+      .catch((err) => {
+        console.log(err);
+        setErrorText('usuario invalido');
       });
-    } catch (err) {
-      console.log(err);
-      setErrorText('erro de validação');
-    }
   };
 
   const handleName = async ({ target }) => {
@@ -120,7 +126,7 @@ function Register({ history }) {
         >
           Ainda não tenho conta
         </button>
-        <small data-testid="common_login__element-invalid-email">
+        <small data-testid="common_register__element-invalid_register">
           {errorText}
         </small>
       </form>
