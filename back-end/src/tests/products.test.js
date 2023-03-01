@@ -6,7 +6,6 @@ const mocks = require('./mocks/products.mocks');
 
 const   app  = require( '../api/app');
 const { Product } = require('../database/models');
-const ProductService = require('../services/product.service');
 
 
 chai.use(chaiHttp);
