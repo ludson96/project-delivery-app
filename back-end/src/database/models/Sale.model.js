@@ -8,7 +8,7 @@ const SaleModel = (sequelize, DataTypes) => {
     totalPrice: DataTypes.INTEGER,
     deliveryAddress: DataTypes.STRING,
     deliveryNumber: DataTypes.STRING,
-    saleDate: DataTypes.STRING,
+    saleDate: { type: DataTypes.DATE, defaultValue: DataTypes.NOW },
     status: DataTypes.STRING
   },{ timestamps: false, tableName: 'sales', underscored: true});
 
