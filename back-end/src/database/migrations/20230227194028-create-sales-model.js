@@ -46,7 +46,7 @@ module.exports = {
         field: 'delivery_number',
       },
       saleDate: {
-        type: Sequelize.STRING,
+        type: Sequelize.DATE,
         allowNull: false,
         field: 'sale_date',
       },
