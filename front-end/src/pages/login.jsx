@@ -5,6 +5,10 @@ import helpers from '../helpers';
 
 const { backendUrl } = helpers;
 
+const httpClient = axios.create();
+
+httpClient.defaults.timeout = 500;
+
 function Login({ history }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -34,7 +38,7 @@ function Login({ history }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    axios.post(`${backendUrl}login`, { email, password })
+    httpClient.post(`${backendUrl}login`, { email, password })
       .then((res) => {
         console.log(res);
         localStorage.setItem('token', res.data.token);
