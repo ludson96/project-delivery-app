@@ -1,7 +1,7 @@
 import React from 'react';
 import DeliveryDetails from '../components/deliveryDetails';
 import NavBar from '../components/NavBar';
-import SaleDetails from '../components/orderDatails';
+import OrderDetails from '../components/orderDatails';
 
 function Checkout() {
   return (
@@ -10,7 +10,7 @@ function Checkout() {
         <NavBar />
       </header>
       <div>
-        <SaleDetails />
+        <OrderDetails />
         <DeliveryDetails />
       </div>
     </>

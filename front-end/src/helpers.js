@@ -14,4 +14,5 @@ const getTotal = () => {
   return total;
 };
 
-export default { backendUrl, getOrderProducts, getTotal };
+const getSeller = () => {};
+export default { backendUrl, getOrderProducts, getTotal, getSeller };
