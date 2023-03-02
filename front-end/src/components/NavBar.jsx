@@ -7,7 +7,8 @@ function NavBar() {
   useEffect(() => {
     const user = localStorage.getItem('user');
     if (!user) return;
-    setName(user.name);
+    const stringUser = JSON.parse(user);
+    setName(stringUser.name);
   }, []);
 
   return (
@@ -15,7 +16,7 @@ function NavBar() {
       <div>
         <Link
           to="/produtos"
-          data-testid="customer_products__element-navbar-links-products"
+          data-testid="customer_products__element-navbar-link-products"
         >
           PRODUTOS
         </Link>
@@ -24,7 +25,7 @@ function NavBar() {
       <div>
         <Link
           to="/meus-pedidos"
-          data-testid="customer_products__element-navbar-links-orders"
+          data-testid="customer_products__element-navbar-link-orders"
         >
           MEUS PEDIDOS
 
@@ -40,7 +41,7 @@ function NavBar() {
       <div>
         <Link
           to="/login"
-          data-testid="customer_products__element-navbar-links-logout"
+          data-testid="customer_products__element-navbar-link-logout"
         >
           Sair
         </Link>
