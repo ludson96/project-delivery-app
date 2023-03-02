@@ -1,10 +1,9 @@
 const sinon = require('sinon');
 const  chai = require('chai');
-// @ts-ignore
 const chaiHttp = require('chai-http');
 const mocks = require('./mocks/products.mocks');
 
-const   app  = require( '../api/app');
+const app = require( '../api/app');
 const { Product } = require('../database/models');
 
 
@@ -21,7 +20,6 @@ describe('teste de "/products"', () => {
     .request(app)
     .get('/products');
 
-    console.log(res2.body);
     expect(res2.status).to.be.equal(200);
     expect(res2.body).to.be.eql(mocks.producs)
   })
@@ -33,7 +31,6 @@ describe('teste de "/products"', () => {
     .request(app)
     .get('/products');
 
-    console.log(res2.body);
     expect(res2.status).to.be.equal(404);
   })
 
@@ -44,7 +41,6 @@ describe('teste de "/products"', () => {
     .request(app)
     .get('/products');
 
-    console.log(res2.body);
     expect(res2.status).to.be.equal(500);
   })
 });

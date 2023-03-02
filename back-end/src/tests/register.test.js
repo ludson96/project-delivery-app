@@ -4,7 +4,7 @@ const chaiHttp = require('chai-http');
 
 const app = require('../api/app');
 const { User } = require('../database/models');
-const { token, validInput, validataValues, invalidEmail, invalidPwd } = require('./mock/register.mock');
+const { token, validInput, validataValues, invalidEmail, invalidPwd } = require('./mocks/register.mock');
 
 chai.use(chaiHttp);
 
@@ -71,16 +71,14 @@ describe('Testando endpoint "/register"', () => {
         .throws(Error('db query failed'))
   
 
-      chaiHttpResponse = await chai
+      const response = await chai
         .request(app)
         .post('/register')
         .send(validInput);;
 
-      expect(chaiHttpResponse.status).to.be.equal(500);
-      expect(chaiHttpResponse.body).to.deep.equal({
-        message: 'Erro ao criar usuário no banco',
-        error: 'db query failed',
-      });
+      expect(response.status).to.be.equal(500);
+      expect(response.body.message).to.deep.equal('Erro ao criar usuário no banco');
+      expect(response.body.error).to.deep.equal('db query failed');
     });
     
   }) 
