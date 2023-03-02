@@ -4,7 +4,7 @@ const chaiHttp = require('chai-http');
 
 const app = require('../api/app');
 const { User } = require('../database/models');
-const { token, validInput, validataValues, invalidEmail, invalidPwd } = require('./mocks/register.mock');
+const { token, validInput, validataValues, invalidEmail, invalidPwd, validInputOutRole } = require('./mocks/register.mock');
 
 chai.use(chaiHttp);
 
@@ -26,6 +26,24 @@ describe('Testando endpoint "/register"', () => {
         .request(app)
         .post('/register')
         .send(validInput);
+    
+      expect(response.status).to.be.equal(201);
+      expect(response.body).to.have.property('token')
+    });
+
+    it('com role padrão', async () => {
+      sinon
+        .stub(User, "findOne")
+        .resolves();
+
+      sinon
+        .stub(User, 'create')
+        .resolves(validataValues);
+      
+      const response = await chai
+        .request(app)
+        .post('/register')
+        .send(validInputOutRole);
     
       expect(response.status).to.be.equal(201);
       expect(response.body).to.have.property('token')
@@ -55,7 +73,7 @@ describe('Testando endpoint "/register"', () => {
       expect(response.body.message).to.deep.equal('"email" must be a valid email')
     });
 
-    it('password meno que 6 caracteres', async () => {
+    it('password menor que 6 caracteres', async () => {
       const response = await chai
         .request(app)
         .post('/register')
