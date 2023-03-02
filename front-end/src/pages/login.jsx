@@ -41,7 +41,13 @@ function Login({ history }) {
     httpClient.post(`${backendUrl}login`, { email, password })
       .then((res) => {
         console.log(res);
-        localStorage.setItem('token', res.data.token);
+        const user = {
+          name: res.user.name,
+          email: res.user.email,
+          role: res.user.role,
+          token: res.token,
+        };
+        localStorage.setItem('user', user);
         const { push } = history;
         push('/customer/products');
       })
