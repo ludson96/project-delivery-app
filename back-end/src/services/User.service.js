@@ -15,7 +15,7 @@ class USerService extends SuperService {
     const newUser = await super.create({ name, email, password: validPwd, role });
     const { password: _password, ...userWithoutPassword } = newUser;
     const token = createToken(userWithoutPassword);
-    return { payload: { token } };
+    return { type: null, payload: { token } };
   }
 
   async login({ email, password }) {
@@ -24,7 +24,7 @@ class USerService extends SuperService {
     if (!result) return { type: 'NOT_FOUND', payload: { token: null } };
     const { password: _password, ...userWithoutPassword } = result.dataValues;
     const token = createToken(userWithoutPassword);
-    return { payload: { token } };
+    return { type: null, payload: { token } };
   }
 }
 
