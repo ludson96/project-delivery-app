@@ -11,7 +11,9 @@ function OrderDetails() {
       <h1>Finalizar Pedido</h1>
       <div>
         <ProductsOrderDetails removeOrderProduct={ removeOrderProduct } />
-        <div>
+        <div
+          data-testid="customer_checkout__element-order-total-price"
+        >
           Total:
           {getTotal()}
         </div>

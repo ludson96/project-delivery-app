@@ -12,14 +12,17 @@ function DeliveryDetails() {
     const { value } = target;
     setter(value);
   };
-
   return (
     <>
       <h1>Detalhes e Endereço para Entrega</h1>
       <form onSubmit={ handleSubmit }>
         <label htmlFor="responsible seller">
           P.vendedor responsável
-          <select name="responsible seller" required="false">
+          <select
+            name="responsible seller"
+            required="false"
+            data-testid="customer_checkout__select-seller"
+          >
             {sellers.map((seller) => (
               <option value={ seller } key={ seller }>{seller}</option>
             ))}
@@ -33,20 +36,26 @@ function DeliveryDetails() {
             id="adress"
             value={ adress }
             onChange={ handler(setAdress) }
-            data-testid=""
+            data-testid="customer_checkout__input-address"
           />
         </label>
         <label htmlFor="house number">
-          Endereço
+          numero
           <input
-            type="integer"
+            type="number"
             name="house number"
             id="houseNumber"
             value={ houseNumber }
             onChange={ handler(setHouseNumber) }
-            data-testid=""
+            data-testid="customer_checkout__input-address-number"
           />
         </label>
+        <button
+          type="button"
+          data-testid="customer_checkout__button-submit-order"
+        >
+          FINALIZAR PEDIDO
+        </button>
       </form>
     </>
   );
