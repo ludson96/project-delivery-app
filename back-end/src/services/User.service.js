@@ -8,7 +8,7 @@ class USerService extends SuperClass {
     super(User);
   }
 
-  async create({ name, email, password, role = 'costumer' }) {
+  async createUser({ name, email, password, role = 'customer' }) {
     const result = await super.findOne({ email });
     if (result) return { user: null, token: null };
     const validPwd = md5(password);
@@ -17,16 +17,29 @@ class USerService extends SuperClass {
     const token = createToken(userWithoutPassword);
     return { user: userWithoutPassword, token };
   }
+
+  async login({ email, password }) {
+    const verifyPassword = md5(password);
+    const result = await super.findOne({ email, password: verifyPassword });
+    if (!result) return { token: null };
+    const { password: _password, ...userWithoutPassword } = result.dataValues;
+    const token = createToken(userWithoutPassword);
+    return { token };
+  }
 }
 
 const user = new USerService();
 
 const oi = async () => {
-  const a = await user.create({ 
-    name: 'abcdef', email: 'abcdefdfgsadsdad@def.com', password: 'oioioi',
+  // const a = await user.createUser({ 
+  //   name: 'abcdef', email: 'abcdefdfgsadsdad@def.com', password: 'oioioi',
+  // });
+
+  const b = await user.login({
+    email: 'zebirita@email.com', password: '$#zebirita#$',
   });
 
-  const obj = { a };
+  const obj = { b };
 
   console.log(obj);
 
