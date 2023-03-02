@@ -7,6 +7,12 @@ const validInput = {
   role: "customer"
 }
 
+const validInputOutRole = {
+  name:"Delivery App Admin",
+  email: "ludson_ps28@hotmail.com",
+  password: "1234567",
+}
+
 const validataValues = {
   dataValues: {
     name:"Delivery App Admin",
@@ -36,4 +42,5 @@ module.exports = {
   validataValues,
   invalidEmail,
   invalidPwd,
+  validInputOutRole,
 }

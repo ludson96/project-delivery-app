@@ -11,7 +11,7 @@ const createSale = async ({ userId, sellerId, totalPrice, deliveryAddress,
     status,
   });
 
-  return result.dataValues;
+  return result;
 };
 
 module.exports = {
