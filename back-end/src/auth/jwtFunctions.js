@@ -18,7 +18,8 @@ const createToken = (userWithoutPassword) => {
 const verifyToken = (authorization) => {
   try {
     const payload = jwt.verify(authorization, secret);
-    return payload;
+    delete payload.data.id;
+    return payload.data;
   } catch (erro) {
     return { isError: true, erro };
   }
