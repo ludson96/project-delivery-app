@@ -7,7 +7,7 @@ const SaleService = require('../services/sale.service');
       return res.status(201).json(result);
     } catch (erro) {
       return res.status(500).json({
-        message: 'Erro ao criar usuário no banco',
+        message: 'Erro ao criar venda no banco',
         error: erro.message,
       });
     }
