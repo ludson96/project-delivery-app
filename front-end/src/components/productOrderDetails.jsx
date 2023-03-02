@@ -1,14 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import helpers from '../helpers';
 
-const { getOrderProducts } = helpers;
-
-function ProductsOrderDetails({ removeOrderProduct }) {
-  const produtos = getOrderProducts();
+function ProductsOrderDetails({ removeOrderProduct, products }) {
   return (
     <ul>
-      {produtos ? produtos.map((product, index) => (
+      {products[0] ? products.map((product, index) => (
         <li key={ product.name }>
           <div
             data-testid={ `customer_checkout__element-order-table-item-number-${index}` }
@@ -54,6 +50,7 @@ function ProductsOrderDetails({ removeOrderProduct }) {
 
 ProductsOrderDetails.propTypes = {
   removeOrderProduct: PropTypes.func.isRequired,
+  products: PropTypes.shape([]).isRequired,
 };
 
 export default ProductsOrderDetails;
