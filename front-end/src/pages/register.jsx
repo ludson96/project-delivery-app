@@ -63,12 +63,6 @@ function Register({ history }) {
     setName(value);
   };
 
-  const semConta = (e) => {
-    e.preventDefault();
-    const { push } = history;
-    push('/login');
-  };
-
   return (
     <div className="Login">
       <form onSubmit={ handleSubmit }>
@@ -119,13 +113,6 @@ function Register({ history }) {
         >
           Cadastrar
         </button>
-        <button
-          type="button"
-          data-testid="common_register__button-login"
-          onClick={ semConta }
-        >
-          Ainda não tenho conta
-        </button>
         <small data-testid="common_register__element-invalid_register">
           {errorText}
         </small>
@@ -134,6 +121,7 @@ function Register({ history }) {
 
   );
 }
+
 Register.propTypes = {
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,

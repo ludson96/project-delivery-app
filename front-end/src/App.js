@@ -4,22 +4,17 @@ import { Redirect, Route, Switch } from 'react-router-dom';
 import Login from './pages/login';
 import NotFound from './pages/notFound';
 import Register from './pages/register';
+import Products from './pages/products';
 
 function App() {
   return (
     <Switch>
-      <Route
-        exact
-        path="/"
-      >
+      <Route exact path="/">
         <Redirect to="/login" />
       </Route>
-      <Route
-        exact
-        path="/login"
-        component={ Login }
-      />
+      <Route exact path="/login" component={ Login } />
       <Route exact path="/register" component={ Register } />
+      <Route exact path="/produtos" component={ Products } />
       <Route exact path="*" component={ NotFound } />
     </Switch>
   );
