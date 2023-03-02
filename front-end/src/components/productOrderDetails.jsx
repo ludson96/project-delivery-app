@@ -4,10 +4,11 @@ import helpers from '../helpers';
 
 const { getOrderProducts } = helpers;
 
-function ProductsOrderDetails({ removeOrderProducts }) {
+function ProductsOrderDetails({ removeOrderProduct }) {
+  const produtos = getOrderProducts();
   return (
     <ul>
-      {getOrderProducts().map((product, index) => (
+      {produtos ? produtos.map((product, index) => (
         <li key={ product.name }>
           <div
             data-testid={ `customer_checkout__element-order-table-item-number-${index}` }
@@ -40,18 +41,19 @@ function ProductsOrderDetails({ removeOrderProducts }) {
           <button
             data-testid={ `customer_checkout__element-order-table-remove-${index}` }
             type="button"
-            onClick={ removeOrderProducts }
+            onClick={ () => removeOrderProduct(product) }
           >
             Remover
           </button>
         </li>
-      ))}
+      ))
+        : <>Não foi adicionado nenhum produto</>}
     </ul>
   );
 }
 
 ProductsOrderDetails.propTypes = {
-  removeOrderProducts: PropTypes.func.isRequired,
+  removeOrderProduct: PropTypes.func.isRequired,
 };
 
 export default ProductsOrderDetails;

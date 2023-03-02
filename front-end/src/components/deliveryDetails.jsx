@@ -19,8 +19,8 @@ function DeliveryDetails() {
         <label htmlFor="responsible seller">
           P.vendedor responsável
           <select
+            required="true"
             name="responsible seller"
-            required="false"
             data-testid="customer_checkout__select-seller"
           >
             {sellers.map((seller) => (
