@@ -1,3 +1,17 @@
 const backendUrl = 'http://localhost:3001/';
 
-export default { backendUrl };
+const getOrderProducts = () => {
+  const products = localStorage.getItem('orderProducts');
+  return products;
+};
+
+const getTotal = () => {
+  const products = getOrderProducts();
+  const total = products.reduce(
+    (accomulator, product) => accomulator + (product.value * product.quantity),
+    0,
+  );
+  return total;
+};
+
+export default { backendUrl, getOrderProducts, getTotal };
