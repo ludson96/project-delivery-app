@@ -41,7 +41,14 @@ function Login({ history }) {
     httpClient.post(`${backendUrl}login`, { email, password })
       .then((res) => {
         console.log(res);
-        localStorage.setItem('token', res.data.token);
+        const { token, user } = res.data;
+        const saveUser = {
+          name: user.name,
+          email: user.email,
+          role: user.role,
+          token,
+        };
+        localStorage.setItem('user', JSON.stringify(saveUser));
         const { push } = history;
         push('/customer/products');
       })
@@ -58,48 +65,55 @@ function Login({ history }) {
   };
 
   return (
-    <form onSubmit={ handleSubmit }>
-      <label htmlFor="email">
-        Email
-        <input
-          type="email"
-          name="email"
-          id="email"
-          value={ email }
-          onChange={ handleEmail }
-          data-testid="common_login__input-email"
-        />
-      </label>
+    <div className="login">
+      <form onSubmit={ handleSubmit } className="login-form">
+        <label htmlFor="email">
+          Login
+          <input
+            type="email"
+            name="email"
+            id="email"
+            placeholder="email@email.com"
+            value={ email }
+            onChange={ handleEmail }
+            data-testid="common_login__input-email"
+          />
+        </label>
 
-      <label htmlFor="password">
-        Senha
-        <input
-          type="password"
-          name="password"
-          id="password"
-          value={ password }
-          onChange={ handlePassword }
-          data-testid="common_login__input-password"
-        />
-      </label>
+        <label htmlFor="password">
+          Senha
+          <input
+            type="password"
+            name="password"
+            id="password"
+            placeholder="******"
+            value={ password }
+            onChange={ handlePassword }
+            data-testid="common_login__input-password"
+          />
+        </label>
 
-      <button
-        type="submit"
-        disabled={ disabled }
-        data-testid="common_login__button-login"
-        onClick={ handleSubmit }
-      >
-        Login
-      </button>
-      <button
-        type="button"
-        data-testid="common_login__button-register"
-        onClick={ semConta }
-      >
-        Ainda não tenho conta
-      </button>
-      <small data-testid="common_login__element-invalid-email">{errorText}</small>
-    </form>
+        <button
+          className="bttn-login"
+          type="submit"
+          disabled={ disabled }
+          style={ disabled ? { opacity: '20%' } : {} }
+          data-testid="common_login__button-login"
+          onClick={ handleSubmit }
+        >
+          Login
+        </button>
+        <button
+          className="bttn-sign"
+          type="button"
+          data-testid="common_login__button-register"
+          onClick={ semConta }
+        >
+          Ainda não tenho conta
+        </button>
+        <small data-testid="common_login__element-invalid-email">{errorText}</small>
+      </form>
+    </div>
   );
 }
 
