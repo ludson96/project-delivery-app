@@ -1,10 +1,14 @@
-const UserService = require('../services/user.service');
+const { USerService } = require('../services/User.service');
+
+const UService = new USerService();
 
   const createUser = async (req, res) => {
     try {
       const newUser = req.body;
-      const { user, token } = await UserService.createUser(newUser);
-      if (!user) return res.status(409).json({ message: 'User already registered' });
+      const { type, payload: { token } } = await UService.createUser(newUser);
+      if (type === 'CONFLICT') { 
+        return res.status(409).json({ message: 'User already registered' }); 
+      }
       return res.status(201).json({ token });
     } catch (erro) {
       return res.status(500).json({

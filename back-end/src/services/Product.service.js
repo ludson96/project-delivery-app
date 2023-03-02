@@ -1,7 +1,7 @@
-const { SuperClass } = require('./SuperClass.service');
+const { SuperService } = require('./SuperService');
 const { Product } = require('../database/models');
 
-class ProductService extends SuperClass {
+class ProductService extends SuperService {
   constructor() {
     super(Product);
   }

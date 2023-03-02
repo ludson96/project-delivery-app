@@ -1,4 +1,4 @@
-class SuperClass {
+class SuperService {
   constructor(model) {
     this.model = model;
   }
@@ -30,5 +30,5 @@ class SuperClass {
 }
 
 module.exports = {
-  SuperClass,
+  SuperService,
 };
