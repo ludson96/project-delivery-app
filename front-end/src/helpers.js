@@ -1,9 +1,16 @@
 const backendUrl = 'http://localhost:3001/';
 
 const getOrderProducts = () => {
-  // const products = localStorage.getItem('orderProducts');
-  const products = [{ name: 'gfvsdcas', value: 342.55, quantity: 44 }];
+  const products = JSON.parse(localStorage.getItem('orderProducts'));
   return products;
+};
+
+const addOrderProduct = (newProduct) => {
+  const products = JSON.parse(localStorage.getItem('orderProducts')) || [];
+  localStorage.setItem(
+    'orderProducts',
+    JSON.stringify([...products, newProduct]),
+  );
 };
 
 const getTotal = () => {
@@ -15,6 +22,6 @@ const getTotal = () => {
   return total;
 };
 
-const getSeller = () => {};
+addOrderProduct({ name: 'gfvsdcas', value: 342.55, quantity: 44 });
 
-export default { backendUrl, getOrderProducts, getTotal, getSeller };
+export default { backendUrl, getOrderProducts, getTotal, addOrderProduct };
