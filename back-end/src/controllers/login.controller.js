@@ -1,4 +1,5 @@
 const LoginService = require('../services/login.service');
+const { verifyToken } = require('../auth/jwtFunctions');
 
   const login = async (req, res) => {
     try {
@@ -6,7 +7,8 @@ const LoginService = require('../services/login.service');
       const result = await LoginService.login({ email, password });
       if (!result.token) return res.status(404).json({ hasToken: false });
       const { token } = result;
-      return res.status(200).json({ token });
+      const user = verifyToken(token);
+      return res.status(200).json({ token, user });
     } catch (erro) {
       return res.status(500).json({
         message: 'Erro ao entrar no site.',
