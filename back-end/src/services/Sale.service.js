@@ -21,25 +21,6 @@ class SaleService extends SuperService {
   }
 }
 
-const sale = new SaleService();
-
-const oi = async () => {
-  const result = await sale.createSale({
-    userId: 1,
-    sellerId: 2,
-    totalPrice: 2,
-    deliveryAddress: 'xablau',
-    deliveryNumber: 1232,
-    status: 'asdasdsa',
-  });
-
-  console.log(result);
-
-  return result;
-};
-
-oi();
-
 module.exports = {
   SaleService,
 };
