@@ -1,9 +1,11 @@
-const SaleService = require('../services/sale.service');
+const { SaleService } = require('../services/Sale.service');
+
+const saleService = new SaleService();
 
   const createSale = async (req, res) => {
     try {
       const saleBody = req.body;
-      const result = await SaleService.createSale(saleBody);
+      const result = await saleService.createSale(saleBody);
       return res.status(201).json(result);
     } catch (erro) {
       return res.status(500).json({
