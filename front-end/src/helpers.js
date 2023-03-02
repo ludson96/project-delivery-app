@@ -22,6 +22,4 @@ const getTotal = () => {
   return total;
 };
 
-addOrderProduct({ name: 'gfvsdcas', value: 342.55, quantity: 44 });
-
 export default { backendUrl, getOrderProducts, getTotal, addOrderProduct };
