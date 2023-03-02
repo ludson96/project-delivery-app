@@ -3,9 +3,17 @@ import ProductsOrderDetails from './productOrderDetails';
 import helpers from '../helpers';
 
 const { getTotal } = helpers;
-
 function OrderDetails() {
-  const removeOrderProduct = () => {};
+  const removeOrderProduct = (product) => {
+    const products = JSON.parse(localStorage.getItem('orderProducts'));
+    localStorage.setItem(
+      'orderProducts',
+      JSON.stringify(
+        products.filter((currProduct) => product.name !== currProduct.name),
+      ),
+    );
+  };
+
   return (
     <>
       <h1>Finalizar Pedido</h1>
