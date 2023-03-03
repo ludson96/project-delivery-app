@@ -3,7 +3,12 @@ const { Product } = require('../database/models');
 const getProducts = async () => {
   const result = await Product.findAll();
 
-  const result2 = result.map((item) => item.dataValues);
+  const result2 = result.map(({ id, name, price, urlImage }) => ({
+      id,
+      name,
+      price: price.toFixed(2).toString(),
+      urlImage,
+    }));
 
   return result2;
 };

@@ -1,0 +1,85 @@
+@import '../abstract/variaveis';
+
+.login {
+width: 100vw;
+height: 100vh;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+  .login-logo {
+    width: 150px;
+    margin: 40px;
+  }
+  .login-form {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 14px;
+    height: 300px;
+    width: 300px;
+    padding: 20px;
+    background-color: $cor-cinza;
+    border-radius: 8px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    label {
+      font-family: $font;
+      font-size: $tamanho-do-texto / 4;
+      color: $cor-primaria;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      input {
+        width: 100%;
+        font-size: $tamanho-do-texto / 3;
+        padding: 8px 16px;
+        border: solid 1px $cor-text-light;
+        border-radius: 4px;
+        outline: none;
+        &:focus, &:hover {
+          border: solid 1px $cor-primaria !important;
+        }
+      }
+    }
+    button {
+      padding: 8px 16px;
+      border: none;
+      border-radius: 4px;
+      color: white;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 14px;
+      transition-duration: 0.4s;
+    }
+    .bttn-login {
+      background-color: $cor-verde;
+      color: $cor-text-light;
+      &:hover {
+        background-color: $cor-verde-active;
+        color: $cor-text-light;
+      }
+    }
+    .bttn-sign {
+      background-color: transparent;
+      border: 1px solid $cor-primaria;
+      color: $cor-primaria;
+      &:hover {
+        background-color: $cor-primaria;
+        color: white;
+      }
+    }
+    .error-message {
+      font-family: $font !important;
+      width: 100%;
+      text-align: center;
+      font-size: $tamanho-do-texto / 4;
+      color: $cor-text-dark;
+      opacity: 0.5;
+      position: absolute;
+      top: 110%;
+      left: 0;
+    }
+  }
+}

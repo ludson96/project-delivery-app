@@ -1,0 +1,58 @@
+@import '../abstract/variaveis';
+
+.navbar {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  font-family: $font;
+  height: 60px;
+  div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    a, h2 {
+      color: $cor-text-light;
+      font-weight: $sb;
+    }
+    a {
+      transition: all 0.3s ease;
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+  }
+  .nav-item-logo {
+    background-color: white;
+    border: solid 1px $cor-primaria;
+    width: 10%;
+    img {
+      width: 50px;
+    }
+  }
+  .nav-item-1 {
+    background-color: $cor-primaria;
+    width: 20%;
+  }
+  .nav-item-2 {
+    background-color: $cor-terciaria;
+    width: 40%;
+  }
+  .nav-item-3 {
+    background-color: white;
+    width: 20%;
+    h2 {
+      color: $cor-text-dark;
+    }
+  }
+  .nav-item-4 {
+    background-color: $cor-quartenaria;
+    width: 10%;
+    display: flex;
+    align-items: center;
+    .ico-logout {
+      margin: 0;
+      padding: 0;
+    }
+  }
+}
