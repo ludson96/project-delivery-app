@@ -17,6 +17,8 @@ app.use(accessControl);
 
 app.get('/coffee', (_req, res) => res.status(418).end());
 
+app.use(express.static('public'));
+
 app.use('/register', registerRouter);
 
 app.use('/login', LoginRouter);
