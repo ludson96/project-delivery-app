@@ -1,15 +1,11 @@
 import { useEffect, useState, useRef } from 'react';
 import PropTypes from 'prop-types';
-import axios from 'axios';
+import { httpClient } from '../httpClient';
 import helpers from '../helpers';
 import logo from '../images/logo.png';
 import bg from '../images/background.webp';
 
 const { backendUrl } = helpers;
-
-const httpClient = axios.create();
-
-httpClient.defaults.timeout = 500;
 
 function Login({ history }) {
   const inputRef = useRef();
@@ -45,7 +41,7 @@ function Login({ history }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    httpClient.post(`${backendUrl}login`, { email, password })
+    httpClient.post(backendUrl('login'), { email, password })
       .then((res) => {
         console.log(res);
         const { token, user } = res.data;

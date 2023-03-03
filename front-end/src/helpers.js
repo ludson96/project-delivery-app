@@ -1,4 +1,4 @@
-const backendUrl = 'http://localhost:3001/';
+const backendUrl = (endpoint) => `http://localhost:3001/${endpoint}`;
 
 const getOrderProducts = () => {
   const products = JSON.parse(localStorage.getItem('orderProducts'));
