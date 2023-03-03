@@ -1,5 +1,3 @@
-const backendUrl = (endpoint) => `http://localhost:3001/${endpoint}`;
-
 const getOrderProducts = () => {
   const products = JSON.parse(localStorage.getItem('orderProducts'));
   return products;
@@ -22,4 +20,4 @@ const getTotal = () => {
   return total;
 };
 
-export default { backendUrl, getOrderProducts, getTotal, addOrderProduct };
+export default { getOrderProducts, getTotal, addOrderProduct };

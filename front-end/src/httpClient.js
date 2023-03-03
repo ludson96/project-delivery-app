@@ -1,7 +1,6 @@
 const axios = require('axios').default;
-const helpers = require('./helpers').default;
 
-const { backendUrl } = helpers;
+const backendUrl = (endpoint) => `http://localhost:3001/${endpoint}`;
 
 const httpClient = axios.create();
 
@@ -45,4 +44,4 @@ const loginUser = async ({ email, password }) => {
   return { error };
 };
 
-module.exports = { httpClient, registUser, loginUser };
+module.exports = { httpClient, registUser, loginUser, backendUrl };
