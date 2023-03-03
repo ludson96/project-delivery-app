@@ -5,7 +5,7 @@
   width: 100%;
   justify-content: space-around;
   font-family: $font;
-  height: 50px;
+  height: 60px;
   div {
     display: flex;
     align-items: center;
@@ -22,23 +22,37 @@
       }
     }
   }
+  .nav-item-logo {
+    background-color: white;
+    border: solid 1px $cor-primaria;
+    width: 10%;
+    img {
+      width: 50px;
+    }
+  }
   .nav-item-1 {
     background-color: $cor-primaria;
     width: 20%;
   }
   .nav-item-2 {
-    background-color: $cor-secundaria;
-    width: 50%;
-    a {
-      color: $cor-text-dark;
-    }
+    background-color: $cor-terciaria;
+    width: 40%;
   }
   .nav-item-3 {
-    background-color: $cor-terciaria;
+    background-color: white;
     width: 20%;
+    h2 {
+      color: $cor-text-dark;
+    }
   }
   .nav-item-4 {
     background-color: $cor-quartenaria;
     width: 10%;
+    display: flex;
+    align-items: center;
+    .ico-logout {
+      margin: 0;
+      padding: 0;
+    }
   }
 }

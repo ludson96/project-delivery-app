@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
+import { FiLogOut } from 'react-icons/fi';
+
+import logo from '../images/logo.png';
+
 function NavBar() {
   const [name, setName] = useState('User Name');
 
@@ -13,9 +17,12 @@ function NavBar() {
 
   return (
     <nav className="navbar">
+      <div className="nav-item-logo">
+        <img src={ logo } alt="logo" />
+      </div>
       <div className="nav-item-1">
         <Link
-          to="/produtos"
+          to="/customer/products"
           data-testid="customer_products__element-navbar-link-products"
         >
           PRODUTOS
@@ -43,7 +50,9 @@ function NavBar() {
           to="/login"
           data-testid="customer_products__element-navbar-link-logout"
         >
-          Sair
+          <FiLogOut className="ico-logout" />
+          {' '}
+          <span>Sair</span>
         </Link>
       </div>
     </nav>
