@@ -9,11 +9,11 @@ function CardProduct({ title, price, image, id }) {
     if (value <= 0) {
       return setQuantity(0);
     }
-    setQuantity(value);
+    setQuantity(Number(value));
   };
 
   return (
-    <div>
+    <div className="card-product">
       {/* <div
         style={ {
           background: `url(${image})`,
@@ -34,36 +34,40 @@ function CardProduct({ title, price, image, id }) {
       >
         { `${price}` }
       </h3>
-      <h1
-        data-testid={ `customer_products__element-card-title-${id}` }
-      >
-        { title }
-      </h1>
-      <div>
-        <button
-          onClick={
-            () => (quantity > 0 ? setQuantity((prev) => prev - 1) : setQuantity(0))
-          }
-          type="button"
-          data-testid={ `customer_products__button-card-rm-item-${id}` }
+      <div className="card-quantity">
+        <h1
+          data-testid={ `customer_products__element-card-title-${id}` }
         >
-          -
-        </button>
-        <input
-          type="number"
-          onChange={ handleChange }
-          value={ quantity }
-          data-testid={ `customer_products__input-card-quantity-${id}` }
-        />
-        <button
-          onClick={
-            () => (setQuantity((prev) => prev + 1))
-          }
-          type="button"
-          data-testid={ `customer_products__button-card-add-item-${id}` }
-        >
-          +
-        </button>
+          { title }
+        </h1>
+        <div className="bttns-container">
+          <button
+            className="btn-minus"
+            onClick={
+              () => (quantity > 0 ? setQuantity((prev) => prev - 1) : setQuantity(0))
+            }
+            type="button"
+            data-testid={ `customer_products__button-card-rm-item-${id}` }
+          >
+            -
+          </button>
+          <input
+            type="number"
+            onChange={ handleChange }
+            value={ quantity }
+            data-testid={ `customer_products__input-card-quantity-${id}` }
+          />
+          <button
+            className="btn-plus"
+            onClick={
+              () => (setQuantity((prev) => Number(prev + 1)))
+            }
+            type="button"
+            data-testid={ `customer_products__button-card-add-item-${id}` }
+          >
+            +
+          </button>
+        </div>
       </div>
     </div>
   );

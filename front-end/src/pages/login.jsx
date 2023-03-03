@@ -1,7 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import helpers from '../helpers';
+import logo from '../images/logo.png';
+import bg from '../images/background.webp';
 
 const { backendUrl } = helpers;
 
@@ -10,6 +12,7 @@ const httpClient = axios.create();
 httpClient.defaults.timeout = 500;
 
 function Login({ history }) {
+  const inputRef = useRef();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [disabled, setDisabled] = useState(true);
@@ -17,7 +20,7 @@ function Login({ history }) {
 
   useEffect(() => {
     const minPasswordLenght = 6;
-    const emailValidateRegex = email.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{3})$/i);
+    const emailValidateRegex = email.match(/^[A-Za-z0-9_!#$%&'*+\\/=?`{|}~^.-]+@[A-Za-z0-9.-]+\.[a-zA-Z0-9_.+-]+$/gm);
 
     if (password.length >= minPasswordLenght && emailValidateRegex) {
       setDisabled(false);
@@ -25,6 +28,10 @@ function Login({ history }) {
       setDisabled(true);
     }
   }, [email, password]);
+
+  useEffect(() => {
+    inputRef.current.focus();
+  }, []);
 
   const handleEmail = ({ target }) => {
     const { value } = target;
@@ -65,11 +72,25 @@ function Login({ history }) {
   };
 
   return (
-    <div className="login">
+    <div
+      className="login"
+      style={ {
+        background: `url(${bg})`,
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: 'center',
+      } }
+    >
+      <img
+        className="login-logo"
+        src={ logo }
+        alt="logo"
+      />
       <form onSubmit={ handleSubmit } className="login-form">
         <label htmlFor="email">
           Login
           <input
+            ref={ inputRef }
             type="email"
             name="email"
             id="email"
@@ -111,7 +132,12 @@ function Login({ history }) {
         >
           Ainda não tenho conta
         </button>
-        <small data-testid="common_login__element-invalid-email">{errorText}</small>
+        <small
+          className="error-message"
+          data-testid="common_login__element-invalid-email"
+        >
+          {errorText}
+        </small>
       </form>
     </div>
   );
