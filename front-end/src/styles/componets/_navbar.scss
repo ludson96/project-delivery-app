@@ -1,0 +1,38 @@
+@import '../abstract/variaveis';
+
+.navbar {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  font-family: $font;
+  height: 50px;
+  div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    a, h2 {
+      color: $cor-text-light;
+      font-weight: $sb;
+    }
+  }
+  .nav-item-1 {
+    background-color: $cor-primaria;
+    width: 20%;
+  }
+  .nav-item-2 {
+    background-color: $cor-secundaria;
+    width: 50%;
+    a {
+      color: $cor-text-dark;
+    }
+  }
+  .nav-item-3 {
+    background-color: $cor-terciaria;
+    width: 20%;
+  }
+  .nav-item-4 {
+    background-color: $cor-quartenaria;
+    width: 10%;
+  }
+}

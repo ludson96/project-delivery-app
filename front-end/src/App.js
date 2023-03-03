@@ -1,5 +1,4 @@
 import React from 'react';
-import './App.css';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import Login from './pages/login';
 import NotFound from './pages/notFound';

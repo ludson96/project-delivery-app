@@ -12,8 +12,8 @@ function NavBar() {
   }, []);
 
   return (
-    <nav>
-      <div>
+    <nav className="navbar">
+      <div className="nav-item-1">
         <Link
           to="/produtos"
           data-testid="customer_products__element-navbar-link-products"
@@ -22,7 +22,7 @@ function NavBar() {
         </Link>
 
       </div>
-      <div>
+      <div className="nav-item-2">
         <Link
           to="/meus-pedidos"
           data-testid="customer_products__element-navbar-link-orders"
@@ -31,14 +31,14 @@ function NavBar() {
 
         </Link>
       </div>
-      <div>
+      <div className="nav-item-3">
         <h2
           data-testid="customer_products__element-navbar-user-full-name"
         >
           { name }
         </h2>
       </div>
-      <div>
+      <div className="nav-item-4">
         <Link
           to="/login"
           data-testid="customer_products__element-navbar-link-logout"
