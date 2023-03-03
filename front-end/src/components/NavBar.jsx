@@ -23,7 +23,7 @@ function NavBar() {
       <div className="nav-item-1">
         <Link
           to="/customer/products"
-          data-testid="customer_products__element-navbar-link-products"
+          data-testid=" customer_products__element-navbar-link-products"
         >
           PRODUTOS
         </Link>
