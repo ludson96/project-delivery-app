@@ -1,11 +1,8 @@
 import { useEffect, useState, useRef } from 'react';
 import PropTypes from 'prop-types';
-import { httpClient } from '../httpClient';
-import helpers from '../helpers';
+import { loginUser } from '../httpClient';
 import logo from '../images/logo.png';
 import bg from '../images/background.webp';
-
-const { backendUrl } = helpers;
 
 function Login({ history }) {
   const inputRef = useRef();
@@ -41,24 +38,10 @@ function Login({ history }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    httpClient.post(backendUrl('login'), { email, password })
-      .then((res) => {
-        console.log(res);
-        const { token, user } = res.data;
-        const saveUser = {
-          name: user.name,
-          email: user.email,
-          role: user.role,
-          token,
-        };
-        localStorage.setItem('user', JSON.stringify(saveUser));
-        const { push } = history;
-        push('/customer/products');
-      })
-      .catch((err) => {
-        console.log(err);
-        setErrorText('usuario invalido');
-      });
+    const { error } = await loginUser({ email, password });
+    if (error) return setErrorText('usuario invalido');
+    const { push } = history;
+    push('/customer/products');
   };
 
   const semConta = (e) => {

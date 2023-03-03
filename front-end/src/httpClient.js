@@ -25,4 +25,24 @@ const registUser = async ({ name, email, password }) => {
   return { error };
 };
 
-module.exports = { httpClient, registUser };
+const loginUser = async ({ email, password }) => {
+  let error = false;
+  try {
+    const res = await httpClient.post(backendUrl('login'), { email, password });
+    console.log(res);
+    const { token, user } = res.data;
+    const saveUser = {
+      name: user.name,
+      email: user.email,
+      role: user.role,
+      token,
+    };
+    localStorage.setItem('user', JSON.stringify(saveUser));
+  } catch (err) {
+    console.log(err);
+    error = true;
+  }
+  return { error };
+};
+
+module.exports = { httpClient, registUser, loginUser };
