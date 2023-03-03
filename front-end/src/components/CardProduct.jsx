@@ -30,6 +30,7 @@ function CardProduct({ title, price, image, id }) {
         data-testid={ `customer_products__img-card-bg-image-${id}` }
       />
       <h3
+        className="card-price"
         data-testid={ `customer_products__element-card-price-${id}` }
       >
         { `${price}` }
