@@ -9,7 +9,7 @@ const saleService = new SaleService();
       return res.status(201).json(result.payload);
     } catch (erro) {
       return res.status(500).json({
-        message: 'Erro ao criar usuário no banco',
+        message: 'Erro ao criar uma venda no banco',
         error: erro.message,
       });
     }
