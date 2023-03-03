@@ -81,7 +81,7 @@ function Login({ history }) {
         <label htmlFor="email">
           Login
           <input
-            ref={inputRef}
+            ref={ inputRef }
             type="email"
             name="email"
             id="email"
