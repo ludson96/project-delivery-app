@@ -14,16 +14,6 @@ function CardProduct({ title, price, image, id }) {
 
   return (
     <div className="card-product">
-      {/* <div
-        style={ {
-          background: `url(${image})`,
-          height: '200px',
-          width: '200px',
-        } }
-        data-testid={ `customer_products__img-card-bg-image-${id}` }
-      >
-        <h3 data-testid={ `customer_products__element-card-price-${id}` }>{ price }</h3>
-      </div> */}
       <img
         alt="produtos"
         src={ image }
