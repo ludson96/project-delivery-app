@@ -1,13 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import axios from 'axios';
-import helpers from '../helpers';
-
-const { backendUrl } = helpers;
-
-const httpClient = axios.create();
-
-httpClient.defaults.timeout = 500;
+import { registUser } from '../httpClient';
 
 function Register({ history }) {
   const [email, setEmail] = useState('');
@@ -40,22 +33,10 @@ function Register({ history }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    httpClient.post(
-      `${backendUrl}register`,
-      {
-        name, email, password,
-      },
-    )
-      .then((res) => {
-        console.log(res);
-        localStorage.setItem('token', res.data.token);
-        const { push } = history;
-        push('/customer/products');
-      })
-      .catch((err) => {
-        console.log(err);
-        setErrorText('usuario invalido');
-      });
+    const { error } = await registUser({ name, email, password });
+    if (error) return setErrorText('usuario invalido');
+    const { push } = history;
+    push('/customer/products');
   };
 
   const handleName = async ({ target }) => {
