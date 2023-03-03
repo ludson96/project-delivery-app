@@ -1,5 +1,6 @@
 const { USerService } = require('../services/User.service');
 const { verifyToken } = require('../auth/jwtFunctions');
+const { getStatusCode } = require('./helpers/htmlcodes');
 
 class UserController {
   constructor() {
@@ -12,7 +13,7 @@ class UserController {
     try {
       const { email, password } = req.body;
       const { type, payload: { token } } = await this.service.login({ email, password });
-      if (type) return res.status(404).json({ hasToken: false });
+      if (type) return res.status(getStatusCode(type)).json({ hasToken: false });
       const user = verifyToken(token);
       return res.status(200).json({ token, user });
     } catch (erro) {
@@ -27,9 +28,9 @@ class UserController {
     try {
       const newUser = req.body;
       const { type, payload: { token } } = await this.service.createUser(newUser);
-      if (type === 'CONFLICT') { 
-        return res.status(409).json({ message: 'User already registered' }); 
-      }
+      if (type) {
+        return res.status(getStatusCode(type)).json({ message: 'User already registered' }); 
+      } 
       return res.status(201).json({ token });
     } catch (erro) {
       return res.status(500).json({
