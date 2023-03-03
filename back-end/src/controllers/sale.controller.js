@@ -6,7 +6,7 @@ const saleService = new SaleService();
     try {
       const saleBody = req.body;
       const result = await saleService.createSale(saleBody);
-      return res.status(201).json(result);
+      return res.status(201).json(result.payload);
     } catch (erro) {
       return res.status(500).json({
         message: 'Erro ao criar usuário no banco',

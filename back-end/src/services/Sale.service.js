@@ -17,7 +17,7 @@ class SaleService extends SuperService {
       status,
     });
   
-    return result;
+    return { type: null, payload: result };
   }
 }
 
