@@ -1,0 +1,104 @@
+@import '../abstract/variaveis';
+
+.card-product {
+  position: relative;
+  height: 450px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5%;
+  border: solid 1px $cor-primaria;
+  border-radius: 8px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  .card-price {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-family: $font;
+    font-weight: $b;
+    color: $cor-text-dark;
+    &::before {
+      content: 'R$ ';
+    }
+  }
+  .card-quantity {
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 10px;
+    background-color: $cor-secundaria;
+    height: 25%;
+    width: 100%;
+    h1 {
+      font-family: $font;
+      color: $cor-text-dark;
+      font-weight: $md;
+      text-align: center;
+    }
+    .bttns-container {
+      display: flex;
+      justify-content: center;
+      button {
+        position: relative;
+        height: 30px;
+        width: 25px;
+        border: none;
+        background-color: $cor-verde-escuro;
+        color: white;
+        cursor: pointer;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-weight: $b;
+        -webkit-transition-duration: 0.4s; /* Safari */
+        transition-duration: 0.4s;
+        text-decoration: none;
+        overflow: hidden;
+        &::after {
+          content: "";
+          background: #90EE90;
+          display: block;
+          position: absolute;
+          padding-top: 300%;
+          padding-left: 350%;
+          margin-left: -20px!important;
+          margin-top: -120%;
+          opacity: 0;
+          transition: all 0.4s
+        }
+        &:active::after {
+          padding: 0;
+          margin: 0;
+          opacity: 1;
+          transition: 0s
+        }
+        &:hover {
+          background-color: $cor-verde;
+        }
+      }
+      .btn-minus {
+        border-radius: 4px 0 0 4px;
+      }
+      .btn-plus {
+        border-radius: 0 4px 4px 0;
+      }
+      input {
+        height: 30px;
+        width: 40px;
+        text-align: center;
+        outline: none;
+        border: solid 1px $cor-text-light;
+        &::-webkit-outer-spin-button,
+        &::-webkit-inner-spin-button {
+            /* display: none; <- Crashes Chrome on hover */
+            -webkit-appearance: none;
+            margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+        }
+      }
+    }
+  }
+}
+

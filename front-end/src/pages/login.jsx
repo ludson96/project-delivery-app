@@ -1,15 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import PropTypes from 'prop-types';
-import axios from 'axios';
-import helpers from '../helpers';
-
-const { backendUrl } = helpers;
-
-const httpClient = axios.create();
-
-httpClient.defaults.timeout = 500;
+import { loginUser } from '../httpClient';
+import logo from '../images/logo.png';
+import bg from '../images/background.webp';
 
 function Login({ history }) {
+  const inputRef = useRef();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [disabled, setDisabled] = useState(true);
@@ -17,7 +13,7 @@ function Login({ history }) {
 
   useEffect(() => {
     const minPasswordLenght = 6;
-    const emailValidateRegex = email.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{3})$/i);
+    const emailValidateRegex = email.match(/^[A-Za-z0-9_!#$%&'*+\\/=?`{|}~^.-]+@[A-Za-z0-9.-]+\.[a-zA-Z0-9_.+-]+$/gm);
 
     if (password.length >= minPasswordLenght && emailValidateRegex) {
       setDisabled(false);
@@ -25,6 +21,10 @@ function Login({ history }) {
       setDisabled(true);
     }
   }, [email, password]);
+
+  useEffect(() => {
+    inputRef.current.focus();
+  }, []);
 
   const handleEmail = ({ target }) => {
     const { value } = target;
@@ -38,17 +38,10 @@ function Login({ history }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    httpClient.post(`${backendUrl}login`, { email, password })
-      .then((res) => {
-        console.log(res);
-        localStorage.setItem('token', res.data.token);
-        const { push } = history;
-        push('/customer/products');
-      })
-      .catch((err) => {
-        console.log(err);
-        setErrorText('usuario invalido');
-      });
+    const { error } = await loginUser({ email, password });
+    if (error) return setErrorText('usuario invalido');
+    const { push } = history;
+    push('/customer/products');
   };
 
   const semConta = (e) => {
@@ -58,48 +51,74 @@ function Login({ history }) {
   };
 
   return (
-    <form onSubmit={ handleSubmit }>
-      <label htmlFor="email">
-        Email
-        <input
-          type="email"
-          name="email"
-          id="email"
-          value={ email }
-          onChange={ handleEmail }
-          data-testid="common_login__input-email"
-        />
-      </label>
+    <div
+      className="login"
+      style={ {
+        background: `url(${bg})`,
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: 'center',
+      } }
+    >
+      <img
+        className="login-logo"
+        src={ logo }
+        alt="logo"
+      />
+      <form onSubmit={ handleSubmit } className="login-form">
+        <label htmlFor="email">
+          Login
+          <input
+            ref={ inputRef }
+            type="email"
+            name="email"
+            id="email"
+            placeholder="email@email.com"
+            value={ email }
+            onChange={ handleEmail }
+            data-testid="common_login__input-email"
+          />
+        </label>
 
-      <label htmlFor="password">
-        Senha
-        <input
-          type="password"
-          name="password"
-          id="password"
-          value={ password }
-          onChange={ handlePassword }
-          data-testid="common_login__input-password"
-        />
-      </label>
+        <label htmlFor="password">
+          Senha
+          <input
+            type="password"
+            name="password"
+            id="password"
+            placeholder="******"
+            value={ password }
+            onChange={ handlePassword }
+            data-testid="common_login__input-password"
+          />
+        </label>
 
-      <button
-        type="submit"
-        disabled={ disabled }
-        data-testid="common_login__button-login"
-        onClick={ handleSubmit }
-      >
-        Login
-      </button>
-      <button
-        type="button"
-        data-testid="common_login__button-register"
-        onClick={ semConta }
-      >
-        Ainda não tenho conta
-      </button>
-      <small data-testid="common_login__element-invalid-email">{errorText}</small>
-    </form>
+        <button
+          className="bttn-login"
+          type="submit"
+          disabled={ disabled }
+          style={ disabled ? { opacity: '20%' } : {} }
+          data-testid="common_login__button-login"
+          onClick={ handleSubmit }
+        >
+          Login
+        </button>
+        <button
+          className="bttn-sign"
+          type="button"
+          data-testid="common_login__button-register"
+          onClick={ semConta }
+        >
+          Ainda não tenho conta
+        </button>
+        <small
+          className="error-message"
+          data-testid="common_login__element-invalid-email"
+        >
+          {errorText}
+        </small>
+      </form>
+    </div>
   );
 }
 
