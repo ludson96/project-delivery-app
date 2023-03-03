@@ -1,4 +1,5 @@
 const { USerService } = require('../services/User.service');
+const { verifyToken } = require('../auth/jwtFunctions');
 
 class UserController {
   constructor() {
@@ -9,12 +10,11 @@ class UserController {
 
   async login(req, res) {
     try {
-      console.log(this);
       const { email, password } = req.body;
       const { type, payload: { token } } = await this.service.login({ email, password });
-      console.log(2);
       if (type) return res.status(404).json({ hasToken: false });
-      return res.status(200).json({ token });
+      const user = verifyToken(token);
+      return res.status(200).json({ token, user });
     } catch (erro) {
       return res.status(500).json({
         message: 'Erro ao entrar no site.',
