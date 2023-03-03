@@ -21,9 +21,9 @@ function Products() {
   }, []);
 
   return (
-    <header>
+    <div>
       <NavBar />
-      <div>
+      <div className="cards-container">
         {
           products.map((product) => (
             <CardProduct
@@ -36,7 +36,7 @@ function Products() {
           ))
         }
       </div>
-    </header>
+    </div>
   );
 }
 

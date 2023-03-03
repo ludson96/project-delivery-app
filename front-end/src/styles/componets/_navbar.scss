@@ -15,6 +15,12 @@
       color: $cor-text-light;
       font-weight: $sb;
     }
+    a {
+      transition: all 0.3s ease;
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
   }
   .nav-item-1 {
     background-color: $cor-primaria;

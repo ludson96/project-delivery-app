@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 import helpers from '../helpers';
 import logo from '../images/logo.png';
+import bg from '../images/background.webp';
 
 const { backendUrl } = helpers;
 
@@ -71,7 +72,15 @@ function Login({ history }) {
   };
 
   return (
-    <div className="login">
+    <div
+      className="login"
+      style={ {
+        background: `url(${bg})`,
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: 'center',
+      } }
+    >
       <img
         className="login-logo"
         src={ logo }
