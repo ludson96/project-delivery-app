@@ -1,11 +1,15 @@
 const { SaleService } = require('../services/Sale.service');
 
-const saleService = new SaleService();
+class SaleController {
+  constructor() {
+    this.service = new SaleService();
+    this.createSale = this.createSale.bind(this);
+  }
 
-  const createSale = async (req, res) => {
+  async createSale(req, res) {
     try {
       const saleBody = req.body;
-      const result = await saleService.createSale(saleBody);
+      const result = await this.service.createSale(saleBody);
       return res.status(201).json(result.payload);
     } catch (erro) {
       return res.status(500).json({
@@ -13,8 +17,9 @@ const saleService = new SaleService();
         error: erro.message,
       });
     }
-  };
+  }
+}
 
-  module.exports = {
-    createSale,
-  };
+module.exports = {
+  SaleController,
+};
