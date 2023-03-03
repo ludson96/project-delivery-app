@@ -20,7 +20,7 @@ function Login({ history }) {
 
   useEffect(() => {
     const minPasswordLenght = 6;
-    const emailValidateRegex = email.match(/^[A-Za-z0-9_!#$%&'*+\/=?`{|}~^.-]+@[A-Za-z0-9.-]+\.[a-zA-Z0-9_.+-]+$/gm);
+    const emailValidateRegex = email.match(/^[A-Za-z0-9_!#$%&'*+\\/=?`{|}~^.-]+@[A-Za-z0-9.-]+\.[a-zA-Z0-9_.+-]+$/gm);
 
     if (password.length >= minPasswordLenght && emailValidateRegex) {
       setDisabled(false);
