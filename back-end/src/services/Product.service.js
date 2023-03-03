@@ -14,7 +14,7 @@ class ProductService extends SuperService {
     const objWithPriceFixed = result.map(({ id, name, price, urlImage }) => ({
         id, 
         name,
-        price: price.toFixed(2).toString(),
+        price: price.toString(),
         urlImage,
       }));
 
