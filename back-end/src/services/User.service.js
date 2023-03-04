@@ -24,7 +24,7 @@ class USerService extends SuperService {
     if (!result) return { type: 'NOT_FOUND', payload: { token: null } };
     const { password: _password, ...userWithoutPassword } = result.dataValues;
     const token = createToken(userWithoutPassword);
-    return { type: null, payload: { token } };
+    return { type: null, payload: { token, user: userWithoutPassword } };
   }
 }
 
