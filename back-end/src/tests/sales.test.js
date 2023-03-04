@@ -39,7 +39,7 @@ describe('Testando endpoint "/sales"', () => {
         .send(validInput);;
 
       expect(response.status).to.be.equal(500);
-      expect(response.body.message).to.deep.equal('Erro ao criar venda no banco');
+      expect(response.body.message).to.deep.equal('Erro ao criar uma venda no banco');
       expect(response.body.error).to.deep.equal('db query failed');
     });
   }) 
