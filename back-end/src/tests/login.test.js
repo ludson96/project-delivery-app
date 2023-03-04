@@ -4,7 +4,7 @@ const chaiHttp = require('chai-http');
 
 const app = require('../api/app');
 const { User } = require('../database/models');
-const { validInput, validataValues } = require('./mocks/login.mock');
+const { validInput, validataValues, token } = require('./mocks/login.mock');
 
 chai.use(chaiHttp);
 
@@ -41,6 +41,21 @@ describe('Testando endpoint "/login"', () => {
       expect(response.body).to.deep.equal({ hasToken: false })
     });
 
+    it('token invalido', async () => {
+      sinon
+        .stub(User, "findOne")
+        .resolves();
+
+      const response = await chai
+        .request(app)
+        .post('/login')
+        .set('Authorization', token)
+        .send(validInput);
+    
+      expect(response.status).to.be.equal(404);
+      expect(response.body).to.deep.equal({ hasToken: false })
+    });
+    
     it('internal Error', async () => {
       sinon
         .stub(User, 'findOne')

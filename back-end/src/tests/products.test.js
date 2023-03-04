@@ -24,8 +24,8 @@ describe('teste de "/products"', () => {
     expect(res2.body).to.be.eql(mocks.producs)
   })
 
-  it('verify if it breaks as expected when a product is not fouded', async () => {
-    sinon.stub(Product,'findAll').resolves([{dataValues: undefined}])
+  it('verify if it breaks as expected when a product is not founded', async () => {
+    sinon.stub(Product,'findAll').resolves([])
 
     const res2 = await chai
     .request(app)
@@ -42,5 +42,6 @@ describe('teste de "/products"', () => {
     .get('/products');
 
     expect(res2.status).to.be.equal(500);
+    expect(res2.body.message).to.deep.equal('Erro sobre products');
   })
 });

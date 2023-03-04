@@ -3,7 +3,7 @@ const validInput = {
   sellerId: 2,
   totalPrice: 10,
   deliveryAddress: "xablau",
-  deliveryNumber: 3,
+  deliveryNumber: "3",
   status: "Pendente",
 }
 

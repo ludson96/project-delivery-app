@@ -5,7 +5,7 @@ class SuperService {
 
   async create(objContent) {
     const result = await this.model.create(objContent);
-    return result.dataValues || null;
+    return result || null;
   }
 
   async findAll(obj) {
