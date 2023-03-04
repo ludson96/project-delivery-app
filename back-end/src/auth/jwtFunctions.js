@@ -15,17 +15,17 @@ const createToken = (userWithoutPassword) => {
   return token;
 };
 
-const verifyToken = (authorization) => {
-  try {
-    const payload = jwt.verify(authorization, secret);
-    delete payload.data.id;
-    return payload.data;
-  } catch (erro) {
-    return { isError: true, erro };
-  }
-};
+// const verifyToken = (authorization) => {
+//   try {
+//     const payload = jwt.verify(authorization, secret);
+//     delete payload.data.id;
+//     return payload.data;
+//   } catch (erro) {
+//     return { isError: true, erro };
+//   }
+// };
 
 module.exports = {
   createToken,
-  verifyToken,
+  // verifyToken,
 };
