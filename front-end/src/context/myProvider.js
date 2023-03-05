@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import MyContext from './myContext';
 import helpers from '../helpers';
@@ -22,10 +22,9 @@ function Provider({ children }) {
     addCartProduct(shoppingCart);
   }, [shoppingCart]);
 
-  const updateCart = (requestItem) => {
+  const updateCart = useCallback((requestItem) => {
     const validate = shoppingCart.some((item) => item.id === requestItem.id);
     if (!validate) {
-      // const newArray = shoppingCart.push(requestItem);
       setShoppingCart([...shoppingCart, requestItem]);
       console.log(shoppingCart);
     } else {
@@ -37,12 +36,12 @@ function Provider({ children }) {
       });
       setShoppingCart(update);
     }
-  };
+  }, [shoppingCart]);
 
   const contextValue = useMemo(() => ({
     totalValue,
     updateCart,
-  }), [totalValue]);
+  }), [totalValue, updateCart]);
 
   return (
     <MyContext.Provider value={ contextValue }>

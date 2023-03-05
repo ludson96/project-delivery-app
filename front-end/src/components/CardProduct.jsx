@@ -18,7 +18,7 @@ function CardProduct({ title, price, image, id }) {
     const localItem = localCart.find((item) => item.id === id);
     if (!localItem) return null;
     setQuantity(localItem.quantity);
-  }, []);
+  }, [id]);
 
   const handleChange = ({ target }) => {
     const { value } = target;
