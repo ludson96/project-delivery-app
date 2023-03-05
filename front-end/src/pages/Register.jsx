@@ -34,11 +34,13 @@ function Register({ history }) {
   const handleEmail = async ({ target }) => {
     const { value } = target;
     setEmail(value);
+    setErrorText('');
   };
 
   const handlePassword = async ({ target }) => {
     const { value } = target;
     setPassword(value);
+    setErrorText('');
   };
 
   const handleSubmit = async (e) => {
@@ -127,12 +129,16 @@ function Register({ history }) {
           {' '}
           <strong><Link to="/login">Login</Link></strong>
         </span>
-        <small
-          className="error-message"
-          data-testid="common_register__element-invalid_register"
-        >
-          {errorText}
-        </small>
+        {
+          errorText ? (
+            <small
+              className="error-message"
+              data-testid="common_register__element-invalid_register"
+            >
+              {errorText}
+            </small>
+          ) : null
+        }
       </form>
     </div>
 

@@ -126,7 +126,8 @@ justify-content: center;
     .error-message {
       animation-name: horizontal-shaking;
       animation-duration: 0.35s;
-      animation-iteration-count: 10;
+      animation-iteration-count: 3;
+      animation-timing-function: ease;
       font-family: $font !important;
       width: 100%;
       text-align: center;
@@ -139,11 +140,3 @@ justify-content: center;
     }
   }
 }
-
-@keyframes horizontal-shaking {
-  0% { transform: translateX(0) }
-  25% { transform: translateX(5px) }
-  50% { transform: translateX(-5px) }
-  75% { transform: translateX(5px) }
-  100% { transform: translateX(0) }
- }

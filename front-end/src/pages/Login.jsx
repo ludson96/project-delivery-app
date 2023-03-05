@@ -32,11 +32,13 @@ function Login({ history }) {
   const handleEmail = ({ target }) => {
     const { value } = target;
     setEmail(value);
+    setErrorText('');
   };
 
   const handlePassword = ({ target }) => {
     const { value } = target;
     setPassword(value);
+    setErrorText('');
   };
 
   const handleSubmit = async (e) => {
@@ -123,12 +125,17 @@ function Login({ history }) {
         >
           Ainda não tenho conta
         </button>
-        <small
-          className="error-message"
-          data-testid="common_login__element-invalid-email"
-        >
-          {errorText}
-        </small>
+        {
+          errorText ? (
+            <small
+              className="error-message"
+              data-testid="common_login__element-invalid-email"
+            >
+              {errorText}
+            </small>
+          ) : null
+
+        }
       </form>
     </div>
   );
