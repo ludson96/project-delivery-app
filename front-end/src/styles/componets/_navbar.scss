@@ -39,10 +39,22 @@
     width: 40%;
   }
   .nav-item-3 {
+    display: flex;
+    align-items: center;
     background-color: white;
     width: 20%;
     h2 {
       color: $cor-text-dark;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      position: relative;
+      .icon-person {
+        position: absolute;
+        font-size: 20px;
+        left: -24px;
+        top: 15px;
+      }
     }
   }
   .nav-item-4 {
@@ -50,9 +62,13 @@
     width: 10%;
     display: flex;
     align-items: center;
-    .ico-logout {
-      margin: 0;
-      padding: 0;
+    a {
+      position: relative;
+      .ico-logout {
+        position: absolute;
+        top: -1px;
+        left: -24px;
+      }
     }
   }
 }

@@ -1,8 +1,24 @@
-import React, { useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import context from '../context/myContext';
+import helpers from '../helpers';
+
+const { getCartProducts } = helpers;
 
 function CardProduct({ title, price, image, id }) {
+  const {
+    updateCart,
+  } = useContext(context);
+
   const [quantity, setQuantity] = useState(0);
+
+  useEffect(() => {
+    const localCart = getCartProducts();
+    if (!localCart) return null;
+    const localItem = localCart.find((item) => item.id === id);
+    if (!localItem) return null;
+    setQuantity(localItem.quantity);
+  }, []);
 
   const handleChange = ({ target }) => {
     const { value } = target;
@@ -10,10 +26,46 @@ function CardProduct({ title, price, image, id }) {
       return setQuantity(0);
     }
     setQuantity(Number(value));
+    const item = {
+      id,
+      title,
+      price,
+      quantity: Number(value),
+    };
+    updateCart(item);
+  };
+
+  const minus = () => {
+    if (quantity > 0) {
+      setQuantity((prev) => prev - 1);
+      const item = {
+        id,
+        title,
+        price,
+        quantity: quantity - 1,
+      };
+      updateCart(item);
+    } else {
+      setQuantity(0);
+    }
+  };
+
+  const plus = () => {
+    setQuantity((prev) => prev + 1);
+    const item = {
+      id,
+      title,
+      price,
+      quantity: quantity + 1,
+    };
+    updateCart(item);
   };
 
   return (
-    <div className="card-product">
+    <div
+      data-testid="customer_products__button-cart"
+      className="card-product"
+    >
       <img
         alt="produtos"
         src={ image }
@@ -23,7 +75,7 @@ function CardProduct({ title, price, image, id }) {
         className="card-price"
         data-testid={ `customer_products__element-card-price-${id}` }
       >
-        { `${price}` }
+        { `${price.toString().replace('.', ',')}` }
       </h3>
       <div className="card-quantity">
         <h1
@@ -34,9 +86,7 @@ function CardProduct({ title, price, image, id }) {
         <div className="bttns-container">
           <button
             className="btn-minus"
-            onClick={
-              () => (quantity > 0 ? setQuantity((prev) => prev - 1) : setQuantity(0))
-            }
+            onClick={ minus }
             type="button"
             data-testid={ `customer_products__button-card-rm-item-${id}` }
           >
@@ -50,9 +100,7 @@ function CardProduct({ title, price, image, id }) {
           />
           <button
             className="btn-plus"
-            onClick={
-              () => (setQuantity((prev) => Number(prev + 1)))
-            }
+            onClick={ plus }
             type="button"
             data-testid={ `customer_products__button-card-add-item-${id}` }
           >
@@ -68,7 +116,7 @@ CardProduct.propTypes = {
   title: PropTypes.string.isRequired,
   price: PropTypes.string.isRequired,
   image: PropTypes.string.isRequired,
-  id: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
 };
 
 export default CardProduct;

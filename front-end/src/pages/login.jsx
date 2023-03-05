@@ -1,5 +1,8 @@
 import { useEffect, useState, useRef } from 'react';
 import PropTypes from 'prop-types';
+
+import { FaGoogle, FaApple } from 'react-icons/fa';
+
 import { loginUser } from '../httpClient';
 import logo from '../images/logo.png';
 import bg from '../images/background.webp';
@@ -65,6 +68,15 @@ function Login({ history }) {
         src={ logo }
         alt="logo"
       />
+      <div className="entrar-com">
+        <FaGoogle className="ico-social google" />
+        <span>Entrar com o Google</span>
+      </div>
+      <div className="entrar-com">
+        <FaApple className="ico-social" />
+        <span>Entrar com a Apple</span>
+      </div>
+      <span className="ou">ou</span>
       <form onSubmit={ handleSubmit } className="login-form">
         <label htmlFor="email">
           Login
