@@ -11,6 +11,58 @@ justify-content: center;
     width: 150px;
     margin: 40px;
   }
+  .entrar-com {
+    font-family: $font;
+    color: $cor-text-dark;
+    opacity: 0.8;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    width: 300px;
+    padding: 10px 20px;
+    background-color: white;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    transition: all 0.8 ease-in-out;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+    span {
+      font-size: $tamanho-do-texto / 3.5;
+    }
+    .ico-social {
+      font-size: $tamanho-do-texto / 3;
+    }
+    .google {
+      font-size: $tamanho-do-texto / 3.5;
+    }
+    &:hover {
+      box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+    }
+  }
+  .ou {
+    font-family: $font;
+    color: $cor-text-dark;
+    margin-bottom: 20px;
+    font-size: $tamanho-do-texto / 3.5;
+    opacity: 0.5;
+    position: relative;
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0.65em;
+      width: 130px;
+      top: 50%;
+      height: 0.05em;
+      background-color: $cor-text-dark;
+      left: -140px;
+    }
+    &::after {
+      left: initial;
+      right: -140px;
+    }
+  }
   .login-form {
     position: relative;
     display: flex;
@@ -44,6 +96,7 @@ justify-content: center;
     }
     button {
       padding: 8px 16px;
+      cursor: pointer;
       border: none;
       border-radius: 4px;
       color: white;
@@ -71,6 +124,9 @@ justify-content: center;
       }
     }
     .error-message {
+      animation-name: horizontal-shaking;
+      animation-duration: 0.35s;
+      animation-iteration-count: 10;
       font-family: $font !important;
       width: 100%;
       text-align: center;
@@ -83,3 +139,11 @@ justify-content: center;
     }
   }
 }
+
+@keyframes horizontal-shaking {
+  0% { transform: translateX(0) }
+  25% { transform: translateX(5px) }
+  50% { transform: translateX(-5px) }
+  75% { transform: translateX(5px) }
+  100% { transform: translateX(0) }
+ }

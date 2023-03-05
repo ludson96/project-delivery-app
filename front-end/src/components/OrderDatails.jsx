@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import ProductsOrderDetails from './productOrderDetails';
+import ProductsOrderDetails from './ProductOrderDetails';
 import helpers from '../helpers';
 
 const { getTotal, getOrderProducts } = helpers;

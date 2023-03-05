@@ -1,28 +1,68 @@
 @import '../abstract/variaveis';
 
-.cards-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  max-width: 100vw;
-  padding: 40px 5vw;
-  gap: 20px;
-}
-
-@media screen and (max-width: $lg) {
+.products {
+  position: relative;
   .cards-container {
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 10px;
+    background-color: $cor-text-light;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    max-width: 100vw;
+    padding: 40px 5vw;
+    gap: 20px;
+  }
+  .total-value-bttn {
+    position: fixed;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    padding: 15px 30px;
+    background-color: $cor-verde-escuro;
+    transition: all 0.4s ease;
+    opacity: 0.8;
+    border-radius: 8px;
+    font-family: $font;
+    color: $cor-text-light;
+    bottom: 40px;
+    right: 0;
+    z-index: 2;
+    &:hover {
+      opacity: 1;
+    }
+    button {
+      border: none;
+      cursor: pointer;
+      background-color: transparent;
+      color: $cor-text-light;
+    }
+    span {
+      font-weight: $b;
+    }
   }
 }
 
-@media screen and (max-width: $md) {
-  .cards-container {
+@media screen and (max-width: $xxl) {
+  .products {
+    .cards-container {
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 10px;
+    }
+  }
+}
+
+@media screen and (max-width: $lg) {
+  .products {
+    .cards-container {
     grid-template-columns: 1fr 1fr;
+    }
   }
 }
 
 @media screen and (max-width: $sm) {
-  .cards-container {
+  .products {
+    .cards-container {
     grid-template-columns: 1fr;
+    }
   }
 }

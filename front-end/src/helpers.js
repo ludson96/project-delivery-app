@@ -1,3 +1,16 @@
+const getCartProducts = () => {
+  const StorageCart = JSON.parse(localStorage.getItem('carrinho'));
+  return StorageCart;
+};
+
+const addCartProduct = (item) => {
+  // const StorageCart = JSON.parse(localStorage.getItem('carrinho')) || [];
+  localStorage.setItem(
+    'carrinho',
+    JSON.stringify(item),
+  );
+};
+
 const getOrderProducts = () => {
   const products = JSON.parse(localStorage.getItem('orderProducts'));
   return products;
@@ -20,4 +33,10 @@ const getTotal = () => {
   return total;
 };
 
-export default { getOrderProducts, getTotal, addOrderProduct };
+export default {
+  getCartProducts,
+  addCartProduct,
+  getOrderProducts,
+  getTotal,
+  addOrderProduct,
+};

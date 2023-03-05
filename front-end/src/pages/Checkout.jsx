@@ -1,7 +1,7 @@
 import React from 'react';
-import DeliveryDetails from '../components/deliveryDetails';
+import DeliveryDetails from '../components/DeliveryDetails';
 import NavBar from '../components/NavBar';
-import OrderDetails from '../components/orderDatails';
+import OrderDetails from '../components/OrderDatails';
 
 function Checkout() {
   return (
