@@ -3,7 +3,7 @@ import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import App from '../App';
 import renderWithRouter from '../renderWithRouter';
-import Login from '../pages/login';
+import Login from '../pages/Login';
 
 const testUserInputEmail = 'common_login__input-email';
 const testUserInputPassword = 'common_login__input-password';
