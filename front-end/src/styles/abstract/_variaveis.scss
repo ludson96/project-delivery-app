@@ -35,3 +35,12 @@ $cor-verde-active: #56ca59;
 $cor-cinza: #e9e7e7;
 $cor-text-dark: #001813;
 $cor-text-light: #F2FFFC;
+
+// Animations
+@keyframes horizontal-shaking {
+  0% { transform: translateX(0) }
+  25% { transform: translateX(5px) }
+  50% { transform: translateX(-5px) }
+  75% { transform: translateX(5px) }
+  100% { transform: translateX(0) }
+}

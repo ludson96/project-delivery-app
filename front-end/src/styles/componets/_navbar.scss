@@ -1,11 +1,14 @@
 @import '../abstract/variaveis';
 
 .navbar {
+  position: fixed;
+  top: 0;
   display: flex;
   width: 100%;
   justify-content: space-around;
   font-family: $font;
   height: 60px;
+  z-index: 2;
   div {
     display: flex;
     align-items: center;
@@ -41,7 +44,7 @@
   .nav-item-3 {
     display: flex;
     align-items: center;
-    background-color: white;
+    background-color: $cor-text-light;
     width: 20%;
     h2 {
       color: $cor-text-dark;
