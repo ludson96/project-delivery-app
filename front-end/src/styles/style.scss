@@ -2,9 +2,10 @@
 @import './abstract/variaveis';
 
 // componemts
-@import './componets/login';
 @import './componets/navbar';
 @import './componets/cardsproducts';
 
 // pages
+@import './pages/login';
+@import './pages/register';
 @import './pages/products';

@@ -16,7 +16,12 @@ const registUser = async ({ name, email, password }) => {
       },
     );
     console.log(res);
-    localStorage.setItem('token', res.data.token);
+    const saveUser = {
+      name,
+      email,
+      token: res.data.token,
+    };
+    localStorage.setItem('user', JSON.stringify(saveUser));
   } catch (err) {
     console.log(err);
     error = true;

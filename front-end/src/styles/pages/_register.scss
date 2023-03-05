@@ -1,0 +1,102 @@
+@import '../abstract/variaveis';
+
+.register {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  .login-logo {
+    width: 150px;
+    margin: 40px;
+  }
+  .register-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 14px;
+    height: 350px;
+    width: 300px;
+    padding: 20px;
+    background-color: $cor-cinza;
+    border-radius: 8px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    h1 {
+      font-family: $font;
+      font-weight: $b;
+      color: $cor-primaria;
+      text-align: center;
+    }
+    label {
+      font-family: $font;
+      font-size: $tamanho-do-texto / 4;
+      color: $cor-primaria;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      input {
+        width: 100%;
+        font-size: $tamanho-do-texto / 3;
+        padding: 8px 16px;
+        border: solid 1px $cor-text-light;
+        border-radius: 4px;
+        outline: none;
+        &:focus, &:hover {
+          border: solid 1px $cor-primaria !important;
+        }
+      }
+    }
+    button {
+      padding: 8px 16px;
+      cursor: pointer;
+      border: none;
+      border-radius: 4px;
+      color: white;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 14px;
+      transition-duration: 0.4s;
+    }
+    .bttn-register {
+      background-color: $cor-secundaria;
+      color: $cor-primaria;
+      &:hover {
+        background-color: $cor-secundaria-active;
+        color: $cor-terciaria;
+      }
+    }
+    .back-login {
+      font-family: $font;
+      font-size: $tamanho-do-texto / 4;
+      color: $cor-primaria;
+      text-align: center;
+      margin-top: 10px;
+      strong {
+        a {
+          font-weight: $sb;
+          color: $cor-verde-escuro;
+          transition: all 0.4s ease;
+        }
+        &:hover a {
+          color: $cor-verde;
+        }
+      }
+    }
+    .error-message {
+      animation-name: horizontal-shaking;
+      animation-duration: 0.35s;
+      animation-iteration-count: 10;
+      font-family: $font !important;
+      width: 100%;
+      text-align: center;
+      font-size: $tamanho-do-texto / 4;
+      color: $cor-text-dark;
+      opacity: 0.5;
+      position: absolute;
+      top: 110%;
+      left: 0;
+    }
+  }
+}
