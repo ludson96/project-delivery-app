@@ -17,21 +17,27 @@ function OrderDetails() {
   };
 
   return (
-    <>
+    <div className="order-details">
       <h1>Finalizar Pedido</h1>
       <div>
         <ProductsOrderDetails
           products={ products }
           removeOrderProduct={ removeOrderProduct }
         />
-        <div
-          data-testid="customer_checkout__element-order-total-price"
-        >
-          Total:
-          {getTotal()}
+        <div className="total-check-container">
+          <div
+            className="total-checkout"
+            data-testid="customer_checkout__element-order-total-price"
+          >
+            Total:
+            {' '}
+            R$
+            {' '}
+            {getTotal().toFixed(2).toString().replace('.', ',')}
+          </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

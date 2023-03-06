@@ -13,7 +13,7 @@ function DeliveryDetails() {
     setter(value);
   };
   return (
-    <>
+    <div className="details-address-checkout">
       <h1>Detalhes e Endereço para Entrega</h1>
       <form onSubmit={ handleSubmit }>
         <label htmlFor="responsible seller">
@@ -57,7 +57,7 @@ function DeliveryDetails() {
           FINALIZAR PEDIDO
         </button>
       </form>
-    </>
+    </div>
   );
 }
 
