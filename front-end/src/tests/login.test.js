@@ -1,5 +1,5 @@
 import React from 'react';
-import { screen } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import App from '../App';
 import renderWithRouter from '../renderWithRouter';
@@ -16,20 +16,26 @@ const tesUserPassword = '1234567';
 describe('Login page', () => {
   test(
     'Checks if the email, password and login button are rendered on the login screen',
-    () => {
+    async () => {
       const { history } = renderWithRouter(<App />);
 
       const emailInput = screen.getByTestId(testUserInputEmail);
       const passwordInput = screen.getByTestId(testUserInputPassword);
       const loginButton = screen.getByTestId(tesButtonEnter);
       const registerButton = screen.getByTestId(testButtonRegister);
-      const invalidEmail = screen.getByTestId(testUserInvalidEmail);
+
+      userEvent.type(emailInput, 'teste@hotmail.com');
+      userEvent.type(passwordInput, '123456789');
+
+      userEvent.click(loginButton);
 
       expect(emailInput).toBeInTheDocument();
       expect(passwordInput).toBeInTheDocument();
       expect(loginButton).toBeInTheDocument();
       expect(registerButton).toBeInTheDocument();
-      expect(invalidEmail).toBeInTheDocument();
+      await waitFor(() => {
+        expect(screen.getByTestId(testUserInvalidEmail)).toBeInTheDocument();
+      });
 
       expect(history.location.pathname).toBe('/login');
     },
