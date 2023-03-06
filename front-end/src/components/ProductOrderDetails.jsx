@@ -4,21 +4,24 @@ import PropTypes from 'prop-types';
 function ProductsOrderDetails({ removeOrderProduct, products }) {
   return (
     <ul className="card-checkout">
-      {products[0] ? products.map((product) => (
-        <li key={ product.id }>
+      {products[0] ? products.map((product, i) => (
+        <li key={ product.id } className="card">
           <div
+            className="item-checkout-1"
             data-testid={
               `customer_checkout__element-order-table-item-number-${product.id}`
             }
           >
-            {product.id}
+            {i + 1}
           </div>
           <h3
+            className="item-checkout-2"
             data-testid={ `customer_checkout__element-order-table-name-${product.id}` }
           >
             {product.title}
           </h3>
           <h3
+            className="item-checkout-3"
             data-testid={
               `customer_checkout__element-order-table-quantity-${product.id}`
             }
@@ -27,6 +30,7 @@ function ProductsOrderDetails({ removeOrderProduct, products }) {
 
           </h3>
           <h3
+            className="item-checkout-4"
             data-testid={
               `customer_checkout__element-order-table-unit-price-${product.id}`
             }
@@ -35,6 +39,7 @@ function ProductsOrderDetails({ removeOrderProduct, products }) {
             {product.price}
           </h3>
           <h3
+            className="item-checkout-5"
             data-testid={
               `customer_checkout__element-order-table-sub-total-${product.id}`
             }
@@ -43,6 +48,7 @@ function ProductsOrderDetails({ removeOrderProduct, products }) {
             {product.price * product.quantity}
           </h3>
           <button
+            className="item-checkout-6"
             data-testid={ `customer_checkout__element-order-table-remove-${product.id}` }
             type="button"
             onClick={ () => removeOrderProduct(product) }

@@ -10,7 +10,7 @@ function OrderDetails() {
     localStorage.setItem(
       'carrinho',
       JSON.stringify(
-        actProducts.filter((currProduct) => product.name !== currProduct.name),
+        actProducts.filter((currProduct) => product.title !== currProduct.title),
       ),
     );
     setProducts(getCartProducts());
