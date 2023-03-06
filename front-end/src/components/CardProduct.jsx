@@ -22,7 +22,7 @@ function CardProduct({ title, price, image, id }) {
 
   const handleChange = ({ target }) => {
     const { value } = target;
-    if (value <= 0) {
+    if (value === 0 || value < 0) {
       return setQuantity(0);
     }
     setQuantity(Number(value));

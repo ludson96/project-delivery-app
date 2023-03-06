@@ -26,7 +26,6 @@ function Provider({ children }) {
     const validate = shoppingCart.some((item) => item.id === requestItem.id);
     if (!validate) {
       setShoppingCart([...shoppingCart, requestItem]);
-      console.log(shoppingCart);
     } else {
       const update = shoppingCart.map((item) => {
         if (item.id === requestItem.id) {

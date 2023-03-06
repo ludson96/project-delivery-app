@@ -18,6 +18,7 @@ function NavBar() {
 
   const logout = () => {
     localStorage.removeItem('user');
+    // localStorage.removeItem('carrinho');
   };
 
   return (

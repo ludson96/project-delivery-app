@@ -27,6 +27,8 @@ function Login({ history }) {
 
   useEffect(() => {
     inputRef.current.focus();
+    localStorage.removeItem('user');
+    localStorage.removeItem('carrinho');
   }, []);
 
   const handleEmail = ({ target }) => {
