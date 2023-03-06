@@ -26,7 +26,6 @@ function Provider({ children }) {
     const validate = shoppingCart.some((item) => item.id === requestItem.id);
     if (!validate) {
       setShoppingCart([...shoppingCart, requestItem]);
-      console.log(shoppingCart);
     } else {
       const update = shoppingCart.map((item) => {
         if (item.id === requestItem.id) {
@@ -38,9 +37,15 @@ function Provider({ children }) {
     }
   }, [shoppingCart]);
 
+  const setAllProducts = async (newProductsList) => {
+    await localStorage.setItem('carrinho', JSON.stringify(newProductsList));
+    setShoppingCart(getCartProducts());
+  };
+
   const contextValue = useMemo(() => ({
     totalValue,
     updateCart,
+    setAllProducts,
   }), [totalValue, updateCart]);
 
   return (

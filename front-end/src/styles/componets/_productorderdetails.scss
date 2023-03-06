@@ -1,0 +1,60 @@
+@import '../abstract/variaveis';
+
+.card-checkout {
+  padding: 10px 0;
+  .card {
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: space-between;
+    font-family: $font;
+    height: 40px;
+    width: 100%;
+    .card-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .item-checkout-1 {
+      width: 5%;
+      border-radius: 4px 0 0 4px;
+      background-color: $cor-verde;
+    }
+    .item-checkout-2 {
+      width: 30%;
+      background-color: $cor-text-light;
+    }
+    .item-checkout-3 {
+      width: 5%;
+      color: $cor-text-light;
+      background-color: $cor-verde-escuro;
+    }
+    .item-checkout-4 {
+      width: 20%;
+      color: $cor-text-light;
+      background-color: $cor-terciaria;
+    }
+    .item-checkout-5 {
+      width: 20%;
+      color: $cor-text-light;
+      background-color: $cor-quartenaria;
+    }
+    .item-checkout-6 {
+      width: 20%;
+      background-color: $cor-verde;
+      color: $cor-text-light;
+      font-weight: $sb;
+      border-radius: 0 4px 4px 0;
+      border: none;
+      transition: all 0.4s ease;
+      &:hover {
+        background-color: $cor-verde-active;
+        transform: scale(1.1);
+        &::before {
+          content: 'X';
+          color: $cor-verde-escuro;
+          margin-right: 5px;
+        }
+      }
+    }
+  }
+}

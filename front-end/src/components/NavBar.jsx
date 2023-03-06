@@ -18,6 +18,7 @@ function NavBar() {
 
   const logout = () => {
     localStorage.removeItem('user');
+    // localStorage.removeItem('carrinho');
   };
 
   return (
@@ -36,7 +37,7 @@ function NavBar() {
       </div>
       <div className="nav-item-2">
         <Link
-          to="/checkout"
+          to="/customer/checkout"
           data-testid="customer_products__element-navbar-link-orders"
         >
           MEUS PEDIDOS

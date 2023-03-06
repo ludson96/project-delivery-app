@@ -3,39 +3,55 @@ import PropTypes from 'prop-types';
 
 function ProductsOrderDetails({ removeOrderProduct, products }) {
   return (
-    <ul>
-      {products[0] ? products.map((product, index) => (
-        <li key={ product.name }>
+    <ul className="card-checkout">
+      {products[0] ? products.map((product, i) => (
+        <li key={ product.id } className="card">
           <div
-            data-testid={ `customer_checkout__element-order-table-item-number-${index}` }
+            className="item-checkout-1 card-item"
+            data-testid={
+              `customer_checkout__element-order-table-item-number-${product.id}`
+            }
           >
-            {index}
+            {i + 1}
           </div>
           <h3
-            data-testid={ `customer_checkout__element-order-table-name-${index}` }
+            className="item-checkout-2 card-item"
+            data-testid={ `customer_checkout__element-order-table-name-${product.id}` }
           >
-            {product.name}
+            {product.title}
           </h3>
           <h3
-            data-testid={ `customer_checkout__element-order-table-quantity-${index}` }
+            className="item-checkout-3 card-item"
+            data-testid={
+              `customer_checkout__element-order-table-quantity-${product.id}`
+            }
           >
             {product.quantity}
 
           </h3>
           <h3
-            data-testid={ `customer_checkout__element-order-table-unit-price-${index}` }
+            className="item-checkout-4 card-item"
+            data-testid={
+              `customer_checkout__element-order-table-unit-price-${product.id}`
+            }
           >
             R$
-            {product.value}
+            {' '}
+            {Number(product.price).toFixed(2).toString().replace('.', ',')}
           </h3>
           <h3
-            data-testid={ `customer_checkout__element-order-table-sub-total-${index}` }
+            className="item-checkout-5 card-item"
+            data-testid={
+              `customer_checkout__element-order-table-sub-total-${product.id}`
+            }
           >
             R$
-            {product.value * product.quantity}
+            {' '}
+            {(product.price * product.quantity).toFixed(2).toString().replace('.', ',')}
           </h3>
           <button
-            data-testid={ `customer_checkout__element-order-table-remove-${index}` }
+            className="item-checkout-6 card-item"
+            data-testid={ `customer_checkout__element-order-table-remove-${product.id}` }
             type="button"
             onClick={ () => removeOrderProduct(product) }
           >

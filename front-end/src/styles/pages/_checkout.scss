@@ -1,0 +1,10 @@
+@import '../abstract/variaveis';
+
+.checkout {
+  // background-color: $cor-text-light;
+  padding: 80px 0;
+  min-height: 100vh;
+  .checkout-details {
+    padding: 0 5vw;
+  }
+}
