@@ -1,9 +1,9 @@
 import React from 'react';
+import {httpClient} from '../httpClient';
 import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import App from '../App';
 import renderWithRouter from '../renderWithRouter';
-// import Login from '../pages/Login';
 
 const testUserInputEmail = 'common_login__input-email';
 const testUserInputPassword = 'common_login__input-password';
@@ -29,36 +29,36 @@ describe('Login page', () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
-  // test(
-  //   'Checks if the email, password and login button are rendered on the login screen',
-  //   async () => {
-  // global.fetch = jest.fn(() => Promise.resolve({
-  //   json: () => Promise.resolve({ hasToken: false }),
-  // }));
+  test(
+    'Checks if the email, password and login button are rendered on the login screen',
+    async () => {
 
-  //     const { history } = renderWithRouter(<App />);
+      httpClient.post = jest.fn().mockResolvedValue({ data: { hasToken: false }});
 
-  //     const emailInput = screen.getByTestId(testUserInputEmail);
-  //     const passwordInput = screen.getByTestId(testUserInputPassword);
-  //     const loginButton = screen.getByTestId(tesButtonEnter);
-  //     const registerButton = screen.getByTestId(testButtonRegister);
+      const { history } = renderWithRouter(<App />);
 
-  //     userEvent.type(emailInput, 'teste@hotmail.com');
-  //     userEvent.type(passwordInput, '123456789');
+      const emailInput = screen.getByTestId(testUserInputEmail);
+      const passwordInput = screen.getByTestId(testUserInputPassword);
+      const loginButton = screen.getByTestId(tesButtonEnter);
+      const registerButton = screen.getByTestId(testButtonRegister);
 
-  //     userEvent.click(loginButton);
+      userEvent.type(emailInput, 'teste@hotmail.com');
+      userEvent.type(passwordInput, '123456789');
 
-  //     expect(emailInput).toBeInTheDocument();
-  //     expect(passwordInput).toBeInTheDocument();
-  //     expect(loginButton).toBeInTheDocument();
-  //     expect(registerButton).toBeInTheDocument();
-  //     await waitFor(() => {
-  //       expect(screen.getByTestId(testUserInvalidEmail)).toBeInTheDocument();
-  //     });
+      userEvent.click(loginButton);
 
-  //     expect(history.location.pathname).toBe('/login');
-  //   },
-  // );
+      expect(emailInput).toBeInTheDocument();
+      expect(passwordInput).toBeInTheDocument();
+      expect(loginButton).toBeInTheDocument();
+      expect(registerButton).toBeInTheDocument();
+
+      await waitFor(() => {
+        expect(screen.getByTestId(testUserInvalidEmail)).toBeInTheDocument();
+      });
+
+      expect(history.location.pathname).toBe('/login');
+    },
+  );
 
   test('Checks if the user can type in the email and password inputs', () => {
     const { history } = renderWithRouter(<App />);
@@ -91,7 +91,6 @@ describe('Login page', () => {
 
     userEvent.type(emailInput, testUserEmail);
     userEvent.type(passwordInput, tesUserPassword);
-    userEvent.click(loginButton);
     expect(loginButton).toBeEnabled();
   });
 
@@ -105,18 +104,10 @@ describe('Login page', () => {
     expect(history.location.pathname).toBe('/register');
   });
 
-  test('Checks if the user can click the login button', () => {
-    renderWithRouter(<App />);
-
-    const loginButton = screen.getByTestId(tesButtonEnter);
-
-    userEvent.click(loginButton);
-  });
-
   test('User is redirected to the page after clicking the enter button', async () => {
-    global.fetch = jest.fn(() => Promise.resolve({
-      json: () => Promise.resolve(outputValid),
-    }));
+
+    httpClient.post = jest.fn().mockResolvedValue({ data: outputValid });
+
     const { history } = renderWithRouter(<App />);
 
     const emailInput = screen.getByTestId(testUserInputEmail);
@@ -126,9 +117,10 @@ describe('Login page', () => {
     userEvent.type(emailInput, testUserEmail);
     userEvent.type(passwordInput, tesUserPassword);
     userEvent.click(loginButton);
-
-    await waitFor(() => {
-      expect(history.location.pathname).toBe('/customer/products');
+    
+    await waitFor(async () => {
+      const abc = jest.spyOn(history, 'push');
+      expect(abc).toHaveBeenLastCalledWith('/customer/products')
     });
   });
 });
