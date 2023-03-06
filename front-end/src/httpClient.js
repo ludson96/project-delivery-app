@@ -43,7 +43,7 @@ const loginUser = async ({ email, password }) => {
     };
     localStorage.setItem('user', JSON.stringify(saveUser));
   } catch (err) {
-    console.log(err);
+    // console.log(err);
     error = true;
   }
   return { error };
