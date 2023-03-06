@@ -45,8 +45,15 @@
       font-weight: $sb;
       border-radius: 0 4px 4px 0;
       border: none;
+      transition: all 0.4s ease;
       &:hover {
         background-color: $cor-verde-active;
+        transform: scale(1.1);
+        &::before {
+          content: 'X';
+          color: $cor-verde-escuro;
+          margin-right: 5px;
+        }
       }
     }
   }

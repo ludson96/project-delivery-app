@@ -4,4 +4,32 @@
   font-family: $font;
   display: flex;
   flex-direction: column;
+  form {
+    position: relative;
+    display: flex;
+    margin: 20px 0;
+    label {
+      display: flex;
+      width: 33%;
+      flex-direction: column;
+      input, select {
+        font-size: $tamanho-do-texto / 3;
+        padding: 8px 16px;
+        border: solid 1px $cor-primaria;
+        border-radius: 4px;
+        outline: none;
+        &:focus, &:hover {
+          border: solid 1px $cor-primaria !important;
+        }
+      }
+    }
+    button {
+      position: absolute;
+      padding: 16px 32px;
+      width: 40%;
+      top: 120%;
+      right: 30%;
+      left: 30%;
+    }
+  }
 }

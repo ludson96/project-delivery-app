@@ -23,7 +23,7 @@ function CardProduct({ title, price, image, id }) {
   const handleChange = ({ target }) => {
     const { value } = target;
     if (value === 0 || value < 0) {
-      return setQuantity(0);
+      return setQuantity();
     }
     setQuantity(Number(value));
     const item = {
@@ -45,8 +45,6 @@ function CardProduct({ title, price, image, id }) {
         quantity: quantity - 1,
       };
       updateCart(item);
-    } else {
-      setQuantity(0);
     }
   };
 
