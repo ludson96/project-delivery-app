@@ -9,21 +9,21 @@ function ProductsOrderDetails({ removeOrderProduct, products }) {
           <div
             className="item-checkout-1 card-item"
             data-testid={
-              `customer_checkout__element-order-table-item-number-${product.id}`
+              `customer_checkout__element-order-table-item-number-${i}`
             }
           >
             {i + 1}
           </div>
           <h3
             className="item-checkout-2 card-item"
-            data-testid={ `customer_checkout__element-order-table-name-${product.id}` }
+            data-testid={ `customer_checkout__element-order-table-name-${i}` }
           >
             {product.title}
           </h3>
           <h3
             className="item-checkout-3 card-item"
             data-testid={
-              `customer_checkout__element-order-table-quantity-${product.id}`
+              `customer_checkout__element-order-table-quantity-${i}`
             }
           >
             {product.quantity}
@@ -32,7 +32,7 @@ function ProductsOrderDetails({ removeOrderProduct, products }) {
           <h3
             className="item-checkout-4 card-item"
             data-testid={
-              `customer_checkout__element-order-table-unit-price-${product.id}`
+              `customer_checkout__element-order-table-unit-price-${i}`
             }
           >
             R$
@@ -42,7 +42,7 @@ function ProductsOrderDetails({ removeOrderProduct, products }) {
           <h3
             className="item-checkout-5 card-item"
             data-testid={
-              `customer_checkout__element-order-table-sub-total-${product.id}`
+              `customer_checkout__element-order-table-sub-total-${i}`
             }
           >
             R$
@@ -51,7 +51,7 @@ function ProductsOrderDetails({ removeOrderProduct, products }) {
           </h3>
           <button
             className="item-checkout-6 card-item"
-            data-testid={ `customer_checkout__element-order-table-remove-${product.id}` }
+            data-testid={ `customer_checkout__element-order-table-remove-${i}` }
             type="button"
             onClick={ () => removeOrderProduct(product) }
           >
