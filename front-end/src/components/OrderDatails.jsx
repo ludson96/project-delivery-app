@@ -1,17 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import ProductsOrderDetails from './ProductOrderDetails';
 import helpers from '../helpers';
+import context from '../context/myContext';
 
 const { getTotal, getCartProducts } = helpers;
 function OrderDetails() {
+  const {
+    setAllProducts,
+  } = useContext(context);
+
   const [products, setProducts] = useState(getCartProducts());
   const removeOrderProduct = (product) => {
     const actProducts = JSON.parse(localStorage.getItem('carrinho'));
-    localStorage.setItem(
-      'carrinho',
-      JSON.stringify(
-        actProducts.filter((currProduct) => product.title !== currProduct.title),
-      ),
+
+    setAllProducts(
+      actProducts.filter((currProduct) => product.title !== currProduct.title),
     );
     setProducts(getCartProducts());
   };

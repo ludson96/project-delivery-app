@@ -37,9 +37,15 @@ function Provider({ children }) {
     }
   }, [shoppingCart]);
 
+  const setAllProducts = async (newProductsList) => {
+    await localStorage.setItem('carrinho', JSON.stringify(newProductsList));
+    setShoppingCart(getCartProducts());
+  };
+
   const contextValue = useMemo(() => ({
     totalValue,
     updateCart,
+    setAllProducts,
   }), [totalValue, updateCart]);
 
   return (
