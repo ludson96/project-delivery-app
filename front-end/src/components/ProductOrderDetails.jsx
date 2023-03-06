@@ -3,39 +3,47 @@ import PropTypes from 'prop-types';
 
 function ProductsOrderDetails({ removeOrderProduct, products }) {
   return (
-    <ul>
-      {products[0] ? products.map((product, index) => (
-        <li key={ product.name }>
+    <ul className="card-checkout">
+      {products[0] ? products.map((product) => (
+        <li key={ product.id }>
           <div
-            data-testid={ `customer_checkout__element-order-table-item-number-${index}` }
+            data-testid={
+              `customer_checkout__element-order-table-item-number-${product.id}`
+            }
           >
-            {index}
+            {product.id}
           </div>
           <h3
-            data-testid={ `customer_checkout__element-order-table-name-${index}` }
+            data-testid={ `customer_checkout__element-order-table-name-${product.id}` }
           >
-            {product.name}
+            {product.title}
           </h3>
           <h3
-            data-testid={ `customer_checkout__element-order-table-quantity-${index}` }
+            data-testid={
+              `customer_checkout__element-order-table-quantity-${product.id}`
+            }
           >
             {product.quantity}
 
           </h3>
           <h3
-            data-testid={ `customer_checkout__element-order-table-unit-price-${index}` }
+            data-testid={
+              `customer_checkout__element-order-table-unit-price-${product.id}`
+            }
           >
             R$
-            {product.value}
+            {product.price}
           </h3>
           <h3
-            data-testid={ `customer_checkout__element-order-table-sub-total-${index}` }
+            data-testid={
+              `customer_checkout__element-order-table-sub-total-${product.id}`
+            }
           >
             R$
-            {product.value * product.quantity}
+            {product.price * product.quantity}
           </h3>
           <button
-            data-testid={ `customer_checkout__element-order-table-remove-${index}` }
+            data-testid={ `customer_checkout__element-order-table-remove-${product.id}` }
             type="button"
             onClick={ () => removeOrderProduct(product) }
           >

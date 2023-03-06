@@ -5,15 +5,13 @@ import OrderDetails from '../components/OrderDatails';
 
 function Checkout() {
   return (
-    <>
-      <header>
-        <NavBar />
-      </header>
-      <div>
+    <div className="checkout">
+      <NavBar />
+      <div className="checkout-details">
         <OrderDetails />
         <DeliveryDetails />
       </div>
-    </>
+    </div>
 
   );
 }

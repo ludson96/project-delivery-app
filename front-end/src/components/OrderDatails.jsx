@@ -2,18 +2,18 @@ import React, { useState } from 'react';
 import ProductsOrderDetails from './ProductOrderDetails';
 import helpers from '../helpers';
 
-const { getTotal, getOrderProducts } = helpers;
+const { getTotal, getCartProducts } = helpers;
 function OrderDetails() {
-  const [products, setProducts] = useState(getOrderProducts());
+  const [products, setProducts] = useState(getCartProducts());
   const removeOrderProduct = (product) => {
-    const actProducts = JSON.parse(localStorage.getItem('orderProducts'));
+    const actProducts = JSON.parse(localStorage.getItem('carrinho'));
     localStorage.setItem(
-      'orderProducts',
+      'carrinho',
       JSON.stringify(
         actProducts.filter((currProduct) => product.name !== currProduct.name),
       ),
     );
-    setProducts(getOrderProducts());
+    setProducts(getCartProducts());
   };
 
   return (
