@@ -7,7 +7,7 @@ class SaleService extends SuperService {
   }
 
   async createSale({ userId, sellerId, totalPrice, deliveryAddress,
-    deliveryNumber, status }) {
+    deliveryNumber, status = 'pendente' }) {
     const result = await super.create({
       userId,
       sellerId,
