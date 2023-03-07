@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { httpClient, backendUrl } from '../httpClient';
+import { httpClient } from '../httpClient';
 
 httpClient.defaults.timeout = 500;
 
@@ -18,7 +18,7 @@ function OrderDetails({ match }) {
   // }, []);
 
   return (
-    <div>OrderDetails</div>
+    <div>{orderId}</div>
   );
 }
 
