@@ -5,6 +5,8 @@ import { sendSale } from '../httpClient';
 function DeliveryDetails({ history }) {
   const [adress, setAdress] = useState('');
   const [houseNumber, setHouseNumber] = useState('');
+  const [errorText, setErrorText] = useState('');
+
   const sellers = ['Fulana Pereira'];
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -16,9 +18,17 @@ function DeliveryDetails({ history }) {
   };
 
   const tryToSendSale = async () => {
-    const { sellerId, error } = await sendSale({ deliveryAdress: adress, deliveryNumber: houseNumber });
+    const {
+      sellerId,
+      error,
+    } = await sendSale({ deliveryAdress: adress, deliveryNumber: houseNumber });
+    if (error) {
+      return setErrorText(`
+    Ocorreu um erro durante a criação do pedido, tente novamente
+    `);
+    }
     const { push } = history;
-    push('/customer/sale-details/last');
+    push(`/customer/sale-details/${sellerId}`);
   };
 
   return (
@@ -66,6 +76,7 @@ function DeliveryDetails({ history }) {
         >
           FINALIZAR PEDIDO
         </button>
+        <small>{errorText}</small>
       </form>
     </div>
   );
