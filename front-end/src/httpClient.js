@@ -24,6 +24,7 @@ const registUser = async ({ name, email, password }) => {
       email,
       token: res.data.token,
     };
+    httpClient.defaults.headers.common.Authorization = saveUser.token;
     localStorage.setItem('user', JSON.stringify(saveUser));
   } catch (err) {
     error = true;
@@ -43,6 +44,8 @@ const loginUser = async ({ email, password }) => {
       role: user.role,
       token,
     };
+    httpClient.defaults.headers.common.Authorization = token;
+
     localStorage.setItem('user', JSON.stringify(saveUser));
   } catch (err) {
     error = true;
