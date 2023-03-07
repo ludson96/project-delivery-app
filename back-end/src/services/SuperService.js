@@ -10,12 +10,14 @@ class SuperService {
 
   async findAll(obj) {
     const result = await this.model.findAll(obj);
-    return result.map((item) => item.dataValues || null);
+    if (!result) return null;
+    return result.map((item) => item.dataValues);
   }
 
   async findOne(objToSearch) {
     const result = await this.model.findOne({ where: objToSearch });
-    return result || null;
+    if (!result) return null;
+    return result.dataValues;
   }
 
   async update(objContent, objWhere) {

@@ -19,6 +19,14 @@ class SaleService extends SuperService {
   
     return { type: null, payload: result };
   }
+
+  async getSales({ userId }) {
+    const result = await super.findAll({ where: { userId } });
+
+    if (!result) return { type: 'NOT_FOUND', payload: result };
+
+    return { type: null, payload: result };
+  }
 }
 
 module.exports = {
