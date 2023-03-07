@@ -6,11 +6,11 @@ class SaleService extends SuperService {
     super(Sale);
   }
 
-  async createSale({ userId, sellerId, totalPrice, deliveryAddress,
+  async createSale({ userId, totalPrice, deliveryAddress,
     deliveryNumber, status }) {
     const result = await super.create({
       userId,
-      sellerId,
+      sellerId: 2,
       totalPrice,
       deliveryAddress,
       deliveryNumber,

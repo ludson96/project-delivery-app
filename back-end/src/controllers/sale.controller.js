@@ -1,5 +1,6 @@
 const { SaleService } = require('../services/Sale.service');
 const { SaleProduct } = require('../services/SaleProduct.service');
+const { verifyToken } = require('../auth/jwtFunctions');
 
 class SaleController {
   constructor() {
@@ -10,15 +11,15 @@ class SaleController {
 
   async createSale(req, res) {
     try {
-      const saleBody = req.body;
-      const result0 = await this.SaleService.createSale(saleBody);
-      await Promise.all(saleBody.products.map(({ productId, quantity }) => this
-        .SaleProductService.createSaleProduct({
-          saleId: result0.payload.id,
-          productId,
-          quantity,
-        })));
-      return res.status(201).json({ saleId: result0.payload.id });
+      const { totalPrice, deliveryAddress, deliveryNumber, products } = req.body;
+      const { authorization } = req.headers;
+      const { id } = verifyToken(authorization);
+      const result = await this.SaleService
+        .createSale({
+          userId: id, totalPrice, deliveryAddress, deliveryNumber, status: 'Pendente' });
+      await Promise.all(products.map(({ productId, quantity }) => this.SaleProductService
+        .createSaleProduct({ saleId: result.payload.id, productId, quantity })));
+      return res.status(201).json({ saleId: result.payload.id });
     } catch (erro) {
       return res.status(500).json({
         message: 'Erro ao criar uma venda no banco',
