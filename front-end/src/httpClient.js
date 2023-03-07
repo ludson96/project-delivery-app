@@ -73,6 +73,7 @@ const sendSale = async ({ deliveryAdress, deliveryNumber }) => {
 };
 
 const getMineSales = async () => {
+  let error = false;
   try {
     const res = await httpClient.get(backendUrl('sales'));
     const { sales } = res.data;
