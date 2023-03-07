@@ -37,7 +37,7 @@ function NavBar() {
       </div>
       <div className="nav-item-2">
         <Link
-          to="/customer/checkout"
+          to="/customer/orders"
           data-testid="customer_products__element-navbar-link-orders"
         >
           MEUS PEDIDOS
