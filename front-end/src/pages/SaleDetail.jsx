@@ -4,11 +4,14 @@ import SaleDetailsBox from '../components/SaleDetailsBox';
 
 function SaleDetails() {
   const [products, setProducts] = useState([]);
-
+  const { id } = useParams();
   useEffect(() => {
     const getProducts = async () => {
-
+      const { sales = [] } = await getMineSales();
+      const correctSale = sales.filter((sale) => sale.id === id);
+      setProducts(correctSale.products);
     };
+    getProducts();
   }, []);
 
   return (

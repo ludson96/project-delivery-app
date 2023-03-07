@@ -58,20 +58,34 @@ const sendSale = async ({ deliveryAdress, deliveryNumber }) => {
   const totalPrice = getTotal();
   let error = false;
   try {
-    const { token } = getUser();
     const res = await httpClient.post(backendUrl('sales'), {
       products,
-      token,
       totalPrice,
       deliveryAdress,
       deliveryNumber,
     });
-    const { sellerId } = res.data;
-    return { sellerId, error };
+    const { saleId } = res.data;
+    return { saleId, error };
   } catch (err) {
     error = true;
   }
   return { error };
 };
 
-module.exports = { httpClient, registUser, loginUser, backendUrl, sendSale };
+const getMineSales = async () => {
+  try {
+    const res = await httpClient.get(backendUrl('sales'));
+    const { sales } = res.data;
+    return { sales, error };
+  } catch (err) {
+    error = true;
+  }
+  return { error };
+};
+
+module.exports = { httpClient,
+  registUser,
+  loginUser,
+  backendUrl,
+  sendSale,
+  getMineSales };
