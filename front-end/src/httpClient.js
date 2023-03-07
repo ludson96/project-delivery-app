@@ -1,5 +1,9 @@
 const axios = require('axios').default;
 
+const helpers = require('./helpers');
+
+const { getCartProducts } = helpers;
+
 const backendUrl = (endpoint) => `http://localhost:3001/${endpoint}`;
 
 const httpClient = axios.create();
@@ -15,7 +19,6 @@ const registUser = async ({ name, email, password }) => {
         name, email, password,
       },
     );
-    // console.log(res);
     const saveUser = {
       name,
       email,
@@ -23,7 +26,6 @@ const registUser = async ({ name, email, password }) => {
     };
     localStorage.setItem('user', JSON.stringify(saveUser));
   } catch (err) {
-    // console.log(err);
     error = true;
   }
   return { error };
@@ -43,10 +45,30 @@ const loginUser = async ({ email, password }) => {
     };
     localStorage.setItem('user', JSON.stringify(saveUser));
   } catch (err) {
-    // console.log(err);
     error = true;
   }
   return { error };
 };
 
-module.exports = { httpClient, registUser, loginUser, backendUrl };
+const sendSale = async ({ deliveryAdress, deliveryNumber }) => {
+  const products = getCartProducts();
+  const totalPrice = getTotal();
+  let error = false;
+  try {
+    const { token } = getUser();
+    const res = await httpClient.post(backendUrl('sales'), {
+      products,
+      token,
+      totalPrice,
+      deliveryAdress,
+      deliveryNumber,
+    });
+    const { sellerId } = res.data;
+    return { sellerId, error };
+  } catch (err) {
+    error = true;
+  }
+  return { error };
+};
+
+module.exports = { httpClient, registUser, loginUser, backendUrl, sendSale };

@@ -22,8 +22,14 @@ const getTotal = () => {
   return total;
 };
 
+const getUser = () => {
+  const user = JSON.parse(localStorage.getItem('user'));
+  return user;
+};
+
 export default {
   getCartProducts,
   addCartProduct,
   getTotal,
+  getUser,
 };
