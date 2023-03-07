@@ -6,6 +6,7 @@ import NotFound from './pages/NotFound';
 import Register from './pages/Register';
 import Products from './pages/Products';
 import Checkout from './pages/Checkout';
+import DeliveryDetails from './components/DeliveryDetails';
 
 function App() {
   return (
@@ -18,6 +19,8 @@ function App() {
         <Route exact path="/register" component={ Register } />
         <Route exact path="/customer/products" component={ Products } />
         <Route exact path="/customer/checkout" component={ Checkout } />
+        <Route exact path="/customer/sale-details/:id" component={ DeliveryDetails } />
+        <Route exact path="/customer/sale-details/last" component={ DeliveryDetails } />
         <Route exact path="*" component={ NotFound } />
       </Switch>
     </Provider>
