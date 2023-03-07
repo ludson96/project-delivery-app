@@ -19,7 +19,7 @@ function DeliveryDetails({ history }) {
 
   const tryToSendSale = async () => {
     const {
-      sellerId,
+      saleId,
       error,
     } = await sendSale({ deliveryAdress: adress, deliveryNumber: houseNumber });
     if (error) {
@@ -28,7 +28,7 @@ function DeliveryDetails({ history }) {
     `);
     }
     const { push } = history;
-    push(`/customer/sale-details/${sellerId}`);
+    push(`/customer/sale-details/${saleId}`);
   };
 
   return (

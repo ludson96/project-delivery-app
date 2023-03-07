@@ -12,7 +12,7 @@ function SaleDetails() {
       setProducts(correctSale.products);
     };
     getProducts();
-  }, []);
+  }, [id]);
 
   return (
     <div className="sale-details">
