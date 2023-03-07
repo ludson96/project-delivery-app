@@ -2,6 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 function ProductsOrderDetails({ removeOrderProduct, products }) {
+  const removerBtn = (product, i) => (
+    <button
+      className="item-checkout-6 card-item"
+      data-testid={ `customer_checkout__element-order-table-remove-${i}` }
+      type="button"
+      onClick={ () => removeOrderProduct(product) }
+    >
+      {' '}
+      Remover
+    </button>);
+
   return (
     <ul className="card-checkout">
       {products[0] ? products.map((product, i) => (
@@ -49,14 +60,10 @@ function ProductsOrderDetails({ removeOrderProduct, products }) {
             {' '}
             {(product.price * product.quantity).toFixed(2).toString().replace('.', ',')}
           </h3>
-          <button
-            className="item-checkout-6 card-item"
-            data-testid={ `customer_checkout__element-order-table-remove-${i}` }
-            type="button"
-            onClick={ () => removeOrderProduct(product) }
-          >
-            Remover
-          </button>
+          {
+            removeOrderProduct
+            && removerBtn(product, i)
+          }
         </li>
       ))
         : <>Não foi adicionado nenhum produto</>}
