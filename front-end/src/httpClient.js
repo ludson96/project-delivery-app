@@ -17,6 +17,7 @@ const registUser = async ({ name, email, password }) => {
     );
     // console.log(res);
     const saveUser = {
+      id,
       name,
       email,
       token: res.data.token,
@@ -36,6 +37,7 @@ const loginUser = async ({ email, password }) => {
     // console.log(res);
     const { token, user } = res.data;
     const saveUser = {
+      id: user.id,
       name: user.name,
       email: user.email,
       role: user.role,
