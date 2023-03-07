@@ -1,106 +1,91 @@
 import React from 'react';
 import { httpClient } from '../httpClient';
-import { screen, waitFor } from '@testing-library/react';
+import { screen, waitFor, waitForElementToBeRemoved } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import App from '../App';
 import renderWithRouter from '../renderWithRouter';
 
-describe('Login page', () => {
+const dataBtnRegister = 'common_login__button-register';
+const dataMessageError = 'common_register__element-invalid_register';
+const dataInputName = 'common_register__input-name';
+const dataInputEmail = 'common_register__input-email';
+const dataInputPwd = 'common_register__input-password';
+const dataFullName = 'customer_products__element-navbar-user-full-name';
+const name = 'Teste de tal';
+const email = 'teste@email.com';
+const password = '123456';
+const token = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImRhdGFWYWx1ZXMiOnsiaWQiOjksIm5hbWUiOiJEZWxpdmVyeSBBcHAgQWRtaW4iLCJlbWFpbCI6Imx1ZHNvbl9wczI1QGhvdG1haWwuY29tIiwicGFzc3dvcmQiOiJmY2VhOTIwZjc0MTJiNWRhN2JlMGNmNDJiOGM5Mzc1OSIsInJvbGUiOiJjdXN0b21lciJ9LCJfcHJldmlvdXNEYXRhVmFsdWVzIjp7Im5hbWUiOiJEZWxpdmVyeSBBcHAgQWRtaW4iLCJlbWFpbCI6Imx1ZHNvbl9wczI1QGhvdG1haWwuY29tIiwicGFzc3dvcmQiOiJmY2VhOTIwZjc0MTJiNWRhN2JlMGNmNDJiOGM5Mzc1OSIsInJvbGUiOiJjdXN0b21lciIsImlkIjo5fSwidW5pcW5vIjoxLCJfY2hhbmdlZCI6e30sIl9vcHRpb25zIjp7ImlzTmV3UmVjb3JkIjp0cnVlLCJfc2NoZW1hIjpudWxsLCJfc2NoZW1hRGVsaW1pdGVyIjoiIn0sImlzTmV3UmVjb3JkIjpmYWxzZX0sImlhdCI6MTY3ODIyNTM0MiwiZXhwIjoxNjc4ODMwMTQyfQ.wIf9bzH0T5A-99P6PTQmDWetfSTj4QXxwJytqb8lJZU`;
+
+describe('Register page', () => {
+
   beforeEach(() => {
     jest.clearAllMocks();
   });
-  test(
-    'Checks if the email, password and login button are rendered on the login screen',
-    async () => {
 
-      httpClient.post = jest.fn().mockResolvedValue({ data: { hasToken: false }});
+  it('Check that all elements are created.', () => {
+      renderWithRouter(<App />, ['/register']);
 
-      const { history } = renderWithRouter(<App />);
+      const titleRegister = screen.getByText(/register/i)
+      const inputName = screen.getByTestId(dataInputName);
+      const inputEmail = screen.getByTestId(dataInputEmail);
+      const inputPwd = screen.getByTestId(dataInputPwd);
+      const btnCadastrar = screen.getByRole('button', { name: 'Cadastrar'});
 
-      const emailInput = screen.getByTestId(testUserInputEmail);
-      const passwordInput = screen.getByTestId(testUserInputPassword);
-      const loginButton = screen.getByTestId(tesButtonEnter);
-      const registerButton = screen.getByTestId(testButtonRegister);
-
-      userEvent.type(emailInput, 'teste@hotmail.com');
-      userEvent.type(passwordInput, '123456789');
-
-      userEvent.click(loginButton);
-
-      expect(emailInput).toBeInTheDocument();
-      expect(passwordInput).toBeInTheDocument();
-      expect(loginButton).toBeInTheDocument();
-      expect(registerButton).toBeInTheDocument();
-
-      await waitFor(() => {
-        expect(screen.getByTestId(testUserInvalidEmail)).toBeInTheDocument();
-      });
-
-      expect(history.location.pathname).toBe('/login');
+      expect(titleRegister).toBeInTheDocument();
+      expect(inputName).toBeInTheDocument();
+      expect(inputEmail).toBeInTheDocument();
+      expect(inputPwd).toBeInTheDocument();
+      expect(btnCadastrar).toBeInTheDocument();
     },
   );
 
-  // test('Checks if the user can type in the email and password inputs', () => {
-  //   const { history } = renderWithRouter(<App />);
+  it('Check if I can register successfully.', async () => {
+    httpClient.post = jest.fn().mockResolvedValueOnce({ data: token });
 
-  //   const emailInput = screen.getByTestId(testUserInputEmail);
-  //   const passwordInput = screen.getByTestId(testUserInputPassword);
+    const { history } = renderWithRouter(<App />, ['/register']);
 
-  //   userEvent.type(emailInput, testUserEmail);
-  //   userEvent.type(passwordInput, tesUserPassword);
+    const inputName = screen.getByTestId(dataInputName);
+    const inputEmail = screen.getByTestId(dataInputEmail);
+    const inputPwd = screen.getByTestId(dataInputPwd);
+    const btnCadastrar = screen.getByRole('button', { name: 'Cadastrar'});
 
-  //   expect(emailInput).toHaveValue(testUserEmail);
-  //   expect(passwordInput).toHaveValue(tesUserPassword);
+    userEvent.type(inputName, name);
+    userEvent.type(inputEmail, email);
+    userEvent.type(inputPwd, password);
 
-  //   expect(history.location.pathname).toBe('/login');
-  // });
+    userEvent.click(btnCadastrar);
 
-  // test(`'User is able to click the sign in button after a valid email address
-  // and password of 6 or more characters'`, () => {
-  //   renderWithRouter(<App />);
+    await waitFor(() => {
+      const titleName = screen.getByTestId(dataFullName)
+      expect(titleName).toBeInTheDocument();
+      expect(history.location.pathname).toBe('/customer/products');  
+    })
+  })
 
-  //   const emailInput = screen.getByTestId(testUserInputEmail);
-  //   const passwordInput = screen.getByTestId(testUserInputPassword);
-  //   const loginButton = screen.getByTestId(tesButtonEnter);
+  it('Check if it returns an "invalid user" error when trying to register with an existing email.', async () => {
+    httpClient.post = jest.fn().mockRejectedValueOnce({
+      response: {
+        data: { message: 'User already registered' }
+      }
+    });
 
-  //   userEvent.type(emailInput, 'incorrectEmail');
-  //   expect(loginButton).toBeDisabled();
+    renderWithRouter(<App />, ['/register']);
 
-  //   userEvent.type(passwordInput, '12345');
-  //   expect(loginButton).toBeDisabled();
+    const inputName = screen.getByTestId(dataInputName);
+    const inputEmail = screen.getByTestId(dataInputEmail);
+    const inputPwd = screen.getByTestId(dataInputPwd);
+    const btnCadastrar = screen.getByRole('button', { name: 'Cadastrar'});
 
-  //   userEvent.type(emailInput, testUserEmail);
-  //   userEvent.type(passwordInput, tesUserPassword);
-  //   expect(loginButton).toBeEnabled();
-  // });
+    userEvent.type(inputName, 'Cliente Zé Birita');
+    userEvent.type(inputEmail, 'zebirita@email.com');
+    userEvent.type(inputPwd, '$#zebirita#$');
 
-  // test('Checks if the user can click the register button', () => {
-  //   const { history } = renderWithRouter(<App />);
+    userEvent.click(btnCadastrar);
 
-  //   const registerButton = screen.getByTestId(testButtonRegister);
+    await waitFor(() => {
+      const messageError = screen.getByTestId(dataMessageError);
+      expect(messageError).toBeInTheDocument();
+    })
+  })
 
-  //   userEvent.click(registerButton);
-
-  //   expect(history.location.pathname).toBe('/register');
-  // });
-
-  // test('User is redirected to the page after clicking the enter button', async () => {
-
-  //   httpClient.post = jest.fn().mockResolvedValue({ data: outputValid });
-
-  //   const { history } = renderWithRouter(<App />);
-
-  //   const emailInput = screen.getByTestId(testUserInputEmail);
-  //   const passwordInput = screen.getByTestId(testUserInputPassword);
-  //   const loginButton = screen.getByTestId(tesButtonEnter);
-
-  //   userEvent.type(emailInput, testUserEmail);
-  //   userEvent.type(passwordInput, tesUserPassword);
-  //   userEvent.click(loginButton);
-    
-  //   await waitFor(async () => {
-  //     const abc = jest.spyOn(history, 'push');
-  //     expect(abc).toHaveBeenLastCalledWith('/customer/products')
-  //   });
-  // });
 });

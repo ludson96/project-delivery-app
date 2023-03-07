@@ -33,7 +33,11 @@ describe('Login page', () => {
     'Checks if the email, password and login button are rendered on the login screen',
     async () => {
 
-      httpClient.post = jest.fn().mockResolvedValue({ data: { hasToken: false }});
+      httpClient.post = jest.fn().mockRejectedValue({
+        response: {
+          data: { hasToken: false }
+        }
+      });
 
       const { history } = renderWithRouter(<App />);
 
