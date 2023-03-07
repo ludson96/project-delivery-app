@@ -1,11 +1,20 @@
 import React from 'react';
 import NavBar from '../components/NavBar';
+import SaleDetailsBox from '../components/SaleDetailsBox';
 
 function SaleDetails() {
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    const getProducts = async () => {
+
+    };
+  }, []);
+
   return (
     <div className="sale-details">
       <NavBar />
-      <h1>sale detail</h1>
+      <SaleDetailsBox products={ products } />
     </div>
   );
 }
