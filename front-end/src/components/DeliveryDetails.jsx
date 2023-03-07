@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+import { sendSale } from '../httpClient';
 
-function DeliveryDetails() {
+function DeliveryDetails({ history }) {
   const [adress, setAdress] = useState('');
   const [houseNumber, setHouseNumber] = useState('');
   const sellers = ['Fulana Pereira'];
@@ -12,6 +14,13 @@ function DeliveryDetails() {
     const { value } = target;
     setter(value);
   };
+
+  const tryToSendSale = async () => {
+    const { sellerId, error } = await sendSale({ deliveryAdress: adress, deliveryNumber: houseNumber });
+    const { push } = history;
+    push('/customer/sale-details/last');
+  };
+
   return (
     <div className="details-address-checkout">
       <h1>Detalhes e Endereço para Entrega</h1>
@@ -53,6 +62,7 @@ function DeliveryDetails() {
         <button
           type="button"
           data-testid="customer_checkout__button-submit-order"
+          onClick={ tryToSendSale }
         >
           FINALIZAR PEDIDO
         </button>
@@ -60,5 +70,11 @@ function DeliveryDetails() {
     </div>
   );
 }
+
+DeliveryDetails.propTypes = {
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired,
+  }).isRequired,
+};
 
 export default DeliveryDetails;
