@@ -11,37 +11,39 @@ chai.use(chaiHttp);
 
 const { expect } = chai;
 
-describe('teste de "/products"', () => {
-  beforeEach(sinon.restore);
-  it('verify if i can get all products', async () => {
-    sinon.stub(Product,'findAll').resolves(mocks.producs.map(e => ({dataValues: e})))
+describe('Testing endpoint "/products"', () => {
+  describe('Checking if it returns all products.', () => {
+    beforeEach(sinon.restore);
+    it('successfully', async () => {
+      sinon.stub(Product,'findAll').resolves(mocks.producs.map(e => ({dataValues: e})))
 
-    const res2 = await chai
-    .request(app)
-    .get('/products');
+      const res2 = await chai
+      .request(app)
+      .get('/products');
 
-    expect(res2.status).to.be.equal(200);
-    expect(res2.body).to.be.eql(mocks.producs)
-  })
+      expect(res2.status).to.be.equal(200);
+      expect(res2.body).to.be.eql(mocks.producs)
+    })
 
-  it('verify if it breaks as expected when a product is not founded', async () => {
-    sinon.stub(Product,'findAll').resolves([])
+    it('when a product is not found.', async () => {
+      sinon.stub(Product,'findAll').resolves([])
 
-    const res2 = await chai
-    .request(app)
-    .get('/products');
+      const res2 = await chai
+      .request(app)
+      .get('/products');
 
-    expect(res2.status).to.be.equal(404);
-  })
+      expect(res2.status).to.be.equal(404);
+    })
 
-  it('verify if it breaks as expected', async () => {
-    sinon.stub(Product,'findAll').resolves(undefined)
+    it('internal Error', async () => {
+      sinon.stub(Product,'findAll').resolves(undefined)
 
-    const res2 = await chai
-    .request(app)
-    .get('/products');
+      const res2 = await chai
+      .request(app)
+      .get('/products');
 
-    expect(res2.status).to.be.equal(500);
-    expect(res2.body.message).to.deep.equal('Erro sobre products');
-  })
-});
+      expect(res2.status).to.be.equal(500);
+      expect(res2.body.message).to.deep.equal('Erro sobre products');
+    })
+  });
+})
