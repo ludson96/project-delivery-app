@@ -28,7 +28,7 @@ function DeliveryDetails({ history }) {
     `);
     }
     const { push } = history;
-    push(`/customer/orders/${saleId}`);
+    push(`/customer/order/${saleId}`);
   };
 
   return (
