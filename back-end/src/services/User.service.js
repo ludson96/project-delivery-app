@@ -22,7 +22,7 @@ class USerService extends SuperService {
     const verifyPassword = md5(password);
     const result = await super.findOne({ email, password: verifyPassword });
     if (!result) return { type: 'NOT_FOUND', payload: { token: null } };
-    const { password: _password, ...userWithoutPassword } = result.dataValues;
+    const { password: _password, ...userWithoutPassword } = result;
     const token = createToken(userWithoutPassword);
     return { type: null, payload: { token, user: userWithoutPassword } };
   }

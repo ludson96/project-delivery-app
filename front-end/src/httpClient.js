@@ -20,12 +20,13 @@ const registUser = async ({ name, email, password }) => {
       },
     );
     const saveUser = {
-      id,
       name,
       email,
       token: res.data.token,
     };
+    console.log(saveUser);
     httpClient.defaults.headers.common.Authorization = saveUser.token;
+    console.log('passei do autozation');
     localStorage.setItem('user', JSON.stringify(saveUser));
   } catch (err) {
     error = true;
