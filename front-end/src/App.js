@@ -6,6 +6,7 @@ import NotFound from './pages/NotFound';
 import Register from './pages/Register';
 import Products from './pages/Products';
 import Checkout from './pages/Checkout';
+import SaleDetails from './pages/SaleDetails';
 import Orders from './pages/Orders';
 import OrderDetails from './components/OrderDatails';
 
@@ -20,6 +21,7 @@ function App() {
         <Route exact path="/register" component={ Register } />
         <Route exact path="/customer/products" component={ Products } />
         <Route exact path="/customer/checkout" component={ Checkout } />
+        <Route exact path="/customer/sale-details/:id" component={ SaleDetails } />
         <Route exact path="/customer/orders" component={ Orders } />
         <Route exact path="/customer/orders/:id" component={ OrderDetails } />
         <Route exact path="*" component={ NotFound } />
