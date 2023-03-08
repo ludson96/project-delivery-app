@@ -88,6 +88,8 @@ const sendSale = async ({ deliveryAddress, deliveryNumber }) => {
 const getMineSales = async () => {
   let error = false;
   try {
+    const { token } = JSON.parse(localStorage.getItem('user'));
+    httpClient.defaults.headers.get.authorization = token;
     const res = await httpClient.get(backendUrl('sales'));
     const { sales } = res.data;
     return { sales, error };
