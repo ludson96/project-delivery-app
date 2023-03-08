@@ -1,7 +1,7 @@
 import React from 'react';
-import {httpClient} from '../httpClient';
 import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { httpClient } from '../httpClient';
 import App from '../App';
 import renderWithRouter from '../renderWithRouter';
 
@@ -32,7 +32,6 @@ describe('Login page', () => {
   it(
     'Checks if the email, password and login button are rendered on the login screen',
     async () => {
-
       httpClient.post = jest.fn().mockRejectedValue({ data: { hasToken: false } });
 
       const { history } = renderWithRouter(<App />);
@@ -105,7 +104,6 @@ describe('Login page', () => {
   });
 
   it('User is redirected to the page after clicking the enter button', async () => {
-
     httpClient.post = jest.fn().mockResolvedValue({ data: outputValid });
 
     const { history } = renderWithRouter(<App />);
@@ -117,10 +115,10 @@ describe('Login page', () => {
     userEvent.type(emailInput, testUserEmail);
     userEvent.type(passwordInput, tesUserPassword);
     userEvent.click(loginButton);
-    
+
     await waitFor(async () => {
       const abc = jest.spyOn(history, 'push');
-      expect(abc).toHaveBeenLastCalledWith('/customer/products')
+      expect(abc).toHaveBeenLastCalledWith('/customer/products');
     });
   });
 });
