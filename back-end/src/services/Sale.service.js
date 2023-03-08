@@ -1,11 +1,13 @@
 const { SuperService } = require('./SuperService');
 const { Sale } = require('../database/models');
 const { SalesProduct } = require('../database/models');
+const { Product } = require('../database/models');
 
 class SaleService extends SuperService {
   constructor() {
     super(Sale);
     this.saleProduct = SalesProduct;
+    this.products = Product;
   }
 
   async createSale({ userId, sellerId = 2, totalPrice, deliveryAddress,
@@ -23,20 +25,14 @@ class SaleService extends SuperService {
   }
 
   async getSales({ userId }) {
-    const result = await super.findAll({ where: { userId } });
-
-    if (!result) return { type: 'NOT_FOUND', payload: result };
-
-    return { type: null, payload: result };
-  }
-
-  async test() {
     const result = await super.findAll({
-      where: { userId: 11 },
-      include: [{
+      where: { userId },
+      include: {
         model: this.saleProduct,
-        where: { saleId: 9 },
-      }],
+        include: {
+          model: this.products,
+        },
+      },
     });
 
     if (!result) return { type: 'NOT_FOUND', payload: result };
@@ -44,14 +40,6 @@ class SaleService extends SuperService {
     return { type: null, payload: result };
   }
 }
-
-// const a = new SaleService();
-
-// const b = async () => {
-//   await a.test();
-// };
-
-// b();
 
 module.exports = {
   SaleService,
