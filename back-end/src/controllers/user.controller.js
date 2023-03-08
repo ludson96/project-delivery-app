@@ -15,7 +15,6 @@ class UserController {
       if (type) return res.status(getStatusCode(type)).json({ hasToken: false });
       return res.status(200).json({ token, user });
     } catch (erro) {
-      console.log('deu erro')
       return res.status(500).json({
         message: 'Erro ao entrar no site.',
         error: erro.message,
