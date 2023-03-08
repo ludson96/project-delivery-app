@@ -5,7 +5,7 @@ const SaleModel = (sequelize, DataTypes) => {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
     userId: DataTypes.INTEGER,
     sellerId: DataTypes.INTEGER,
-    totalPrice: DataTypes.INTEGER,
+    totalPrice: DataTypes.FLOAT(4,2),
     deliveryAddress: DataTypes.STRING,
     deliveryNumber: DataTypes.STRING,
     saleDate: { type: DataTypes.DATE, defaultValue: DataTypes.NOW },
