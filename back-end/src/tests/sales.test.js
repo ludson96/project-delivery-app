@@ -9,11 +9,11 @@ const { validOutput, validInput } = require('./mocks/sales.mock');
 chai.use(chaiHttp);
 
 const { expect } = chai;
-describe('Testando endpoint "/sales"', () => {
-  describe('Cadastra uma venda', function() {
+describe('Testing endpoint "/sales"', () => {
+  describe('Register a sale', function() {
     afterEach(sinon.restore);
     
-    it('com sucesso', async () => {
+    it('successfully', async () => {
       sinon
         .stub(Sale, "create")
         .resolves(validOutput);
