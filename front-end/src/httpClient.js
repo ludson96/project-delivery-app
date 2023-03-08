@@ -1,8 +1,8 @@
 const axios = require('axios').default;
 
-const helpers = require('./helpers');
+const helpers = require('./helpers').default;
 
-const { getCartProducts } = helpers;
+const { getCartProducts, getTotal } = helpers;
 
 const backendUrl = (endpoint) => `http://localhost:3001/${endpoint}`;
 
@@ -25,7 +25,8 @@ const registUser = async ({ name, email, password }) => {
       token: res.data.token,
     };
     console.log(saveUser);
-    httpClient.defaults.headers.common.Authorization = saveUser.token;
+    httpClient.defaults.headers.post.authorization = saveUser.token;
+    console.log(httpClient.defaults.headers.post.Authorization);
     console.log('passei do autozation');
     localStorage.setItem('user', JSON.stringify(saveUser));
   } catch (err) {
@@ -47,7 +48,7 @@ const loginUser = async ({ email, password }) => {
       role: user.role,
       token,
     };
-    httpClient.defaults.headers.common.Authorization = token;
+    httpClient.defaults.headers.post.authorization = token;
 
     localStorage.setItem('user', JSON.stringify(saveUser));
   } catch (err) {
@@ -56,17 +57,26 @@ const loginUser = async ({ email, password }) => {
   return { error };
 };
 
-const sendSale = async ({ deliveryAdress, deliveryNumber }) => {
+const sendSale = async ({ deliveryAddress, deliveryNumber }) => {
   const products = getCartProducts();
+  console.log(products);
+  const nProducts = products.map((product) => ({ ...product, productId: product.id }));
   const totalPrice = getTotal();
+  const { token } = JSON.parse(localStorage.getItem('user'));
+  const config = {
+    headers: {
+      Authorization: token,
+    },
+  };
+
   let error = false;
   try {
     const res = await httpClient.post(backendUrl('sales'), {
-      products,
+      products: nProducts,
       totalPrice,
-      deliveryAdress,
+      deliveryAddress,
       deliveryNumber,
-    });
+    }, config);
     const { saleId } = res.data;
     return { saleId, error };
   } catch (err) {
