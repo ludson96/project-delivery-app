@@ -40,9 +40,9 @@ function SaleDetailsBox({ products }) {
 
 SaleDetailsBox.propTypes = {
   products: PropTypes.arrayOf(PropTypes.shape({
-    price: PropTypes.number.isRequired,
+    price: PropTypes.string.isRequired,
     quantity: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
     id: PropTypes.number.isRequired,
   })).isRequired,
 };
