@@ -9,11 +9,11 @@ const { validInput, validataValues, token } = require('./mocks/login.mock');
 chai.use(chaiHttp);
 
 const { expect } = chai;
-describe('Testando endpoint "/login"', () => {
-  describe('Realiza o login', function() {
+describe('Testing endpoint "/login"', () => {
+  describe('Log in', function() {
     afterEach(sinon.restore);
     
-    it('com sucesso', async () => {
+    it('successfully', async () => {
       sinon
         .stub(User, "findOne")
         .resolves(validataValues);
@@ -27,7 +27,7 @@ describe('Testando endpoint "/login"', () => {
       expect(response.body).to.have.property('token')
     });
 
-    it('usuário inexistente', async () => {
+    it('non-existent user', async () => {
       sinon
         .stub(User, "findOne")
         .resolves();
@@ -41,7 +41,7 @@ describe('Testando endpoint "/login"', () => {
       expect(response.body).to.deep.equal({ hasToken: false })
     });
 
-    it('token invalido', async () => {
+    it('invalid token', async () => {
       sinon
         .stub(User, "findOne")
         .resolves();
