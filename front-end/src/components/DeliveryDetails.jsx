@@ -21,7 +21,7 @@ function DeliveryDetails({ history }) {
     const {
       saleId,
       error,
-    } = await sendSale({ deliveryAdress: adress, deliveryNumber: houseNumber });
+    } = await sendSale({ deliveryAddress: adress, deliveryNumber: houseNumber });
     if (error) {
       return setErrorText(`
     Ocorreu um erro durante a criação do pedido, tente novamente
