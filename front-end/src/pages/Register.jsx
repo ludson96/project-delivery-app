@@ -46,7 +46,7 @@ function Register({ history }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const { error } = await registUser({ name, email, password });
-    if (error) return setErrorText('usuario invalido');
+    if (error) return setErrorText('User already registered');
     const { push } = history;
     push('/customer/products');
   };

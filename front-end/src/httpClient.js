@@ -15,7 +15,7 @@ const registUser = async ({ name, email, password }) => {
         name, email, password,
       },
     );
-    // console.log(res);
+    console.log('passou: ', res);
     const saveUser = {
       id,
       name,
@@ -24,7 +24,7 @@ const registUser = async ({ name, email, password }) => {
     };
     localStorage.setItem('user', JSON.stringify(saveUser));
   } catch (err) {
-    // console.log(err);
+    console.log('Erro: ', err);
     error = true;
   }
   return { error };
@@ -34,7 +34,7 @@ const loginUser = async ({ email, password }) => {
   let error = false;
   try {
     const res = await httpClient.post(backendUrl('login'), { email, password });
-    // console.log(res);
+    console.log('passou: ', res);
     const { token, user } = res.data;
     const saveUser = {
       id: user.id,
@@ -45,7 +45,7 @@ const loginUser = async ({ email, password }) => {
     };
     localStorage.setItem('user', JSON.stringify(saveUser));
   } catch (err) {
-    // console.log(err);
+    console.log('Erro: ', err);
     error = true;
   }
   return { error };
