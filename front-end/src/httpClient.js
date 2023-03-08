@@ -37,7 +37,7 @@ const loginUser = async ({ email, password }) => {
   let error = false;
   try {
     const res = await httpClient.post(backendUrl('login'), { email, password });
-    // console.log(res);
+    console.log('passou: ', res);
     const { token, user } = res.data;
     const saveUser = {
       id: user.id,

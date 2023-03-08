@@ -10,13 +10,21 @@ class SaleService extends SuperService {
     deliveryNumber, status = 'pendente' }) {
     const result = await super.create({
       userId,
-      sellerId,
+      sellerId: 2,
       totalPrice,
       deliveryAddress,
       deliveryNumber,
       status,
     });
   
+    return { type: null, payload: result };
+  }
+
+  async getSales({ userId }) {
+    const result = await super.findAll({ where: { userId } });
+
+    if (!result) return { type: 'NOT_FOUND', payload: result };
+
     return { type: null, payload: result };
   }
 }

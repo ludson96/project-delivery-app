@@ -29,11 +29,11 @@ describe('Login page', () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
-  test(
+  it(
     'Checks if the email, password and login button are rendered on the login screen',
     async () => {
 
-      httpClient.post = jest.fn().mockResolvedValue({ data: { hasToken: false }});
+      httpClient.post = jest.fn().mockRejectedValue({ data: { hasToken: false } });
 
       const { history } = renderWithRouter(<App />);
 
@@ -60,7 +60,7 @@ describe('Login page', () => {
     },
   );
 
-  test('Checks if the user can type in the email and password inputs', () => {
+  it('Checks if the user can type in the email and password inputs', () => {
     const { history } = renderWithRouter(<App />);
 
     const emailInput = screen.getByTestId(testUserInputEmail);
@@ -75,7 +75,7 @@ describe('Login page', () => {
     expect(history.location.pathname).toBe('/login');
   });
 
-  test(`'User is able to click the sign in button after a valid email address
+  it(`'User is able to click the sign in button after a valid email address
   and password of 6 or more characters'`, () => {
     renderWithRouter(<App />);
 
@@ -94,7 +94,7 @@ describe('Login page', () => {
     expect(loginButton).toBeEnabled();
   });
 
-  test('Checks if the user can click the register button', () => {
+  it('Checks if the user can click the register button', () => {
     const { history } = renderWithRouter(<App />);
 
     const registerButton = screen.getByTestId(testButtonRegister);
@@ -104,7 +104,7 @@ describe('Login page', () => {
     expect(history.location.pathname).toBe('/register');
   });
 
-  test('User is redirected to the page after clicking the enter button', async () => {
+  it('User is redirected to the page after clicking the enter button', async () => {
 
     httpClient.post = jest.fn().mockResolvedValue({ data: outputValid });
 
