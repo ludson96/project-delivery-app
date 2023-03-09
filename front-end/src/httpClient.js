@@ -24,10 +24,10 @@ const registUser = async ({ name, email, password }) => {
       email,
       token: res.data.token,
     };
-    console.log(saveUser);
+    // console.log(saveUser);
     httpClient.defaults.headers.post.authorization = saveUser.token;
-    console.log(httpClient.defaults.headers.post.Authorization);
-    console.log('passei do autozation');
+    // console.log(httpClient.defaults.headers.post.Authorization);
+    // console.log('passei do autozation');
     localStorage.setItem('user', JSON.stringify(saveUser));
   } catch (err) {
     error = true;
@@ -37,9 +37,10 @@ const registUser = async ({ name, email, password }) => {
 
 const loginUser = async ({ email, password }) => {
   let error = false;
+  let role;
   try {
     const res = await httpClient.post(backendUrl('login'), { email, password });
-    console.log('passou: ', res);
+    // console.log('passou: ', res);
     const { token, user } = res.data;
     const saveUser = {
       id: user.id,
@@ -49,17 +50,18 @@ const loginUser = async ({ email, password }) => {
       token,
     };
     httpClient.defaults.headers.post.authorization = token;
+    role = user.role;
 
     localStorage.setItem('user', JSON.stringify(saveUser));
   } catch (err) {
     error = true;
   }
-  return { error };
+  return { error, role };
 };
 
 const sendSale = async ({ deliveryAddress, deliveryNumber }) => {
   const products = getCartProducts();
-  console.log(products);
+  // console.log(products);
   const nProducts = products.map((product) => ({ ...product, productId: product.id }));
   const totalPrice = getTotal();
   const { token } = JSON.parse(localStorage.getItem('user'));

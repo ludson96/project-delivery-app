@@ -56,9 +56,10 @@ function Login({ history }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const { error } = await loginUser({ email, password });
+    const { error, role } = await loginUser({ email, password });
     if (error) return setErrorText('usuario invalido');
     const { push } = history;
+    if (role === 'administrator') return push('/admin/manage');
     push('/customer/products');
   };
 
