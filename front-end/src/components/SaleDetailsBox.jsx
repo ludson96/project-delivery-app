@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ProductsOrderDetails from './ProductOrderDetails';
 
-function SaleDetailsBox({ products }) {
+function SaleDetailsBox({ products, sale }) {
+  console.log('🚀 ~ file: SaleDetailsBox.jsx:6 ~ SaleDetailsBox ~ sale:', sale);
   const getTotal = (saleProducts) => {
     const total = saleProducts.reduce(
       (
@@ -15,7 +16,41 @@ function SaleDetailsBox({ products }) {
   };
   return (
     <div>
-      <h1>Detalhe do pedido</h1>
+      <div>
+        <h1 data-testid="customer_order_details__element-order-details-label-order-id">
+          PEDIDO
+          {' '}
+          {sale.id}
+          ;
+        </h1>
+        <h1 data-testid="customer_order_details__element-order-details-label-seller-name">
+          P. Vend: Fulana Pereira
+
+        </h1>
+        <h1
+          data-testid={ () => `
+          Group customer_order_details__element-order-details-label-order-date
+          ` }
+        >
+          {sale.saleDate.split('T')[0].replaceAll('-', '/')}
+
+        </h1>
+        <h1
+          data-testid={
+            `
+            customer_order_details__element-order-details-label-delivery-status${sale.id}`
+          }
+        >
+          {sale.status}
+
+        </h1>
+        <button
+          type="button"
+          data-testid="customer_order_details__button-delivery-check"
+        >
+          marcar como entregue
+        </button>
+      </div>
       <div>
         <ProductsOrderDetails
           products={ products }
@@ -45,6 +80,11 @@ SaleDetailsBox.propTypes = {
     name: PropTypes.string.isRequired,
     id: PropTypes.number.isRequired,
   })).isRequired,
+  sale: PropTypes.shape({
+    status: PropTypes.string.isRequired,
+    saleDate: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
+  }).isRequired,
 };
 
 export default SaleDetailsBox;
