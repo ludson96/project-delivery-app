@@ -37,6 +37,18 @@ class UserController {
       });
     }
   }
+
+  async getAllUsers(req, res) {
+    try {
+      const { type, payload } = await this.service.getAllUsers();
+      if (type) return res.status(getStatusCode(type)).json({ message: type, payload });
+      return res.status(200).json(payload);
+    } catch (error) {
+      return res.status(500).json({
+        error: error.message,
+      });
+    }
+  }
 }
 
 module.exports = {
