@@ -6,6 +6,7 @@ class UserController {
     this.service = new USerService();
     this.login = this.login.bind(this);
     this.createUser = this.createUser.bind(this);
+    this.getAllUsers = this.getAllUsers.bind(this);
   }
 
   async login(req, res) {
