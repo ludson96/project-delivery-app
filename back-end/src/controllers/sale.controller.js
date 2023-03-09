@@ -33,8 +33,8 @@ class SaleController {
   async getSales(req, res) {
     try {
       const { authorization } = req.headers;
-      const { id } = verifyToken(authorization);
-      const { type, payload } = await this.SaleService.getSales({ userId: id });
+      const { id, role } = verifyToken(authorization);
+      const { type, payload } = await this.SaleService.getSales({ userId: id, role });
       if (type) return res.status(getStatusCode(type)).json({ payload });
       return res.status(200).json(payload);
     } catch (erro) {
