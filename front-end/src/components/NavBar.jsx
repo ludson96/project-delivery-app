@@ -55,7 +55,7 @@ function NavBar() {
       <div className="nav-item-4">
         <Link
           onClick={ logout }
-          to="/login"
+          to="/login/clean"
           data-testid="customer_products__element-navbar-link-logout"
         >
           <FiLogOut className="ico-logout" />
