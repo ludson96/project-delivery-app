@@ -1,9 +1,11 @@
 import { useEffect, useState, useRef } from 'react';
 import PropTypes from 'prop-types';
-
+import {
+  useParams,
+} from 'react-router-dom';
 import { FaGoogle, FaApple } from 'react-icons/fa';
 
-import { loginUser } from '../httpClient';
+import { loginUser, getMineSales } from '../httpClient';
 import logo from '../images/logo.png';
 import bg from '../images/background.webp';
 
@@ -13,6 +15,16 @@ function Login({ history }) {
   const [password, setPassword] = useState('');
   const [disabled, setDisabled] = useState(true);
   const [errorText, setErrorText] = useState('');
+  const { status } = useParams();
+  const testToken = async () => {
+    const { error } = await getMineSales();
+    const { push } = history;
+    if (status === 'clean') {
+      localStorage.removeItem('user');
+      localStorage.removeItem('carrinho');
+      push('/login');
+    } else if (!error) push('/customer/products');
+  };
 
   useEffect(() => {
     const minPasswordLenght = 6;
@@ -27,8 +39,7 @@ function Login({ history }) {
 
   useEffect(() => {
     inputRef.current.focus();
-    localStorage.removeItem('user');
-    localStorage.removeItem('carrinho');
+    testToken();
   }, []);
 
   const handleEmail = ({ target }) => {

@@ -6,6 +6,7 @@ class UserController {
     this.service = new USerService();
     this.login = this.login.bind(this);
     this.createUser = this.createUser.bind(this);
+    this.getAllUsers = this.getAllUsers.bind(this);
   }
 
   async login(req, res) {
@@ -34,6 +35,18 @@ class UserController {
       return res.status(500).json({
         message: 'Erro ao criar usuário no banco',
         error: erro.message,
+      });
+    }
+  }
+
+  async getAllUsers(req, res) {
+    try {
+      const { type, payload } = await this.service.getAllUsers();
+      if (type) return res.status(getStatusCode(type)).json({ message: type, payload });
+      return res.status(200).json(payload);
+    } catch (error) {
+      return res.status(500).json({
+        error: error.message,
       });
     }
   }

@@ -8,13 +8,15 @@ import { getMineSales } from '../httpClient';
 
 function SaleDetails() {
   const [products, setProducts] = useState([]);
+  const [expectedSale, setExpectedSale] = useState({});
   const { id } = useParams();
   console.log('🚀 ~ file: SaleDetails.jsx:12 ~ SaleDetails ~ id :', id);
   useEffect(() => {
     const getProducts = async () => {
       const { sales } = await getMineSales();
-      console.log(sales);
+      console.log('🚀 ~ file: SaleDetails.jsx:17 ~ getProducts ~ sales :', sales);
       const correctSale = sales.filter((sale) => sale.id === Number(id))[0];
+      setExpectedSale(correctSale);
       const r = correctSale.SalesProducts.map((product) => (
         {
           ...product.Product,
@@ -22,7 +24,6 @@ function SaleDetails() {
           title: product.Product.name,
         }
       ));
-      console.log(r);
       setProducts(r);
     };
     getProducts();
@@ -30,8 +31,12 @@ function SaleDetails() {
 
   return (
     <div className="sale-details">
+      <h1>Detalhe do pedido</h1>
       <NavBar />
-      <SaleDetailsBox products={ products } />
+      <SaleDetailsBox
+        products={ products }
+        sale={ ({ ...expectedSale, SalesProducts: undefined }) }
+      />
     </div>
   );
 }
