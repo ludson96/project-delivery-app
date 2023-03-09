@@ -1,33 +1,19 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import NavBar from '../components/NavBar';
 import AdminCreateNewUserForm from '../components/AdminCreateNewUser';
 import UserCard from '../components/UserCard';
+import { httpClient, backendUrl } from '../httpClient';
 
-const userList = [
-  {
-    id: 1,
-    name: 'Delivery App Admin',
-    email: 'adm@deliveryapp.com',
-    password: 'a4c86edecc5aee06eff8fdeda69e0d04',
-    role: 'administrator',
-  },
-  {
-    id: 2,
-    name: 'Fulana Pereira',
-    email: 'fulana@deliveryapp.com',
-    password: '3c28d2b0881bf46457a853e0b07531c6',
-    role: 'seller',
-  },
-  {
-    id: 3,
-    name: 'Cliente Zé Birita',
-    email: 'zebirita@email.com',
-    password: '1c37466c159755ce1fa181bd247cb925',
-    role: 'customer',
-  },
-];
+function Admin() {
+  const [userList, setUserList] = useState([]);
 
-function admin() {
+  useEffect(() => {
+    httpClient.get(backendUrl('admin/manager'))
+      .then((res) => {
+        setUserList(res.data);
+      });
+  }, []);
+
   return (
     <div>
       <NavBar />
@@ -39,6 +25,7 @@ function admin() {
       </div>
 
       <div>
+        Lista de usuários
         {userList.map(({ id, name, email, role }, index) => (<UserCard
           id={ id }
           name={ name }
@@ -52,4 +39,4 @@ function admin() {
   );
 }
 
-export default admin;
+export default Admin;
