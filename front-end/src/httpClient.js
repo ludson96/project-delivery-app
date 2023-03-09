@@ -63,12 +63,8 @@ const sendSale = async ({ deliveryAddress, deliveryNumber }) => {
   const nProducts = products.map((product) => ({ ...product, productId: product.id }));
   const totalPrice = getTotal();
   const { token } = JSON.parse(localStorage.getItem('user'));
-  const config = {
-    headers: {
-      Authorization: token,
-    },
-  };
 
+  httpClient.defaults.headers.post.authorization = token;
   let error = false;
   try {
     const res = await httpClient.post(backendUrl('sales'), {
@@ -76,7 +72,7 @@ const sendSale = async ({ deliveryAddress, deliveryNumber }) => {
       totalPrice,
       deliveryAddress,
       deliveryNumber,
-    }, config);
+    });
     const { saleId } = res.data;
     return { saleId, error };
   } catch (err) {
@@ -91,7 +87,7 @@ const getMineSales = async () => {
     const { token } = JSON.parse(localStorage.getItem('user'));
     httpClient.defaults.headers.get.authorization = token;
     const res = await httpClient.get(backendUrl('sales'));
-    const { sales } = res.data;
+    const sales = res.data;
     return { sales, error };
   } catch (err) {
     error = true;

@@ -59,7 +59,10 @@ function ProductsOrderDetails({ removeOrderProduct, products }) {
           >
             R$
             {' '}
-            {(product.price * product.quantity).toFixed(2).toString().replace('.', ',')}
+            {
+              (Number(product.price) * product.quantity)
+                .toFixed(2).toString().replace('.', ',')
+            }
           </h3>
           {
             removeOrderProduct

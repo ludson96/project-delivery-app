@@ -9,11 +9,21 @@ import { getMineSales } from '../httpClient';
 function SaleDetails() {
   const [products, setProducts] = useState([]);
   const { id } = useParams();
+  console.log('🚀 ~ file: SaleDetails.jsx:12 ~ SaleDetails ~ id :', id);
   useEffect(() => {
     const getProducts = async () => {
-      const sales = await getMineSales();
-      const correctSale = sales.filter((sale) => sale.id === id);
-      setProducts(correctSale.products);
+      const { sales } = await getMineSales();
+      console.log(sales);
+      const correctSale = sales.filter((sale) => sale.id === Number(id))[0];
+      const r = correctSale.SalesProducts.map((product) => (
+        {
+          ...product.Product,
+          quantity: product.quantity,
+          title: product.Product.name,
+        }
+      ));
+      console.log(r);
+      setProducts(r);
     };
     getProducts();
   }, [id]);
