@@ -14,7 +14,7 @@ function SaleDetails() {
   useEffect(() => {
     const getProducts = async () => {
       const { sales } = await getMineSales();
-      console.log(sales);
+      console.log('🚀 ~ file: SaleDetails.jsx:17 ~ getProducts ~ sales :', sales);
       const correctSale = sales.filter((sale) => sale.id === Number(id))[0];
       setExpectedSale(correctSale);
       const r = correctSale.SalesProducts.map((product) => (

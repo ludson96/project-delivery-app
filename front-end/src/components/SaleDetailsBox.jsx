@@ -16,11 +16,11 @@ function SaleDetailsBox({ products, sale }) {
   };
   return (
     <div>
-      <div>
+      {/* <div>
         <h1 data-testid="customer_order_details__element-order-details-label-order-id">
           PEDIDO
           {' '}
-          {sale.id}
+          {sale.id || 0}
           ;
         </h1>
         <h1 data-testid="customer_order_details__element-order-details-label-seller-name">
@@ -32,7 +32,7 @@ function SaleDetailsBox({ products, sale }) {
           Group customer_order_details__element-order-details-label-order-date
           ` }
         >
-          {sale.saleDate.split('T')[0].replaceAll('-', '/')}
+          {(sale.saleDate.split('T')[0] || '').replaceAll('-', '/')}
 
         </h1>
         <h1
@@ -41,7 +41,7 @@ function SaleDetailsBox({ products, sale }) {
             customer_order_details__element-order-details-label-delivery-status${sale.id}`
           }
         >
-          {sale.status}
+          {sale.status || 'fazendo'}
 
         </h1>
         <button
@@ -50,7 +50,7 @@ function SaleDetailsBox({ products, sale }) {
         >
           marcar como entregue
         </button>
-      </div>
+      </div> */}
       <div>
         <ProductsOrderDetails
           products={ products }
