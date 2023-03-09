@@ -26,6 +26,12 @@ class USerService extends SuperService {
     const token = createToken(userWithoutPassword);
     return { type: null, payload: { token, user: userWithoutPassword } };
   }
+
+  async getAllUsers() {
+    const result = await super.findAll();
+    if (!result) return { type: 'NOT_FOUND', payload: result };
+    return { type: null, payload: result };
+  }
 }
 
 module.exports = {
