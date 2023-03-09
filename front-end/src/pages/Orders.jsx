@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import NavBar from '../components/NavBar';
 import CardOrders from '../components/CardOrders';
-import { httpClient } from '../httpClient';
+import { httpClient, getMineSales } from '../httpClient';
 
 httpClient.defaults.timeout = 500;
 
@@ -21,7 +21,7 @@ function Orders() {
       <NavBar />
       <div>
         {
-          orders.map((order) => (
+          orders.map((order, index) => (
             <CardOrders
               key={ `order${order.id}` }
               id={ order.id }
@@ -29,6 +29,7 @@ function Orders() {
               status={ order.status }
               date={ order.saleDate }
               price={ order.totalPrice }
+              index={ index }
             />
           ))
         }
