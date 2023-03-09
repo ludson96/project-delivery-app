@@ -9,11 +9,11 @@ const { token, validInput, validataValues, invalidEmail, invalidPwd, validInputO
 chai.use(chaiHttp);
 
 const { expect } = chai;
-describe('Testando endpoint "/register"', () => {
-  describe('Cadastrando um usuário', function() {
+describe('Testing endpoint "/register"', () => {
+  describe('Registering a user', function() {
     afterEach(sinon.restore);
     
-    it('com sucesso', async () => {
+    it('successfully', async () => {
       sinon
         .stub(User, "findOne")
         .resolves();
@@ -31,7 +31,7 @@ describe('Testando endpoint "/register"', () => {
       expect(response.body).to.have.property('token')
     });
 
-    it('com role padrão', async () => {
+    it('with standard role', async () => {
       sinon
         .stub(User, "findOne")
         .resolves();
@@ -49,7 +49,7 @@ describe('Testando endpoint "/register"', () => {
       expect(response.body).to.have.property('token')
     });
 
-    it('caso o email já exista', async () => {
+    it('if the email already exists', async () => {
       sinon
         .stub(User, "findOne")
         .resolves(token);
@@ -63,7 +63,7 @@ describe('Testando endpoint "/register"', () => {
       expect(response.body.message).to.deep.equal('User already registered')
     });
 
-    it('email em um formato invalido', async () => {
+    it('email in an invalid format', async () => {
       const response = await chai
         .request(app)
         .post('/register')
@@ -73,7 +73,7 @@ describe('Testando endpoint "/register"', () => {
       expect(response.body.message).to.deep.equal('"email" must be a valid email')
     });
 
-    it('password menor que 6 caracteres', async () => {
+    it('password less than 6 characters', async () => {
       const response = await chai
         .request(app)
         .post('/register')
