@@ -2,8 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ProductsOrderDetails from './ProductOrderDetails';
 
+const statusTestID = [
+  'customer_order_details__element-order-details-label-delivery-status'];
 function SaleDetailsBox({ products, sale }) {
-  console.log('🚀 ~ file: SaleDetailsBox.jsx:6 ~ SaleDetailsBox ~ sale:', sale);
   const getTotal = (saleProducts) => {
     const total = saleProducts.reduce(
       (
@@ -28,25 +29,22 @@ function SaleDetailsBox({ products, sale }) {
 
         </h1>
         <h1
-          data-testid={ (() => `
-          Group customer_order_details__element-order-details-label-order-date`)() }
+          data-testid="customer_order_details__element-order-details-label-order-date"
         >
           {(((sale.saleDate) || 'T').split('T')[0]).replaceAll('-', '/')
             .split('/').reverse().join('/')}
 
         </h1>
         <h1
-          data-testid={
-            `
-            customer_order_details__element-order-details-label-delivery-status${sale.id}`
-          }
+          data-testid={ `${statusTestID[0]}${sale.id}` }
         >
-          {sale.status || 'fazendo'}
+          {sale.status || 'pendente'}
 
         </h1>
         <button
           type="button"
           data-testid="customer_order_details__button-delivery-check"
+          disabled={ (sale.status !== 'chegando') }
         >
           marcar como entregue
         </button>
@@ -59,7 +57,7 @@ function SaleDetailsBox({ products, sale }) {
         <div className="total-check-container">
           <div
             className="total-checkout"
-            data-testid="customer_checkout__element-order-total-price"
+            data-testid="customer_order_details__element-order-total-price"
           >
             Total:
             {' '}
