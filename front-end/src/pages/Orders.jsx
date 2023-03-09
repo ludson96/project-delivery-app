@@ -25,9 +25,10 @@ function Orders() {
             <CardOrders
               key={ `order${order.id}` }
               id={ order.id }
-              order={ order.sellerId }
+              sellerId={ order.sellerId }
               status={ order.status }
-              date={ order.saleDate }
+              date={ (order.saleDate.split('T')[0]).replaceAll('-', '/')
+                .split('/').reverse().join('/') }
               price={ order.totalPrice }
               index={ index }
             />

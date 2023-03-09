@@ -31,7 +31,8 @@ function SaleDetailsBox({ products, sale }) {
           data-testid={ (() => `
           Group customer_order_details__element-order-details-label-order-date`)() }
         >
-          {(((sale.saleDate) || 'T').split('T')[0]).replaceAll('-', '/')}
+          {(((sale.saleDate) || 'T').split('T')[0]).replaceAll('-', '/')
+            .split('/').reverse().join('/')}
 
         </h1>
         <h1
