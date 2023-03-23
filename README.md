@@ -20,6 +20,7 @@
 [![React][React-logo]][React-url]
 [![MySQL][MySQL-logo]][MySQL-url]
 [![NodeJS][NodeJS-logo]][NodeJS-url]
+[![Nodemon][Nodemon-logo]][Nodemon-url]
 [![Express][Express-logo]][Express-url]
 [![Sequelize][Sequelize-logo]][Sequelize-url]
 [![JWT][JWT-logo]][JWT-url]
@@ -60,13 +61,13 @@ Neste projeto, desenvolvemos em grupo de 5 estudantes da **Trybe** um app web de
     npm install
     ```
 
-1. Entre no back-end e rode o servidor:
+1. Entre no back-end e rode o servidor em desenvolvimento (nodemon), não pode ser fechado:
 
     ```bash
     cd back-end && npm run dev
     ```
 
-1. Entre no front-end e rode a aplicação:
+1. Após o passo acima, abra outro terminal e entre no front-end e rode a aplicação:
 
     ```bash
     cd ../front-end && npm start
@@ -106,3 +107,5 @@ Neste projeto, desenvolvemos em grupo de 5 estudantes da **Trybe** um app web de
 [RTL-url]: https://testing-library.com/
 [Sinon-logo]: https://img.shields.io/badge/sinon.js-323330?style=for-the-badge&logo=sinon
 [Sinon-url]: https://www.npmjs.com/package/sinon
+[Nodemon-logo]: https://img.shields.io/badge/Nodemon-76D04B?logo=nodemon&logoColor=fff&style=for-the-badge
+[Nodemon-url]: https://www.npmjs.com/package/nodemon
