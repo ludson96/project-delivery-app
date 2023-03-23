@@ -37,7 +37,7 @@ Neste projeto, desenvolvemos em grupo de 5 estudantes da **Trybe** um app web de
 
 ## Alguns dos requisitos que fiquei responsável e tive participação
 
-- Fiquei responsável junto do @lucas de todo o back-end, desde configuração até requisição;
+- Fiquei responsável junto do [Lucas Israel](https://github.com/Lucas-Israel) de todo o back-end, desde configuração até requisição;
 - Fiz todos os testes tanto de back-end como de front-end;
 - Outros requisitos foram feitos em `pair programming` ou `nos unimos em grupo para resolvermos`.
 
