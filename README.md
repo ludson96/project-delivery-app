@@ -61,16 +61,16 @@ Neste projeto, desenvolvemos em grupo de 5 estudantes da **Trybe** um app web de
     npm install
     ```
 
-1. Entre no back-end e rode o servidor em desenvolvimento (nodemon), não pode ser fechado:
+1. Entre no back-end, crie o schema, banco de dados e popula as tabelas e rode o servidor em desenvolvimento (nodemon) com o seguinte comando, não pode ser fechado:
 
     ```bash
-    cd back-end && npm run dev
+    cd backend && npm run db:reset && npm run dev
     ```
 
 1. Após o passo acima, abra outro terminal e entre no front-end e rode a aplicação:
 
     ```bash
-    cd ../front-end && npm start
+    cd frontend && npm start
     ```
 
 [Git-logo]: https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white
