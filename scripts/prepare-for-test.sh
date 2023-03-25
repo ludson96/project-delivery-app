@@ -12,7 +12,7 @@ printf "\n"
 function initialize_back_end () {
   printf "\n> ASYNC: Instalando o back-end e inicializando o banco de dados com o ORM\n"
   (
-    cd ./back-end
+    cd ./backend
     cacheFolderBack="/tmp/delivery-app-back-end-cache"
     rm -rf $cacheFolderBack
     npm_config_loglevel=silent npm install --cache $cacheFolderBack
@@ -26,7 +26,7 @@ function initialize_back_end () {
 function initialize_front_end() {
   printf "\n> ASYNC: Instalando o front-end e gerando uma build do projeto\n"
   (
-    cd ./front-end
+    cd ./frontend
     cacheFolderFront="/tmp/delivery-app-front-end-cache"
     rm -rf $cacheFolderFront
     npm_config_loglevel=silent npm install --cache $cacheFolderFront
