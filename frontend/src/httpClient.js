@@ -97,9 +97,4 @@ const getMineSales = async () => {
   return { error };
 };
 
-module.exports = { httpClient,
-  registUser,
-  loginUser,
-  backendUrl,
-  sendSale,
-  getMineSales };
+export { httpClient, registUser, loginUser, backendUrl, sendSale, getMineSales };
