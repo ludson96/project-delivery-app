@@ -1,4 +1,4 @@
-# Repositório do projeto App de Delivery
+# Repositório do projeto App de Delivery 🛵
 
 ## Módulo: BACK-END
 
