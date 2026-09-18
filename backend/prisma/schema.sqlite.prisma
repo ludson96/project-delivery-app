@@ -1,0 +1,61 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id       Int     @id @default(autoincrement())
+  name     String
+  email    String  @unique
+  password String
+  role     String  @default("customer")
+
+  orders       Sale[] @relation("CustomerSales")
+  sellerOrders Sale[] @relation("SellerSales")
+
+  @@map("users")
+}
+
+model Product {
+  id       Int     @id @default(autoincrement())
+  name     String  @unique
+  price    Float
+  urlImage String  @map("url_image")
+
+  sales SalesProduct[]
+
+  @@map("products")
+}
+
+model Sale {
+  id              Int      @id @default(autoincrement())
+  userId          Int      @map("user_id")
+  sellerId        Int      @map("seller_id")
+  totalPrice      Float    @map("total_price")
+  deliveryAddress String   @map("delivery_address")
+  deliveryNumber  String   @map("delivery_number")
+  saleDate        DateTime @default(now()) @map("sale_date")
+  status          String   @default("Pendente")
+
+  user     User           @relation("CustomerSales", fields: [userId], references: [id], onDelete: Cascade)
+  seller   User           @relation("SellerSales", fields: [sellerId], references: [id], onDelete: Cascade)
+  products SalesProduct[]
+
+  @@map("sales")
+}
+
+model SalesProduct {
+  saleId    Int @map("sale_id")
+  productId Int @map("product_id")
+  quantity  Int
+
+  sale    Sale    @relation(fields: [saleId], references: [id], onDelete: Cascade)
+  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@id([saleId, productId])
+  @@map("sales_products")
+}
