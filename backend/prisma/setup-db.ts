@@ -1,6 +1,9 @@
 import fs from 'fs';
 import path from 'path';
 import { execSync } from 'child_process';
+import dotenv from 'dotenv';
+
+dotenv.config({ path: path.resolve(__dirname, '../.env') });
 
 const rootDir = path.resolve(__dirname, '..');
 const prismaDir = path.join(rootDir, 'prisma');

@@ -12,7 +12,8 @@
     "prisma:generate": "prisma generate",
     "prisma:migrate": "prisma migrate dev",
     "prisma:seed": "ts-node prisma/seed.ts",
-    "db:setup": "ts-node prisma/setup-db.ts"
+    "db:setup": "ts-node prisma/setup-db.ts",
+    "render:build": "npm install && npm run db:setup && npm run build"
   },
   "dependencies": {
     "@prisma/client": "^5.10.0",

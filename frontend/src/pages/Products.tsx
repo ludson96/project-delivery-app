@@ -40,18 +40,23 @@ export const Products: React.FC = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-slate-950 pb-24">
+    <div className="min-h-screen bg-slate-50 pb-28">
       <NavBar />
 
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
-        {/* Header Hero */}
-        <div className="mb-8">
-          <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
-            Catálogo de Bebidas 🍻
-          </h1>
-          <p className="text-sm sm:text-base text-slate-400 mt-1">
-            Escolha suas bebidas favoritas geladas e receba em minutos na sua casa.
-          </p>
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
+        {/* Header Hero com identidade Docker Drinks */}
+        <div className="mb-8 bg-gradient-to-r from-[#192A56] to-[#273c75] rounded-3xl p-6 sm:p-10 text-white shadow-xl flex flex-col md:flex-row items-center justify-between gap-6">
+          <div>
+            <span className="text-xs uppercase font-extrabold tracking-widest text-[#FDEB37] bg-white/10 px-3 py-1 rounded-full">
+              Distribuidora Oficial
+            </span>
+            <h1 className="text-3xl sm:text-4xl font-black mt-3 tracking-tight">
+              Docker Drinks 🍺
+            </h1>
+            <p className="text-sm sm:text-base text-slate-200 mt-2 max-w-xl">
+              As melhores cervejas e bebidas geladas entregues rapidamente na sua porta. Escolha seus produtos e aproveite!
+            </p>
+          </div>
         </div>
 
         {/* Loading Skeletons */}
@@ -60,11 +65,11 @@ export const Products: React.FC = () => {
             {[...Array(8)].map((_, i) => (
               <div
                 key={i}
-                className="h-72 bg-slate-900 border border-slate-800 rounded-2xl animate-pulse flex flex-col p-4"
+                className="h-80 bg-white border border-slate-200 rounded-3xl animate-pulse flex flex-col p-4 shadow-sm"
               >
-                <div className="h-44 bg-slate-800 rounded-xl mb-4" />
-                <div className="h-4 bg-slate-800 rounded w-3/4 mb-2" />
-                <div className="h-6 bg-slate-800 rounded w-1/3 mt-auto" />
+                <div className="h-48 bg-slate-100 rounded-2xl mb-4" />
+                <div className="h-4 bg-slate-100 rounded w-3/4 mb-2" />
+                <div className="h-6 bg-slate-100 rounded w-1/3 mt-auto" />
               </div>
             ))}
           </div>
@@ -72,7 +77,7 @@ export const Products: React.FC = () => {
 
         {/* Error State */}
         {error && (
-          <div className="flex items-center space-x-3 bg-red-950/40 border border-red-800 text-red-300 p-4 rounded-xl">
+          <div className="flex items-center space-x-3 bg-red-50 border border-red-200 text-red-700 p-4 rounded-2xl">
             <FiAlertCircle className="w-6 h-6 flex-shrink-0" />
             <p className="text-sm font-medium">{error}</p>
           </div>
@@ -99,20 +104,20 @@ export const Products: React.FC = () => {
         <div className="fixed bottom-6 inset-x-0 flex justify-center px-4 z-40">
           <Link
             to="/customer/checkout"
-            className="flex items-center justify-between w-full max-w-md bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-6 py-4 rounded-2xl shadow-2xl shadow-amber-500/20 transform hover:-translate-y-0.5 transition-all duration-200"
+            className="flex items-center justify-between w-full max-w-md bg-[#192A56] hover:bg-[#121e3f] text-white font-bold px-6 py-4 rounded-2xl shadow-2xl shadow-slate-900/30 transform hover:-translate-y-0.5 transition-all duration-200"
           >
             <div className="flex items-center space-x-3">
-              <div className="w-8 h-8 rounded-full bg-slate-950/10 flex items-center justify-center">
-                <FiShoppingCart className="w-4 h-4" />
+              <div className="w-10 h-10 rounded-xl bg-[#FDEB37] text-slate-950 flex items-center justify-center">
+                <FiShoppingCart className="w-5 h-5" />
               </div>
               <div className="flex flex-col text-left">
-                <span className="text-xs uppercase tracking-wider font-extrabold text-slate-900">
-                  Ver Carrinho ({totalItemsCount} {totalItemsCount === 1 ? 'item' : 'itens'})
+                <span className="text-xs uppercase tracking-wider font-extrabold text-slate-300">
+                  {totalItemsCount} {totalItemsCount === 1 ? 'item' : 'itens'} no carrinho
                 </span>
                 <span className="text-base font-black">Finalizar Compra</span>
               </div>
             </div>
-            <span className="text-lg font-black bg-slate-950 text-amber-400 px-3 py-1 rounded-xl">
+            <span className="text-base font-black bg-[#FDEB37] text-slate-950 px-3.5 py-1.5 rounded-xl shadow-sm">
               R$ {totalPrice.toFixed(2).replace('.', ',')}
             </span>
           </Link>

@@ -14,30 +14,3 @@ services:
       interval: 5s
       timeout: 5s
       retries: 5
-
-  backend:
-    container_name: delivery_app_backend
-    build: ./backend
-    ports:
-      - "3001:3001"
-    platform: linux/x86_64
-    depends_on:
-      db:
-        condition: service_healthy
-    environment:
-      - PORT=3001
-      - JWT_SECRET=super_secret_jwt_key_delivery_portfolio_2026
-      - DATABASE_URL=mysql://root:123456@db:3306/delivery_app
-    restart: on-failure
-
-  frontend:
-    container_name: delivery_app_frontend
-    build: ./frontend
-    ports:
-      - "3000:3000"
-    platform: linux/x86_64
-    depends_on:
-      - backend
-    environment:
-      - REACT_APP_API_URL=http://localhost:3001
-    restart: on-failure
