@@ -121,13 +121,6 @@ export const Login: React.FC = () => {
             </Link>
           </p>
         </div>
-
-        {/* Credenciais para teste */}
-        <div className="mt-6 p-3.5 bg-slate-50 border border-slate-200 rounded-2xl text-xs text-slate-600">
-          <p className="font-bold text-slate-800 mb-1">💡 Credenciais para teste:</p>
-          <p>Cliente: <span className="text-[#192A56] font-mono font-semibold">zebirita@email.com</span> / <span className="text-[#192A56] font-mono font-semibold">$#zebirita#$</span></p>
-          <p>Vendedor: <span className="text-[#192A56] font-mono font-semibold">fulana@deliveryapp.com</span> / <span className="text-[#192A56] font-mono font-semibold">fulana123</span></p>
-        </div>
       </div>
     </div>
   );
