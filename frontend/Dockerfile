@@ -1,7 +1,7 @@
-FROM node:16.14-alpine
+FROM node:20-alpine
 WORKDIR /frontend
 COPY package* ./
-RUN npm install
+RUN npm install --legacy-peer-deps
 COPY . ./
 EXPOSE 3000
-ENTRYPOINT ["npm", "start"]
+CMD ["npm", "start"]

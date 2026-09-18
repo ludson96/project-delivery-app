@@ -1,8 +1,9 @@
-FROM node:16.14-alpine
+FROM node:20-alpine
+RUN apk add --no-cache openssl
 WORKDIR /backend
 COPY package* ./
 RUN npm install
 COPY . ./
+RUN npx prisma generate
 EXPOSE 3001
-ENTRYPOINT ["npm", "run"]
-CMD ["start"]
+CMD ["sh", "-c", "npx ts-node prisma/setup-db.ts && npm run dev"]

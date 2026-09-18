@@ -2,21 +2,29 @@ import fs from 'fs';
 import path from 'path';
 import { execSync } from 'child_process';
 
-const provider = process.env.DATABASE_PROVIDER || (process.env.DATABASE_URL?.startsWith('file:') ? 'sqlite' : 'mysql');
-
-console.log(`[Database Setup] Configuring Prisma for provider: ${provider}`);
-
 const rootDir = path.resolve(__dirname, '..');
 const prismaDir = path.join(rootDir, 'prisma');
 
 const targetSchema = path.join(prismaDir, 'schema.prisma');
+const mysqlSchema = path.join(prismaDir, 'schema.mysql.prisma');
 const sqliteSchema = path.join(prismaDir, 'schema.sqlite.prisma');
+
+const dbUrl = process.env.DATABASE_URL || '';
+const provider = process.env.DATABASE_PROVIDER || (dbUrl.startsWith('file:') ? 'sqlite' : 'mysql');
+
+console.log(`[Database Setup] Configuring Prisma for provider: ${provider}`);
 
 if (provider === 'sqlite') {
   if (fs.existsSync(sqliteSchema)) {
     const sqliteContent = fs.readFileSync(sqliteSchema, 'utf-8');
     fs.writeFileSync(targetSchema, sqliteContent, 'utf-8');
-    console.log('[Database Setup] Replaced schema.prisma with SQLite schema.');
+    console.log('[Database Setup] Configured schema.prisma for SQLite.');
+  }
+} else {
+  if (fs.existsSync(mysqlSchema)) {
+    const mysqlContent = fs.readFileSync(mysqlSchema, 'utf-8');
+    fs.writeFileSync(targetSchema, mysqlContent, 'utf-8');
+    console.log('[Database Setup] Configured schema.prisma for MySQL.');
   }
 }
 
