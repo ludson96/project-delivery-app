@@ -20,9 +20,9 @@ Aplicação Full-Stack moderna para delivery de bebidas com autenticação JWT b
 ## 📌 Navegação Rápida
 
 - [📝 Sobre o Projeto](#-sobre-o-projeto)
+- [🖼️ Preview](#️-preview)
 - [👥 Histórico e Participação no Projeto Original](#-histórico-e-participação-no-projeto-original)
 - [🚀 O que foi Modernizado (Do Legado ao Portfólio)](#-o-que-foi-modernizado-do-legado-ao-portfólio)
-- [🖼️ Preview](#️-preview)
 - [🌐 Deploy da Aplicação](#-deploy-da-aplicação)
 - [⚡ API Endpoints](#-api-endpoints)
 - [✨ Funcionalidades](#-funcionalidades)
@@ -41,9 +41,7 @@ A aplicação atende a todo o fluxo operacional de delivery de bebidas: desde a 
 
 ## 🖼️ Preview
 
-<div align="center">
-  <img src="./docs/images/projeto.gif" alt="Demonstração do App" />
-</div>
+<img src="./docs/images/projeto.gif" alt="Demonstração do App" />
 
 ## 👥 Histórico e Participação no Projeto Original
 
