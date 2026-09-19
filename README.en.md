@@ -20,9 +20,9 @@ Modern Full-Stack beverage delivery web application featuring role-based JWT aut
 ## 📌 Quick Navigation
 
 - [📝 About the Project](#-about-the-project)
+- [🖼️ Preview](#️-preview)
 - [👥 Project History and Team Collaboration](#-project-history-and-team-collaboration)
 - [🚀 Modernization Highlights (From Legacy to Portfolio)](#-modernization-highlights-from-legacy-to-portfolio)
-- [🖼️ Preview](#️-preview)
 - [🌐 Application Deployment](#-application-deployment)
 - [⚡ API Endpoints](#-api-endpoints)
 - [✨ Features](#-features)
@@ -38,6 +38,10 @@ Modern Full-Stack beverage delivery web application featuring role-based JWT aut
 **Docker Drinks** is a comprehensive e-commerce and logistics delivery application built with clean architecture, maintainability, and top-tier user experience at its core.
 
 The application serves the entire beverage delivery operation: from catalog discovery and reactive cart management to seller dispatch workflows and administrator access management.
+
+## 🖼️ Preview
+
+<img src="./docs/images/projeto.gif" alt="App Demonstration" />
 
 ## 👥 Project History and Team Collaboration
 
@@ -65,12 +69,6 @@ To elevate this application into an enterprise-grade showcase for engineering po
 | **API Documentation** | Manual static documentation | **Interactive Swagger UI / OpenAPI 3.0** documentation served at `/api-docs` |
 | **Deploy & CI/CD** | Local execution only | **Vercel** (Frontend with SPA rewrite routing) and **Render** (Autonomous SQLite backend) |
 | **Legacy Cleanup** | Course evaluator files and `data-testid` | Stripped all course artifacts (`data-testids.txt`, `prototype.fig`, `pm2`, `nyc`, and dead configs) |
-
-## 🖼️ Preview
-
-<div align="center">
-  <img src="./docs/images/projeto.gif" alt="App Demonstration" width="420" />
-</div>
 
 ## 🌐 Application Deployment
 
