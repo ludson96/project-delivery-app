@@ -116,7 +116,13 @@ export const Checkout: React.FC = () => {
                         </span>
                         {item.urlImage && (
                           <img
-                            src={item.urlImage}
+                            src={
+                              item.urlImage.includes('localhost:3001') && BACKEND_URL !== 'http://localhost:3001'
+                                ? item.urlImage.replace('http://localhost:3001', BACKEND_URL)
+                                : item.urlImage.startsWith('/images/')
+                                ? `${BACKEND_URL}${item.urlImage}`
+                                : item.urlImage
+                            }
                             alt={item.name}
                             className="w-12 h-12 object-contain rounded-xl bg-slate-50 p-1 border border-slate-100"
                           />

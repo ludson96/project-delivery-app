@@ -45,12 +45,20 @@ export const CardProduct: React.FC<CardProductProps> = ({ id, title, price, imag
     }
   };
 
+  const backendUrl = process.env.REACT_APP_API_URL || 'http://localhost:3001';
+  let resolvedImageUrl = image;
+  if (image && image.includes('localhost:3001') && backendUrl !== 'http://localhost:3001') {
+    resolvedImageUrl = image.replace('http://localhost:3001', backendUrl);
+  } else if (image && image.startsWith('/images/')) {
+    resolvedImageUrl = `${backendUrl}${image}`;
+  }
+
   return (
     <div className="flex flex-col bg-white rounded-3xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-xl hover:border-[#192A56]/40 transition-all duration-300 group">
       {/* Product Image */}
       <div className="relative h-48 w-full bg-slate-50 flex items-center justify-center p-4 overflow-hidden border-b border-slate-100">
         <img
-          src={image}
+          src={resolvedImageUrl}
           alt={title}
           className="max-h-full max-w-full object-contain group-hover:scale-110 transition-transform duration-300"
           loading="lazy"

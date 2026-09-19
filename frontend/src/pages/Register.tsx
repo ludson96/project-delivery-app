@@ -56,23 +56,23 @@ export const Register: React.FC = () => {
 
   return (
     <div
-      className="min-h-screen flex flex-col justify-center items-center px-4 py-12"
+      className="flex-1 flex flex-col justify-center items-center p-4 min-h-full"
       style={{
         backgroundImage: `url(${bg})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
       }}
     >
-      <div className="w-full max-w-md bg-white/95 backdrop-blur-md border border-slate-200 rounded-3xl p-8 shadow-2xl">
+      <div className="w-full bg-white/95 backdrop-blur-md border border-slate-200 rounded-3xl p-6 shadow-xl my-auto">
         {/* Brand com Logo Original */}
-        <div className="text-center mb-6">
+        <div className="text-center mb-5">
           <img
             src={logo}
             alt="Docker Drinks Logo"
-            className="h-24 w-auto mx-auto object-contain mb-2 hover:scale-105 transition-transform"
+            className="h-16 w-auto mx-auto object-contain mb-1.5 hover:scale-105 transition-transform"
           />
-          <h1 className="text-xl font-black text-slate-800">Criar Nova Conta</h1>
-          <p className="text-xs text-slate-500">Cadastre-se na Docker Drinks em poucos segundos</p>
+          <h1 className="text-lg font-black text-slate-800">Criar Nova Conta</h1>
+          <p className="text-[11px] text-slate-500">Cadastre-se na Docker Drinks em poucos segundos</p>
         </div>
 
         {/* Form */}
