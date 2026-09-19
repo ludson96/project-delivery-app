@@ -98,9 +98,9 @@ export const Checkout: React.FC = () => {
             </Link>
           </div>
         ) : (
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <div className="flex flex-col space-y-6">
             {/* Itens do Pedido */}
-            <div className="lg:col-span-2 space-y-4">
+            <div className="space-y-4">
               <div className="bg-white border border-slate-200 rounded-3xl p-6 shadow-sm">
                 <h2 className="text-lg font-bold text-slate-800 mb-4 flex items-center justify-between">
                   <span>Itens Selecionados</span>
