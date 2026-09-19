@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useHistory, useLocation } from 'react-router-dom';
 import { FiLogOut, FiShoppingBag, FiPackage } from 'react-icons/fi';
 import { useAuthStore } from '../store/useAuthStore';
 import { useCartStore } from '../store/useCartStore';
@@ -7,11 +7,16 @@ import logo from '../images/logo.png';
 
 export const NavBar: React.FC = () => {
   const history = useHistory();
+  const location = useLocation();
   const { user, logout } = useAuthStore();
   const cartItems = useCartStore((state) => state.items);
   const totalCartCount = cartItems.reduce((acc, item) => acc + item.quantity, 0);
 
   const [displayName, setDisplayName] = useState('Usuário');
+
+  const isProductsActive = location.pathname.startsWith('/customer/products');
+  const isOrdersActive = location.pathname.startsWith('/customer/orders');
+  const isCheckoutActive = location.pathname.startsWith('/customer/checkout');
 
   useEffect(() => {
     if (user?.name) {
@@ -50,7 +55,11 @@ export const NavBar: React.FC = () => {
         <div className="flex items-center space-x-1.5">
           <Link
             to="/customer/products"
-            className="p-2 text-slate-700 hover:text-[#192A56] hover:bg-slate-100 rounded-xl transition-colors"
+            className={`p-2 rounded-xl transition-all ${
+              isProductsActive
+                ? 'bg-[#192A56] text-white shadow-sm ring-2 ring-[#192A56]/20'
+                : 'text-slate-600 hover:text-[#192A56] hover:bg-slate-100'
+            }`}
             title="Produtos"
           >
             <FiShoppingBag className="w-5 h-5" />
@@ -58,7 +67,11 @@ export const NavBar: React.FC = () => {
 
           <Link
             to="/customer/orders"
-            className="p-2 text-slate-700 hover:text-[#192A56] hover:bg-slate-100 rounded-xl transition-colors"
+            className={`p-2 rounded-xl transition-all ${
+              isOrdersActive
+                ? 'bg-[#192A56] text-white shadow-sm ring-2 ring-[#192A56]/20'
+                : 'text-slate-600 hover:text-[#192A56] hover:bg-slate-100'
+            }`}
             title="Meus Pedidos"
           >
             <FiPackage className="w-5 h-5" />
@@ -66,7 +79,11 @@ export const NavBar: React.FC = () => {
 
           <Link
             to="/customer/checkout"
-            className="relative p-2 bg-[#FDEB37]/30 hover:bg-[#FDEB37]/50 text-slate-900 rounded-xl border border-[#FDEB37] transition-all"
+            className={`relative p-2 rounded-xl border transition-all ${
+              isCheckoutActive
+                ? 'bg-[#FDEB37] border-[#e0cb1c] text-[#192A56] shadow-sm ring-2 ring-[#FDEB37]/50'
+                : 'bg-[#FDEB37]/30 hover:bg-[#FDEB37]/50 text-slate-900 border-[#FDEB37]'
+            }`}
             title="Carrinho"
           >
             <span className="text-xs font-black">🛒</span>
