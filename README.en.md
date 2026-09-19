@@ -20,6 +20,8 @@ Modern Full-Stack beverage delivery web application featuring role-based JWT aut
 ## 📌 Quick Navigation
 
 - [📝 About the Project](#-about-the-project)
+- [👥 Project History and Team Collaboration](#-project-history-and-team-collaboration)
+- [🚀 Modernization Highlights (From Legacy to Portfolio)](#-modernization-highlights-from-legacy-to-portfolio)
 - [🖼️ Preview](#️-preview)
 - [🌐 Application Deployment](#-application-deployment)
 - [⚡ API Endpoints](#-api-endpoints)
@@ -35,12 +37,34 @@ Modern Full-Stack beverage delivery web application featuring role-based JWT aut
 
 **Docker Drinks** is a comprehensive e-commerce and logistics delivery application built with clean architecture, maintainability, and top-tier user experience at its core.
 
-Originally created during the Trybe web development course and later completely refactored and modernized for a professional software engineering portfolio, the project transformed from a foundational stack into an enterprise-ready architecture:
-- **End-to-End TypeScript**: strict static typing across both frontend and backend codebases.
-- **Prisma ORM & Dual-Database Engine**: seamless orchestration switching between MySQL in Docker containers for local development and zero-config SQLite for serverless/Render cloud deployment without external database hosting fees.
-- **Reactive State Management**: snappy, synchronized shopping cart powered by Zustand with persistent storage.
-- **Real-Time Updates**: bidirectional WebSockets with Socket.IO delivering instantaneous order status transitions.
-- **Mobile-First Design System**: interactive smartphone bezel frame on desktop/ultrawide monitors that transitions to 100% full-screen on mobile devices.
+The application serves the entire beverage delivery operation: from catalog discovery and reactive cart management to seller dispatch workflows and administrator access management.
+
+## 👥 Project History and Team Collaboration
+
+The project originally originated as a collaborative group challenge (team of 5 students) during the software engineering program at **Trybe**.
+
+During this initial foundation phase:
+- I was co-responsible alongside [Lucas Israel](https://github.com/Lucas-Israel) for the entire back-end development, from initial MSC architecture setup to REST routes and request controllers;
+- I designed and implemented all automated test suites, covering both back-end and front-end;
+- Other application requirements were developed collaboratively through `pair programming` and agile teamwork sessions.
+
+## 🚀 Modernization Highlights (From Legacy to Portfolio)
+
+To elevate this application into an enterprise-grade showcase for engineering portfolios, the repository underwent an extensive ground-up modernization and complete dissociation from bootcamp evaluation scripts:
+
+| Aspect | Legacy Codebase | Modernized Architecture (Current) |
+| :--- | :--- | :--- |
+| **Language** | Plain JavaScript (ES6) | **TypeScript 5.3 (Full-Stack)** with rigorous end-to-end static typing across 100% of the codebase |
+| **ORM / Database** | Sequelize with rigid MySQL | **Prisma ORM 5.10 with Dual-Database Engine** (MySQL via Docker locally & SQLite on Render) |
+| **Database Transactions** | Operations without atomic locks | **Safe atomic transactions** using `prisma.$transaction` for resilient order placement |
+| **State Management** | React Context API with excessive re-renders | **Zustand 5.0** featuring synchronized `localStorage` persistence and fine-grained subscriptions |
+| **Data Synchronization** | Traditional HTTP polling | **Native WebSockets with Socket.IO** pushing instantaneous live order status updates |
+| **Styling & Design** | Pure CSS / Basic SASS | **Tailwind CSS 3.4** with customized design system tokens, micro-interactions, and premium theme |
+| **User Experience** | Plain desktop web interface | **Interactive Smartphone Bezel Mockup** with status bar and notch, fully fullscreen on real phones |
+| **Testing Suite** | Mocha, Chai, Sinon, and Jest | **Vitest 1.3** delivering blazing-fast execution unified across both backend and frontend |
+| **API Documentation** | Manual static documentation | **Interactive Swagger UI / OpenAPI 3.0** documentation served at `/api-docs` |
+| **Deploy & CI/CD** | Local execution only | **Vercel** (Frontend with SPA rewrite routing) and **Render** (Autonomous SQLite backend) |
+| **Legacy Cleanup** | Course evaluator files and `data-testid` | Stripped all course artifacts (`data-testids.txt`, `prototype.fig`, `pm2`, `nyc`, and dead configs) |
 
 ## 🖼️ Preview
 
@@ -77,7 +101,7 @@ The API strictly adheres to RESTful standards, validates payloads using declarat
 ### 👤 Customer Experience
 - **Secure Authentication**: Instant login and registration with real-time feedback.
 - **Interactive Catalog**: Seamless item browsing with quantity adjustments (+ / -) and custom numerical inputs.
-- **Reactive Cart**: Navbar item counter badge, LocalStorage sync, and automated total calculation.
+- **Reactive Cart**: Navbar item counter badge with active tab indicator, LocalStorage sync, and automated total calculation.
 - **Streamlined Checkout**: Clear delivery details input, validation, and vertical order summary.
 - **Order Tracking**: Order history with live order status updates pushed via WebSockets.
 

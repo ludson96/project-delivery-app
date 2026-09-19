@@ -20,6 +20,8 @@ Aplicação Full-Stack moderna para delivery de bebidas com autenticação JWT b
 ## 📌 Navegação Rápida
 
 - [📝 Sobre o Projeto](#-sobre-o-projeto)
+- [👥 Histórico e Participação no Projeto Original](#-histórico-e-participação-no-projeto-original)
+- [🚀 O que foi Modernizado (Do Legado ao Portfólio)](#-o-que-foi-modernizado-do-legado-ao-portfólio)
 - [🖼️ Preview](#️-preview)
 - [🌐 Deploy da Aplicação](#-deploy-da-aplicação)
 - [⚡ API Endpoints](#-api-endpoints)
@@ -35,18 +37,40 @@ Aplicação Full-Stack moderna para delivery de bebidas com autenticação JWT b
 
 O **Docker Drinks** é uma solução completa de e-commerce e logística de entregas concebida com foco em arquitetura limpa, manutenibilidade e experiência de usuário de alto nível.
 
-Originalmente desenvolvido durante o curso de desenvolvimento web da Trybe e posteriormente refatorado e modernizado por completo para o portfólio profissional, o projeto evoluiu de uma stack básica para uma arquitetura enterprise:
-- **TypeScript de ponta a ponta**: tipagem estática rigorosa no front-end e no back-end.
-- **Prisma ORM & Dual-Database Engine**: orquestração transparente entre MySQL para desenvolvimento em container Docker e SQLite para publicação em nuvem serverless/Render sem custos de hospedagem de banco externo.
-- **Gerenciamento de Estado Reativo**: carrinho persistido e reativo utilizando Zustand com sincronização instantânea.
-- **Atualizações em Tempo Real**: comunicação bidirecional com Socket.IO para notificar mudanças de status dos pedidos em tempo real.
-- **Design System Mobile-First**: interface personalizada com frame de smartphone interativo em monitores ultrawide/desktop e experiência nativa em dispositivos móveis.
+A aplicação atende a todo o fluxo operacional de delivery de bebidas: desde a descoberta de catálogo pelo cliente final, montagem do carrinho de compras e checkout, até o despacho logístico por vendedores e governança por administradores.
 
 ## 🖼️ Preview
 
 <div align="center">
-  <img src="./docs/images/projeto.gif" alt="Demonstração do App" width="420" />
+  <img src="./docs/images/projeto.gif" alt="Demonstração do App" />
 </div>
+
+## 👥 Histórico e Participação no Projeto Original
+
+O projeto nasceu originalmente como um desafio prático em equipe (grupo de 5 estudantes) durante a formação em desenvolvimento web na **Trybe**.
+
+Nessa etapa inicial do projeto:
+- Fiquei responsável junto do [Lucas Israel](https://github.com/Lucas-Israel) por todo o back-end, desde a configuração inicial da arquitetura MSC até as rotas e regras de requisição;
+- Desenvolvi todos os testes automatizados, cobrindo tanto o back-end quanto o front-end;
+- Os demais requisitos foram construídos em práticas colaborativas de `pair programming` e resolução de desafios em equipe.
+
+## 🚀 O que foi Modernizado (Do Legado ao Portfólio)
+
+Com o objetivo de transformar o projeto em uma aplicação de nível corporativo e destaque em processos seletivos de engenharia de software, o repositório foi completamente refatorado e desvinculado de scripts de avaliação de cursos:
+
+| Aspecto | Projeto Legado | Projeto Modernizado (Atual) |
+| :--- | :--- | :--- |
+| **Linguagem** | JavaScript (ES6) | **TypeScript 5.3 (Full-Stack)** com tipagem estática rigorosa em 100% da base |
+| **ORM / Banco** | Sequelize com MySQL fixo | **Prisma ORM 5.10 com Dual-Database Engine** (MySQL via Docker local e SQLite no Render) |
+| **Transações** | Operações sem controle atômico | **Transações atômicas seguras** via `prisma.$transaction` na criação de pedidos |
+| **Gerenciador de Estado** | React Context API com re-renderizações | **Zustand 5.0** com persistência sincronizada no `localStorage` e subscrições granulares |
+| **Comunicação** | Polling HTTP tradicional | **WebSockets nativos com Socket.IO** para atualização de status em tempo real |
+| **Estilização** | CSS puro / SASS básico | **Tailwind CSS 3.4** com design system customizado, micro-interações e tema premium |
+| **Experiência do Usuário** | Interface web desktop simples | **Mockup Frame de Smartphone** interativo com safe zone/notch e status bar nativa |
+| **Testes Automatizados** | Mocha, Chai, Sinon e Jest | **Vitest 1.3** ultra veloz unificado no backend e frontend |
+| **Documentação da API** | Documentação estática manual | **Swagger UI / OpenAPI 3.0** interativo em `/api-docs` |
+| **Deploy & CI/CD** | Apenas execução local | **Vercel** (Frontend com SPA rewrites) e **Render** (Backend autônomo com SQLite) |
+| **Limpeza de Legado** | Arquivos proprietários e `data-testid` de avaliação | Removidos resquícios como `data-testids.txt`, `prototype.fig`, `pm2`, `nyc` e configs antigas |
 
 ## 🌐 Deploy da Aplicação
 
@@ -77,7 +101,7 @@ A API segue padrões RESTful rigorosos, validando payloads com schemas estritos 
 ### 👤 Painel do Cliente (Customer)
 - **Autenticação Segura**: Login e cadastro com validação de dados em tempo real.
 - **Catálogo Interativo**: Navegação pelos produtos com controles intuitivos de quantidade (+ / -) e input numérico.
-- **Carrinho Reativo**: Contador dinâmico na barra de navegação, persistência local e cálculo automático de totais.
+- **Carrinho Reativo**: Contador dinâmico na barra de navegação com destaque da aba ativa, persistência local e cálculo automático de totais.
 - **Checkout Simplificado**: Seleção de endereço de entrega, validação de campos obrigatórios e resumo vertical de itens.
 - **Acompanhamento de Pedidos**: Histórico de compras com data, valor e status da entrega atualizado em tempo real.
 
