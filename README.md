@@ -1,111 +1,257 @@
-# Repositório do projeto App de Delivery 🛵
+# 🍺 Docker Drinks — Delivery App Full-Stack
 
-## Módulo: BACK-END
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.3.3-3178C6.svg?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Node.js](https://img.shields.io/badge/Node.js-20.x-339933.svg?style=for-the-badge&logo=node.js&logoColor=white)](https://nodejs.org/)
+[![React](https://img.shields.io/badge/React-17.0.2-61DAFB.svg?style=for-the-badge&logo=react&logoColor=black)](https://react.dev/)
+[![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-3.4.1-06B6D4.svg?style=for-the-badge&logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
+[![Prisma ORM](https://img.shields.io/badge/Prisma_ORM-5.10.0-2D3748.svg?style=for-the-badge&logo=prisma&logoColor=white)](https://www.prisma.io/)
+[![MySQL](https://img.shields.io/badge/MySQL-8.0-4479A1.svg?style=for-the-badge&logo=mysql&logoColor=white)](https://www.mysql.com/)
+[![SQLite](https://img.shields.io/badge/SQLite-Dual_DB-003B57.svg?style=for-the-badge&logo=sqlite&logoColor=white)](https://www.sqlite.org/)
+[![Socket.IO](https://img.shields.io/badge/Socket.io-4.7.5-010101.svg?style=for-the-badge&logo=socket.io&logoColor=white)](https://socket.io/)
+[![Vitest](https://img.shields.io/badge/Vitest-Unit_Tests-6E9F18.svg?style=for-the-badge&logo=vitest&logoColor=white)](https://vitest.dev/)
+[![Swagger](https://img.shields.io/badge/Swagger-OpenAPI_3-85EA2D.svg?style=for-the-badge&logo=swagger&logoColor=black)](https://swagger.io/)
+[![Docker](https://img.shields.io/badge/Docker-Enabled-2496ED.svg?style=for-the-badge&logo=docker&logoColor=white)](https://www.docker.com/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
 
- Repositório possuí projeto desenvolvido no período que estive na **Trybe**, abordando a maioria dos conceitos aprendidos em back-end: Banco de dados SQL (utilizamos o MySQL), API REST (utilizamos o Node.js), Express, Sequelize, usando arquitetura MSC, autenticação com JWT, além de construir o projeto de acordo com o paradigma de orientação a objetos (**POO**) e **SOLID**. Para testar a abordagem foram usados testes via **Mocha**, **Chai**, **Sinon**, com abordagem em **TDD**; Somando conhecimentos já aprendidos em Front-end.
+> 🇧🇷 **Português** | 🇺🇸 [**English Version**](README.en.md)
 
-## Informações de aprendizados
+Aplicação Full-Stack moderna para delivery de bebidas com autenticação JWT baseada em papéis (Cliente, Vendedor, Administrador), catálogo de produtos com gerenciamento reativo de estado, acompanhamento de pedidos em tempo real com WebSockets, arquitetura multi-banco com Prisma ORM e interface responsiva com layout mobile frame nativo.
 
-- Este é um projeto desenvolvido para praticar aplicações full-stack utilizando `JavaScript`, `MySQL` e `Sequelize`;
-- Primeiro projeto `Full-Stack`;
-- Utilizei o Cliente Rest `Thunder Client`, como extensão, para visualizar o retorno do meu acesso.
+## 📌 Navegação Rápida
 
-## Linguagens e ferramentas usadas
+- [📝 Sobre o Projeto](#-sobre-o-projeto)
+- [🖼️ Preview](#️-preview)
+- [🌐 Deploy da Aplicação](#-deploy-da-aplicação)
+- [⚡ API Endpoints](#-api-endpoints)
+- [✨ Funcionalidades](#-funcionalidades)
+- [🛠️ Tecnologias e Ferramentas Utilizadas](#️-tecnologias-e-ferramentas-utilizadas)
+- [🏛️ Arquitetura da Solução](#️-arquitetura-da-solução)
+- [📁 Estrutura do Repositório](#-estrutura-do-repositório)
+- [💡 Decisões Técnicas](#-decisões-técnicas)
+- [🚀 Como Executar o Projeto](#-como-executar-o-projeto)
+- [📄 Licença](#-licença)
 
-[![Git][Git-logo]][Git-url]
-[![ESLint][ESLint-logo]][ESLint-url]
-[![HTML5][HTML5-logo]][HTML5-url]
-[![CSS3][CSS3-logo]][CSS3-url]
-[![JavaScript][JavaScript-logo]][JavaScript-url]
-[![React][React-logo]][React-url]
-[![MySQL][MySQL-logo]][MySQL-url]
-[![NodeJS][NodeJS-logo]][NodeJS-url]
-[![Nodemon][Nodemon-logo]][Nodemon-url]
-[![Express][Express-logo]][Express-url]
-[![Sequelize][Sequelize-logo]][Sequelize-url]
-[![JWT][JWT-logo]][JWT-url]
-[![.ENV][.ENV-logo]][.ENV-url]
-[![Jest][Jest-logo]][Jest-url]
-[![RTL][RTL-logo]][RTL-url]
-[![Mocha][Mocha-logo]][Mocha-url]
-[![Chai][Chai-logo]][Chai-url]
-[![Sinon][Sinon-logo]][Sinon-url]
+## 📝 Sobre o Projeto
 
-## O que foi desenvolvido
+O **Docker Drinks** é uma solução completa de e-commerce e logística de entregas concebida com foco em arquitetura limpa, manutenibilidade e experiência de usuário de alto nível.
 
-Neste projeto, desenvolvemos em grupo de 5 estudantes da **Trybe** um app web de delivery para uma distribuidora de bebidas.
+Originalmente desenvolvido durante o curso de desenvolvimento web da Trybe e posteriormente refatorado e modernizado por completo para o portfólio profissional, o projeto evoluiu de uma stack básica para uma arquitetura enterprise:
+- **TypeScript de ponta a ponta**: tipagem estática rigorosa no front-end e no back-end.
+- **Prisma ORM & Dual-Database Engine**: orquestração transparente entre MySQL para desenvolvimento em container Docker e SQLite para publicação em nuvem serverless/Render sem custos de hospedagem de banco externo.
+- **Gerenciamento de Estado Reativo**: carrinho persistido e reativo utilizando Zustand com sincronização instantânea.
+- **Atualizações em Tempo Real**: comunicação bidirecional com Socket.IO para notificar mudanças de status dos pedidos em tempo real.
+- **Design System Mobile-First**: interface personalizada com frame de smartphone interativo em monitores ultrawide/desktop e experiência nativa em dispositivos móveis.
 
-## Alguns dos requisitos que fiquei responsável e tive participação
+## 🖼️ Preview
 
-- Fiquei responsável junto do [Lucas Israel](https://github.com/Lucas-Israel) de todo o back-end, desde configuração até requisição;
-- Fiz todos os testes tanto de back-end como de front-end;
-- Outros requisitos foram feitos em `pair programming` ou `nos unimos em grupo para resolvermos`.
+<div align="center">
+  <img src="./docs/images/projeto.gif" alt="Demonstração do App" width="420" />
+</div>
 
-## Instruções para instalar e rodar
+## 🌐 Deploy da Aplicação
 
-1. Clone o repo:
+Acesse a aplicação em produção:
+👉 **[Docker Drinks Web App](https://docker-drinks.vercel.app)**
 
-    ```bash
-    git clone git@github.com:Ludson96/project-delivery-app.git
-    ```
+Documentação interativa da API (Swagger):
+👉 **[Swagger OpenAPI Docs](https://project-delivery-app-d284.onrender.com/api-docs)**
 
-1. Entre na pasta do repositório que você acabou de clonar:
+## ⚡ API Endpoints
 
-    ```bash
-    cd project-delivery-app
-    ```
+A API segue padrões RESTful rigorosos, validando payloads com schemas estritos e protegendo rotas por token JWT e perfis de acesso:
 
-1. Instale as dependências e inicialize o projeto:
+| Método | Rota | Autenticação / Role | Descrição |
+| :--- | :--- | :--- | :--- |
+| `POST` | `/login` | Pública | Autenticação com e-mail e senha, emitindo token JWT |
+| `POST` | `/register` | Pública | Auto-cadastro de novos clientes |
+| `GET` | `/products` | Pública | Catálogo de produtos com preços e URLs de imagens |
+| `POST` | `/sales` | `Bearer Token` (Cliente) | Criação de novo pedido com lista de itens e endereço |
+| `GET` | `/sales` | `Bearer Token` (Todos) | Listagem de pedidos filtrados pelo ID e Role do usuário |
+| `GET` | `/sales/:id` | `Bearer Token` (Todos) | Detalhes completos de um pedido específico |
+| `PATCH` | `/sales/:id/status` | `Bearer Token` (Vendedor / Cliente) | Atualização de status e broadcast via WebSocket |
+| `GET` | `/admin/manager` | `Bearer Token` (Admin) | Listagem de todos os usuários cadastrados no sistema |
+| `GET` | `/health` | Pública | Verificação de disponibilidade e saúde do servidor |
 
-    ```bash
-    npm install
-    ```
+## ✨ Funcionalidades
 
-1. Entre no back-end, crie o schema, banco de dados e popula as tabelas e rode o servidor em desenvolvimento (nodemon) com o seguinte comando, não pode ser fechado:
+### 👤 Painel do Cliente (Customer)
+- **Autenticação Segura**: Login e cadastro com validação de dados em tempo real.
+- **Catálogo Interativo**: Navegação pelos produtos com controles intuitivos de quantidade (+ / -) e input numérico.
+- **Carrinho Reativo**: Contador dinâmico na barra de navegação, persistência local e cálculo automático de totais.
+- **Checkout Simplificado**: Seleção de endereço de entrega, validação de campos obrigatórios e resumo vertical de itens.
+- **Acompanhamento de Pedidos**: Histórico de compras com data, valor e status da entrega atualizado em tempo real.
 
-    ```bash
-    cd backend && npm run db:reset && npm run dev
-    ```
+### 🚚 Painel do Vendedor (Seller)
+- **Gestão de Pedidos**: Visão centralizada das vendas atribuídas à distribuidora.
+- **Fluxo de Status**: Transição de etapas do pedido (`Pendente` ➔ `Preparando` ➔ `Em Trânsito` ➔ `Entregue`).
 
-1. Após o passo acima, abra outro terminal e entre no front-end e rode a aplicação:
+### ⚙️ Painel do Administrador (Admin)
+- **Gestão de Acessos**: Visualização consolidada de todos os usuários do ecossistema e seus respectivos papéis (`customer`, `seller`, `administrator`).
 
-    ```bash
-    cd frontend && npm start
-    ```
+## 🛠️ Tecnologias e Ferramentas Utilizadas
 
-[Git-logo]: https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white
-[Git-url]: https://git-scm.com
-[Express-logo]: https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB
-[Express-url]: https://expressjs.com
-[NodeJS-logo]: https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white
-[NodeJS-url]: https://nodejs.org/en/
-[ESLint-logo]: https://img.shields.io/badge/ESLint-4B3263?style=for-the-badge&logo=eslint&logoColor=white
-[ESLint-url]: https://eslint.org/
-[.ENV-logo]: https://img.shields.io/badge/.ENV-ECD53F?logo=dotenv&logoColor=000&style=for-the-badge
-[.ENV-url]: https://www.npmjs.com/package/dotenv
-[Jest-logo]: https://img.shields.io/badge/-jest-%23C21325?style=for-the-badge&logo=jest&logoColor=white
-[Jest-url]: https://jestjs.io
-[Chai-logo]: https://img.shields.io/badge/Chai-A30701?logo=chai&logoColor=fff&style=for-the-badge
-[Chai-url]: https://www.chaijs.com
-[Mocha-logo]: https://img.shields.io/badge/-mocha-%238D6748?style=for-the-badge&logo=mocha&logoColor=white
-[Mocha-url]: https://mochajs.org
-[JavaScript-logo]: https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E
-[JavaScript-url]: https://www.javascript.com/
-[HTML5-logo]: https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white
-[HTML5-url]: https://developer.mozilla.org/pt-BR/docs/Web/HTML
-[CSS3-logo]: https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white
-[CSS3-url]: https://developer.mozilla.org/pt-BR/docs/Web/CSS
-[React-logo]: https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB
-[React-url]: https://reactjs.org
-[MySQL-logo]: https://img.shields.io/badge/mysql-%2300f.svg?style=for-the-badge&logo=mysql&logoColor=white
-[MySQL-url]: https://www.mysql.com
-[Sequelize-logo]: https://img.shields.io/badge/Sequelize-52B0E7?style=for-the-badge&logo=Sequelize&logoColor=white
-[Sequelize-url]: https://sequelize.org
-[JWT-logo]: https://img.shields.io/badge/JWT-black?style=for-the-badge&logo=JSON%20web%20tokens
-[JWT-url]: https://jwt.io/
-[RTL-logo]: https://img.shields.io/badge/-TestingLibrary-%23E33332?style=for-the-badge&logo=testing-library&logoColor=white
-[RTL-url]: https://testing-library.com/
-[Sinon-logo]: https://img.shields.io/badge/sinon.js-323330?style=for-the-badge&logo=sinon
-[Sinon-url]: https://www.npmjs.com/package/sinon
-[Nodemon-logo]: https://img.shields.io/badge/Nodemon-76D04B?logo=nodemon&logoColor=fff&style=for-the-badge
-[Nodemon-url]: https://www.npmjs.com/package/nodemon
+| Camada / Finalidade | Tecnologia | Descrição |
+| :--- | :--- | :--- |
+| **Linguagem Principal** | **TypeScript 5.3** | Tipagem estática fim a fim garantindo robustez e autocompletion |
+| **Ambiente de Execução** | **Node.js 20.x** | Runtime JavaScript assíncrono de alta performance no backend |
+| **Framework Backend** | **Express 4.19** | Servidor HTTP minimalista para construção de endpoints RESTful |
+| **Persistência de Dados** | **Prisma ORM 5.10** | Type-safe query builder, migrações automatizadas e multi-provider |
+| **Bancos de Dados** | **MySQL 8.0 & SQLite** | MySQL via Docker localmente e SQLite para deploy autônomo |
+| **Validação de Schemas** | **Zod 3.22** | Validação declarativa de entrada de dados e geração de tipos seguros |
+| **Comunicação Realtime** | **Socket.IO 4.7** | Conexão WebSocket bidirecional para atualização de status de pedidos |
+| **Interface de Usuário** | **React 17 & Hooks** | Componentização modular com hooks de ciclo de vida e estado |
+| **Gerenciador de Estado** | **Zustand 5.0** | State store leve, sem boilerplate e com persistência em LocalStorage |
+| **Estilização** | **Tailwind CSS 3.4** | Design system utilitário com paleta customizada e responsividade |
+| **Documentação da API** | **Swagger UI / OpenAPI 3** | Documentação interativa das rotas acessível via browser |
+| **Testes Automatizados** | **Vitest 1.3** | Suíte de testes unitários ultrarrápida com relatórios integrados |
+| **Containerização** | **Docker & Docker Compose** | Ambiente isolado e reproduzível para o banco de dados local |
+| **Hospedagem & CI/CD** | **Vercel & Render** | Deploy automatizado para frontend e backend conectado ao GitHub |
+
+## 🏛️ Arquitetura da Solução
+
+O sistema foi estruturado seguindo os princípios de separação de responsabilidades e arquitetura em camadas (Controller-Service-Data):
+
+```mermaid
+flowchart TD
+    subgraph ClientLayer["🖥️ Camada de Apresentação (Frontend)"]
+        UI["React 17 + Tailwind CSS\n(Frame Mobile Responsivo)"]
+        State["Zustand Stores\n(useCartStore / useAuthStore)"]
+        WSClient["Socket.IO Client\n(Ouvinte em tempo real)"]
+        UI --> State
+        UI --> WSClient
+    end
+
+    subgraph ServerLayer["⚙️ Camada de Aplicação (Backend)"]
+        Router["Express Routers & Middleware\n(JWT Auth, Zod Validation)"]
+        Controller["Controllers\n(HTTP Handlers)"]
+        Service["Services\n(Regras de Negócio)"]
+        WSServer["Socket.IO Server\n(Broadcast de Eventos)"]
+        Router --> Controller
+        Controller --> Service
+        Controller --> WSServer
+    end
+
+    subgraph DataLayer["💾 Camada de Persistência"]
+        Prisma["Prisma ORM\n(Query Engine & Client)"]
+        MySQL[("MySQL 8.0\n(Docker Local)")]
+        SQLite[("SQLite Database\n(Deploy Render)")]
+        Service --> Prisma
+        Prisma -.->|Dev Local| MySQL
+        Prisma -.->|Produção| SQLite
+    end
+
+    UI <==>|"HTTPS / JSON"| Router
+    WSClient <==>|"WebSockets (WSS)"| WSServer
+```
+
+## 📁 Estrutura do Repositório
+
+```text
+project-delivery-app/
+├── backend/
+│   ├── prisma/
+│   │   ├── schema.mysql.prisma   # Schema Prisma configurado para MySQL
+│   │   ├── schema.sqlite.prisma  # Schema Prisma configurado para SQLite
+│   │   ├── seed.ts               # Script para popular usuários e catálogo inicial
+│   │   └── setup-db.ts           # Orquestrador automático de dual-database
+│   ├── src/
+│   │   ├── api/                  # Configuração do Express, HTTP Server e Socket.IO
+│   │   ├── auth/                 # Utilitários de JWT e criptografia de senhas
+│   │   ├── controllers/          # Manipuladores de requisições e respostas HTTP
+│   │   ├── docs/                 # Definição e configuração do Swagger OpenAPI 3
+│   │   ├── middlewares/          # Validação com Zod e autenticação por Token
+│   │   ├── routers/              # Definição das rotas e anotações OpenAPI
+│   │   ├── services/             # Regras de negócio e integração com Prisma
+│   │   └── tests/                # Testes unitários com Vitest
+│   ├── Dockerfile
+│   └── package.json
+├── frontend/
+│   ├── public/                   # Favicons, assets estáticos e template HTML
+│   ├── src/
+│   │   ├── components/           # Componentes reutilizáveis (Navbar, Frame, Cards)
+│   │   ├── images/               # Logos da marca Docker Drinks e background
+│   │   ├── pages/                # Telas (Login, Register, Products, Checkout, Orders)
+│   │   ├── store/                # Gerenciadores de estado com Zustand
+│   │   ├── types/                # Definições de tipos TypeScript compartilhados
+│   │   ├── App.tsx               # Roteamento e dispositivo smartphone mockup
+│   │   └── index.css             # Configurações do Tailwind CSS
+│   ├── vercel.json               # Configurações de redirecionamento SPA para Vercel
+│   └── package.json
+├── docs/
+│   └── images/
+│       └── projeto.gif           # Demonstração animada da interface
+├── docker-compose.yml            # Orquestração do MySQL para desenvolvimento
+└── package.json                  # Scripts unificados de gerenciamento na raiz
+```
+
+## 💡 Decisões Técnicas
+
+1. **Estratégia Dual-Database (MySQL & SQLite com Prisma)**:
+   - Em desenvolvimento local, o time se beneficia da fidelidade de um banco relacional corporativo (MySQL 8.0 rodando via Docker).
+   - Em produção no Render (plano gratuito), instâncias gerenciadas de banco de dados expiram com frequência. O script `backend/prisma/setup-db.ts` detecta a variável de ambiente e chaveia transparentemente o schema para SQLite, permitindo deploy contínuo, seguro e com zero custo operacional.
+
+2. **Adoção do Zustand sobre Context API / Redux**:
+   - Elimina o boilerplate excessivo do Redux mantendo performance imbatível e isolando re-renderizações desnecessárias.
+   - Integração com `use-sync-external-store/shim` para garantir compatibilidade impecável com React 17 e persistência síncrona no LocalStorage.
+
+3. **Frame de Smartphone para Apresentação em Portfólio**:
+   - Avaliadores de recrutamento costumam abrir aplicações de portfólio no computador. Para simular a experiência de um aplicativo mobile de entrega sem exigir que o avaliador abra as ferramentas de desenvolvedor do navegador, a aplicação exibe um mockup premium de smartphone com status bar nativa em telas grandes, tornando-se 100% tela cheia ao ser acessada de um celular real.
+
+4. **WebSockets Nativos com Socket.IO**:
+   - Evita polling repetitivo e sobrecarga no servidor. Quando o vendedor altera o status do pedido, o cliente recebe a notificação instantânea e o badge atualiza sem recarregar a página.
+
+## 🚀 Como Executar o Projeto
+
+### Pré-requisitos
+- [Node.js](https://nodejs.org/) versão 18 ou superior
+- [Docker](https://www.docker.com/) e Docker Compose instalados
+- [Git](https://git-scm.com/)
+
+### 1. Clonar o Repositório
+```bash
+git clone https://github.com/ludson96/project-delivery-app.git
+cd project-delivery-app
+```
+
+### 2. Subir o Banco de Dados com Docker
+Inicie a instância do MySQL em container isolado:
+```bash
+docker-compose up -d
+```
+
+### 3. Configurar e Iniciar o Backend
+Abra um terminal, acerte as dependências e inicie o servidor:
+```bash
+cd backend
+npm install
+npm run db:setup
+npm run dev
+```
+O servidor estará disponível em `http://localhost:3001` e o Swagger em `http://localhost:3001/api-docs`.
+
+### 4. Iniciar o Frontend
+Em outro terminal, acesse a pasta do frontend e inicie a interface:
+```bash
+cd frontend
+npm install
+npm start
+```
+Acesse no seu navegador: `http://localhost:3000`.
+
+### 5. Executar os Testes Automatizados
+```bash
+# Rodar testes do backend
+npm run test:backend
+
+# Rodar linter em todo o projeto
+npm run lint
+```
+
+## 📄 Licença
+
+Este projeto está licenciado sob os termos da licença **MIT**. Consulte o arquivo [LICENSE](LICENSE) para mais detalhes.
+
+<div align="center">
+  Desenvolvido por <strong>Ludson Pereira dos Santos</strong> 🚀<br />
+  <a href="https://www.linkedin.com/in/ludson96/">LinkedIn</a> • <a href="https://github.com/ludson96">GitHub</a> • <a href="mailto:ludson_ps27@hotmail.com">E-mail</a>
+</div>
