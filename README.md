@@ -76,9 +76,6 @@ Com o objetivo de transformar o projeto em uma aplicação de nível corporativo
 Acesse a aplicação em produção:
 👉 **[Docker Drinks Web App](https://docker-drinks.vercel.app)**
 
-Documentação interativa da API (Swagger):
-👉 **[Swagger OpenAPI Docs](https://project-delivery-app-d284.onrender.com/api-docs)**
-
 ## ⚡ API Endpoints
 
 A API segue padrões RESTful rigorosos, validando payloads com schemas estritos e protegendo rotas por token JWT e perfis de acesso:
