@@ -22,6 +22,7 @@ Modern Full-Stack beverage delivery web application featuring role-based JWT aut
 
 - [📝 About the Project](#-about-the-project)
 - [🖼️ Preview](#️-preview)
+- [📱 Mobile App (Flutter)](#-mobile-app-flutter)
 - [👥 Project History and Team Collaboration](#-project-history-and-team-collaboration)
 - [🚀 Modernization Highlights (From Legacy to Portfolio)](#-modernization-highlights-from-legacy-to-portfolio)
 - [🌐 Application Deployment](#-application-deployment)
@@ -43,6 +44,12 @@ The application serves the entire beverage delivery operation: from catalog disc
 ## 🖼️ Preview
 
 <img src="./docs/images/projeto.gif" alt="App Demonstration" />
+
+## 📱 Mobile App (Flutter)
+
+In addition to this Web version, this ecosystem features a **100% native mobile application built with Flutter** for Android and iOS, consuming the exact same production API with state management powered by Riverpod, instant catalog search, and real-time WebSocket order tracking:
+
+👉 Mobile App Repository: [**github.com/ludson96/delivery_app**](https://github.com/ludson96/delivery_app)
 
 ## 👥 Project History and Team Collaboration
 
@@ -75,6 +82,9 @@ To elevate this application into an enterprise-grade showcase for engineering po
 
 Access the live production app:
 👉 **[Docker Drinks Web App](https://docker-drinks.vercel.app)**
+
+Mobile Version (Flutter):
+👉 **[Flutter Mobile App Repository](https://github.com/ludson96/delivery_app)**
 
 Interactive OpenAPI / Swagger Documentation:
 👉 **[Swagger OpenAPI Docs](https://project-delivery-app-d284.onrender.com/api-docs)**

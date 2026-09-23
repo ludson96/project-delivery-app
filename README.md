@@ -22,6 +22,7 @@ Aplicação Full-Stack moderna para delivery de bebidas com autenticação JWT b
 
 - [📝 Sobre o Projeto](#-sobre-o-projeto)
 - [🖼️ Preview](#️-preview)
+- [📱 Aplicativo Mobile (Flutter)](#-aplicativo-mobile-flutter)
 - [👥 Histórico e Participação no Projeto Original](#-histórico-e-participação-no-projeto-original)
 - [🚀 O que foi Modernizado (Do Legado ao Portfólio)](#-o-que-foi-modernizado-do-legado-ao-portfólio)
 - [🌐 Deploy da Aplicação](#-deploy-da-aplicação)
@@ -43,6 +44,12 @@ A aplicação atende a todo o fluxo operacional de delivery de bebidas: desde a 
 ## 🖼️ Preview
 
 <img src="./docs/images/projeto.gif" alt="Demonstração do App" />
+
+## 📱 Aplicativo Mobile (Flutter)
+
+Além desta versão Web, este ecossistema conta com um **aplicativo mobile 100% nativo desenvolvido em Flutter** para Android e iOS, consumindo a mesma API em produção com gerenciamento de estado via Riverpod, busca dinâmica e atualizações de entrega em tempo real:
+
+👉 Repositório do App Mobile: [**github.com/ludson96/delivery_app**](https://github.com/ludson96/delivery_app)
 
 ## 👥 Histórico e Participação no Projeto Original
 
@@ -75,6 +82,9 @@ Com o objetivo de transformar o projeto em uma aplicação de nível corporativo
 
 Acesse a aplicação em produção:
 👉 **[Docker Drinks Web App](https://docker-drinks.vercel.app)**
+
+Versão Mobile (Flutter):
+👉 **[Repositório do App Mobile (Flutter)](https://github.com/ludson96/delivery_app)**
 
 Documentação interativa da API (Swagger):
 👉 **[Swagger OpenAPI Docs](https://project-delivery-app-d284.onrender.com/api-docs)**
