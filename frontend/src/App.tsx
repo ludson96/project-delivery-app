@@ -13,7 +13,7 @@ import { ServerNoticeBanner } from './components/Banner';
 export const App: React.FC = () => {
   return (
     <>
-      <div className="fixed top-16 left-0 w-full z-30">
+      <div className="fixed top-0 left-0 w-full z-30">
         <ServerNoticeBanner />
       </div>
       <div className="min-h-screen bg-slate-950 flex items-center justify-center p-0 md:p-6 font-sans">
