@@ -12,7 +12,6 @@
 [![Vitest](https://img.shields.io/badge/Vitest-Unit_Tests-6E9F18.svg?style=for-the-badge&logo=vitest&logoColor=white)](https://vitest.dev/)
 [![Swagger](https://img.shields.io/badge/Swagger-OpenAPI_3-85EA2D.svg?style=for-the-badge&logo=swagger&logoColor=black)](https://swagger.io/)
 [![Docker](https://img.shields.io/badge/Docker-Enabled-2496ED.svg?style=for-the-badge&logo=docker&logoColor=white)](https://www.docker.com/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
 
 > 🇧🇷 **Português** | 🇺🇸 [**English Version**](README.en.md)
 
@@ -33,7 +32,6 @@ Aplicação Full-Stack moderna para delivery de bebidas com autenticação JWT b
 - [📁 Estrutura do Repositório](#-estrutura-do-repositório)
 - [💡 Decisões Técnicas](#-decisões-técnicas)
 - [🚀 Como Executar o Projeto](#-como-executar-o-projeto)
-- [📄 Licença](#-licença)
 
 ## 📝 Sobre o Projeto
 
@@ -273,10 +271,6 @@ npm run test:backend
 # Rodar linter em todo o projeto
 npm run lint
 ```
-
-## 📄 Licença
-
-Este projeto está licenciado sob os termos da licença **MIT**. Consulte o arquivo [LICENSE](LICENSE) para mais detalhes.
 
 <div align="center">
   Desenvolvido por <strong>Ludson Pereira dos Santos</strong> 🚀<br />
